@@ -1,1 +1,24 @@
-/* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: font-texto;
+  src: url(./assets/tipografia/Ledger-Regular.ttf) format("woff2");
+}
+
+:root {
+
+    //----------------------COLORES----------------------//
+
+    --colorRojo:#A1011B;
+    --colorGris:#ECEDED;
+    --colorAzul:#00102A;
+    --colorDorado:#AE8C44; //#D2AD76
+    --colorNegro:#FFFFFF;
+
+    //-----------------TAMAÑO-TIPOGRAFÍA------------------//
+
+    --TamTitulos: 65px;
+    --TamTexto:25px;
+
+    //------------------PESO-TIPOGRAFÍA-------------------//
+
+}
+
