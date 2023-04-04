@@ -7,12 +7,13 @@ class Server {
         this.app = express();
         this.server = require('http').createServer(this.app);
         this.io = require('socket.io')(this.server);
+        this.authPath = '/';
 
         //Middlewares
-        //this.middlewares();
+        this.middlewares();
 
         //Routes
-        //this.routes();
+        this.routes();
 
         //Websockets.
         //this.sockets();
@@ -25,12 +26,11 @@ class Server {
        
     }
 
-    /* routes(){
-        
-
+    routes(){
+        this.app.use(this.authPath , require('../../routes/authRoutes'));
     }
 
-    sockets(){
+    /*sockets(){
         
     } */
 
