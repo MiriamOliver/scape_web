@@ -19,8 +19,8 @@ class ConexionUsuario extends ConexionSequelize {
             });
             if(usuario){
                 const idRol = await this.getIdRol('jugador');
-                this.asignarRol(usuario.dataValues.id, idRol.dataValues.id);
-                this.insertarJugador(usuario.dataValues.id);
+                await this.asignarRol(usuario.dataValues.id, idRol.dataValues.id);
+                await this.insertarJugador(usuario.dataValues.id);
             }
         }catch (err){
             throw err;
@@ -30,11 +30,11 @@ class ConexionUsuario extends ConexionSequelize {
 
 
     asignarRol = async (idUser, idRol) => {
-
-        await models.RolesAsignados.create({
+        const resp = await models.RolesAsignados.create({
             id_user: idUser,
             id_rol: idRol
         });
+        return resp;
     }
 
 
@@ -49,9 +49,10 @@ class ConexionUsuario extends ConexionSequelize {
     }
 
     insertarJugador = async (idUser) => {
-        await models.Jugador.create({
+        const resp = await models.Jugador.create({
             id: idUser
         });
+        return resp;
     }
 
 
