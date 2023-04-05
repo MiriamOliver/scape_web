@@ -1,6 +1,10 @@
 const ConexionSequelize = require('./ConexionSequelize');
+const path = require('path');
+const fs   = require('fs');
+const { v4: uuidv4 } = require('uuid');
 const { Sequelize } = require("sequelize");
 const models = require('../../models/index.js');
+const File = require('../../helpers/file_upload');
 
 
 class ConexionUsuario extends ConexionSequelize {
@@ -9,23 +13,28 @@ class ConexionUsuario extends ConexionSequelize {
         super();
     }
 
-    registrarUsuario = async (body) => {
+    registrarUsuario = async (req) => {
 
         try{
+            const nombre = await File.subirArchivo(req.files, undefined, 'imgs' );
+
             const usuario = await models.User.create({
-                nombre: body.nombre,
-                email: body.email,
-                password:body.password
+                nombre: req.body.nombre,
+                email: req.body.email,
+                password: req.body.password,
+                avatar:nombre
             });
             if(usuario){
                 const idRol = await this.getIdRol('jugador');
                 await this.asignarRol(usuario.dataValues.id, idRol.dataValues.id);
                 await this.insertarJugador(usuario.dataValues.id);
             }
+
+            return usuario.dataValues;
+            
         }catch (err){
             throw err;
         }
-        return usuario.dataValues;
     }
 
 

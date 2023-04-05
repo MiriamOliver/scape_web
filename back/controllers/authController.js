@@ -3,8 +3,9 @@ const ConexionSequelize = require('./Conexion/ConexionUsuario');
 
 
   const register =  (req = request, res = response) => {
+    console.log('hablame')
     const conx = new ConexionSequelize();
-    conx.registrarUsuario(req.body)    
+    conx.registrarUsuario(req)    
         .then( msg => {
             res.status(201).json({'msg':'¡Registrado correctamente!. Revise su correo electrónico para verificar su registro'});
         })

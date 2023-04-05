@@ -10,6 +10,7 @@ const emailExiste = async( email ) => {
 }
 
 const nombreExiste = async( nombre ) => {
+    console.log(nombre);
     const existeNombre = await models.User.findOne({
         where: {"nombre": nombre}
     })
