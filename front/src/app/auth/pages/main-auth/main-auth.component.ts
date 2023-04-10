@@ -12,6 +12,7 @@ export class MainAuthComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit(): void {
+
     if (this.router.url.includes('login')) {
       this.inicio = 'login';
     }

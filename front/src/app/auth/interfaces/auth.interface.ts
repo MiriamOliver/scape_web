@@ -5,3 +5,8 @@ export interface Registro {
   passwd: string;
   avatar:string;
 }
+
+export interface RespRegistro {
+  success: boolean;
+  msg: string;
+}

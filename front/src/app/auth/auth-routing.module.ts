@@ -8,6 +8,7 @@ const routes: Routes = [
     children: [
       { path: 'login', component: MainAuthComponent},
       { path: 'registro', component: MainAuthComponent },
+      { path: '**', redirectTo: 'registro' }
     ]
   }
 ];

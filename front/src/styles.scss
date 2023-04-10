@@ -11,14 +11,21 @@
     --colorGris:#ECEDED;
     --colorAzul:#00102A;
     --colorDorado:#AE8C44; //#D2AD76
-    --colorNegro:#FFFFFF;
+    --colorBlanco:#FFFFFF;
+
+    //--------------------TIPOGRAFÍA----------------------//
+
+    --TipoTexto: font-texto;
 
     //-----------------TAMAÑO-TIPOGRAFÍA------------------//
 
     --TamTitulos: 65px;
-    --TamTexto:25px;
+    --TamTexto:13px;
 
     //------------------PESO-TIPOGRAFÍA-------------------//
 
+}
+body{
+  font-family: var(--TipoTexto);
 }
 
