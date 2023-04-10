@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
+import { confirmarPasswd } from '../../validators/validator'
 
 @Component({
   selector: 'app-register',
@@ -17,7 +18,7 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private formBuilder: FormBuilder,
+    private fb: FormBuilder,
     private authService: AuthService
   ) { }
 
@@ -26,12 +27,38 @@ export class RegisterComponent implements OnInit {
     this.registroCorrecto = true;
     this.submitted = false;
 
-    this.registerForm = new FormGroup({
+    /* this.registerForm = new FormGroup({
       nombre: new FormControl('', [Validators.required]),
-      email: new FormControl('', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")]),
+      email: new FormControl('', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
       passwd: new FormControl('', [Validators.required]),
       passwdConf: new FormControl('', [Validators.required])
-    });
+    },
+    {
+     validators: [confirmarPasswd()]
+    }
+    ); */
+    this.registerForm = this.fb.group({
+      nombre: ['', Validators.required],
+      email: ['', Validators.compose([
+        Validators.required,
+        Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"),
+      ])],
+      passwords: this.fb.group({
+        passwd: ['', Validators.required],
+        passwdConf: ['', Validators.required]
+      },
+      {
+        validators: [confirmarPasswd()]
+      })
+    })
+  }
+
+  get form() {
+    return this.registerForm.controls;
+  }
+
+  get passwords(){
+    return this.registerForm.controls["passwords"] as FormGroup;
   }
 
 
@@ -73,15 +100,9 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  get form() {
-    return this.registerForm.controls;
-  }
-
   onSubmit() {
+    this.submitted = true;
 
-    if (this.registerForm.valid) {
-      this.submitted = true;
-    }
   }
 
   abrirLogin() {
