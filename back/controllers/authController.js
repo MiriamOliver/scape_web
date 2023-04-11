@@ -1,5 +1,6 @@
 const { Sequelize } = require("sequelize");
 const ConexionSequelize = require('./Conexion/ConexionUsuario');
+const fHTML = require('../helpers/filesHtml');
 
 
   const register =  (req = request, res = response) => {
@@ -13,6 +14,19 @@ const ConexionSequelize = require('./Conexion/ConexionUsuario');
         });
     }
 
+    const verificarCorreo = (req, res = response) => {
+        const conx = new ConexionSequelize();
+        conx.updateVerificarCorreo(req.params.id)
+            .then(resp => {
+                if (resp) res.send(fHTML.exitoVerificar());
+                else res.send(fHTML.errorVerificar());
+    
+            }).catch(err => {
+                res.send(fHTML.errorVerificar());
+            });
+    }
+
     module.exports = {
         register,
+        verificarCorreo
     }

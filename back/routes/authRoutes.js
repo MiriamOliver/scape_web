@@ -17,5 +17,6 @@ router.post('/registro',
     validarCampos 
 ],
 controlador.register);
+router.get('/verificarcorreo/:id', controlador.verificarCorreo);
 
 module.exports = router

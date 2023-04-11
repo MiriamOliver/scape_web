@@ -1,3 +1,4 @@
+const moment = require('moment');
 const ConexionSequelize = require('./ConexionSequelize');
 const path = require('path');
 const fs   = require('fs');
@@ -5,6 +6,7 @@ const { v4: uuidv4 } = require('uuid');
 const { Sequelize } = require("sequelize");
 const models = require('../../models/index.js');
 const File = require('../../helpers/file_upload');
+const correo = require('../../helpers/correo')
 
 
 class ConexionUsuario extends ConexionSequelize {
@@ -24,9 +26,12 @@ class ConexionUsuario extends ConexionSequelize {
                 //avatar:nombre
             });
             if(usuario){
+
                 const idRol = await this.getIdRol('jugador');
                 await this.asignarRol(usuario.dataValues.id, idRol.dataValues.id);
                 await this.insertarJugador(usuario.dataValues.id);
+                correo.verificarCorreo(usuario.dataValues.id, usuario.dataValues.email, 'verificarcorreo');
+                
             }
 
             return usuario.dataValues;
@@ -61,6 +66,23 @@ class ConexionUsuario extends ConexionSequelize {
             id: idUser
         });
         return resp;
+    }
+
+    updateVerificarCorreo = async(id) => {  
+        let resultado = null;
+
+        try {
+            const usuario = await models.User.findByPk(id);
+            
+            if (usuario) {      
+                resultado = await usuario.update({verifiedAt: moment(Date.now()).format('YYYY-MM-DD HH:mm:ss')});
+            }
+
+            return resultado;
+        }
+        catch (err) {
+            throw err;
+        }
     }
 
 
