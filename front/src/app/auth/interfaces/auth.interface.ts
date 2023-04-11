@@ -2,8 +2,8 @@
 export interface Registro {
   nombre: string;
   email: string;
-  passwd: string;
-  avatar:string;
+  password: string;
+  avatar: string;
 }
 
 export interface RespRegistro {

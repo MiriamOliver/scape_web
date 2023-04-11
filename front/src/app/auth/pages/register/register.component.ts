@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
-import { confirmarPasswd } from '../../validators/validator'
+import { confirmarPasswd } from '../../validators/validator';
 
 @Component({
   selector: 'app-register',
@@ -11,6 +11,7 @@ import { confirmarPasswd } from '../../validators/validator'
 })
 export class RegisterComponent implements OnInit {
 
+  selectedFile: string = "";
   passwdCorrecta: boolean = true;
   registroCorrecto: boolean = true;
   submitted: boolean = false;
@@ -26,18 +27,10 @@ export class RegisterComponent implements OnInit {
     this.passwdCorrecta = false;
     this.registroCorrecto = true;
     this.submitted = false;
+    this.selectedFile = "";
 
-    /* this.registerForm = new FormGroup({
-      nombre: new FormControl('', [Validators.required]),
-      email: new FormControl('', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
-      passwd: new FormControl('', [Validators.required]),
-      passwdConf: new FormControl('', [Validators.required])
-    },
-    {
-     validators: [confirmarPasswd()]
-    }
-    ); */
     this.registerForm = this.fb.group({
+      avatar: ['', Validators.required],
       nombre: ['', Validators.required],
       email: ['', Validators.compose([
         Validators.required,
@@ -61,34 +54,14 @@ export class RegisterComponent implements OnInit {
     return this.registerForm.controls["passwords"] as FormGroup;
   }
 
-
-  /* MustMatch (passwd:string, passwdConf:string){
-
-    return ( formGroup: FormGroup) => {
-      const password = formGroup.controls[passwd];
-      const passwordConf = formGroup.controls[passwdConf];
-
-      if(passwordConf.errors && !passwordConf.errors.mustMatch){
-        return;
-      }
-
-      if(password.value !== passwordConf.value){
-        passwordConf.setErrors({ mustMatch: true });
-      }else{
-        passwordConf.setErrors(null);
-      }
-    };
-  } */
-
   registro() {
 
     if (this.registerForm.get('passwd')?.value == this.registerForm.get('passwdConf')?.value) {
-
       this.authService.registro({
-        avatar: this.registerForm.get('avatar')?.value,
-        nombre: this.registerForm.get('name')?.value,
+        avatar: this.selectedFile,
+        nombre: this.registerForm.get('nombre')?.value,
         email: this.registerForm.get('email')?.value,
-        passwd: this.registerForm.get('passwd')?.value,
+        password: this.registerForm.get('passwords')?.get('passwd')?.value,
       }).subscribe(resp => {
         if (!resp.success) {
           this.registroCorrecto = false;
@@ -100,9 +73,12 @@ export class RegisterComponent implements OnInit {
     }
   }
 
+  onFileSelected(event:any): any{
+    this.selectedFile = event.target.files[0];
+  }
+
   onSubmit() {
     this.submitted = true;
-
   }
 
   abrirLogin() {

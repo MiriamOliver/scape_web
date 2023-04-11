@@ -14,15 +14,14 @@ class ConexionUsuario extends ConexionSequelize {
     }
 
     registrarUsuario = async (req) => {
-
         try{
-            const nombre = await File.subirArchivo(req.files, undefined, 'imgs' );
+            //const nombre = await File.subirArchivo(req.body.avatar, undefined, 'imgs' );
 
             const usuario = await models.User.create({
                 nombre: req.body.nombre,
                 email: req.body.email,
                 password: req.body.password,
-                avatar:nombre
+                //avatar:nombre
             });
             if(usuario){
                 const idRol = await this.getIdRol('jugador');

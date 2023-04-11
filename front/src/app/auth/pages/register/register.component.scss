@@ -12,4 +12,10 @@
   label, input{
     font-size: var(--TamTexto);
   }
+  form{
+    .error{
+      font-size:var(--TamError);
+      padding: 0.5rem;
+    }
+  }
 }

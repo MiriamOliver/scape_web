@@ -19,6 +19,5 @@ export class AuthService {
     registro(usuario: Registro) {
       console.log(usuario);
       return this.http.post<RespRegistro>(`${ this.baseUrl }/registro`, usuario);
-
     }
 }
