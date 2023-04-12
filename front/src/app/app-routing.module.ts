@@ -9,7 +9,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: ''
+    loadChildren: () => import('./auth/auth.module').then( m => m.AuthModule ),
   }
 ];
 

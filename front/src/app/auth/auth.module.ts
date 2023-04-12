@@ -6,6 +6,7 @@ import { MainAuthComponent } from './pages/main-auth/main-auth.component';
 import { AuthRoutingModule } from './auth-routing.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { InicioComponent } from './pages/inicio/inicio.component';
 
 
 
@@ -13,7 +14,8 @@ import { HttpClientModule } from '@angular/common/http';
   declarations: [
     RegisterComponent,
     LoginComponent,
-    MainAuthComponent
+    MainAuthComponent,
+    InicioComponent
   ],
   imports: [
     CommonModule,
