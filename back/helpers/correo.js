@@ -23,7 +23,6 @@ const verificarCorreo = (userId, receptor, ruta) => {
 
 
     transporter.sendMail(message, (error, info) => {
-        console.log(message);
         if (error) {
             console.log(error.message)
         } else {

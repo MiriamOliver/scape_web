@@ -7,14 +7,13 @@ const { emailExiste, nombreExiste } = require('../helpers/db-validators');
 
 router.post('/registro', 
 [
-   check('nombre').not().isEmpty(),
-   check('nombre', 'El nombre ya existe').custom(nombreExiste),
+    check('nombre').not().isEmpty(),
+    check('nombre', 'El nombre ya existe').custom(nombreExiste),
     check('email').not().isEmpty(),
     check('email', 'El correo no es válido').isEmail(),
     check('email', 'El correo ya existe').custom(emailExiste),
     check('password').not().isEmpty(),
-    //check('avatar').not().isEmpty(),
-    validarCampos 
+    validarCampos  
 ],
 controlador.register);
 router.get('/verificarcorreo/:id', controlador.verificarCorreo);

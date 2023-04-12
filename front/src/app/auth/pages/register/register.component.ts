@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { confirmarPasswd } from '../../validators/validator';
+import { Registro, RespRegistro } from '../../interfaces/auth.interface'
 
 @Component({
   selector: 'app-register',
@@ -13,19 +14,32 @@ export class RegisterComponent implements OnInit {
 
   selectedFile: string = "";
   passwdCorrecta: boolean = true;
-  registroCorrecto: boolean = true;
+  registroCorrecto: number = -1;
   submitted: boolean = false;
   registerForm!: FormGroup;
+  usuario:Registro
+  result:RespRegistro
 
   constructor(
     private router: Router,
     private fb: FormBuilder,
     private authService: AuthService
-  ) { }
+  ) {
+    this.usuario = {
+      avatar: "",
+      nombre: "",
+      email: "",
+      password:""
+    }
+    this.result = {
+      msg: "",
+      success: false
+    }
+  }
 
   ngOnInit(): void {
     this.passwdCorrecta = false;
-    this.registroCorrecto = true;
+    this.registroCorrecto = -1;
     this.submitted = false;
     this.selectedFile = "";
 
@@ -54,27 +68,35 @@ export class RegisterComponent implements OnInit {
     return this.registerForm.controls["passwords"] as FormGroup;
   }
 
+
+  onFileSelected(event:any): any{
+    this.selectedFile = event.target.files[0];
+  }
+
   registro() {
 
+    this.usuario.avatar = this.selectedFile;
+    this.usuario.nombre = this.registerForm.get('nombre')?.value;
+    this.usuario.email = this.registerForm.get('email')?.value;
+    this.usuario.password = this.registerForm.get('passwords')?.get('passwd')?.value;
+
     if (this.registerForm.get('passwd')?.value == this.registerForm.get('passwdConf')?.value) {
-      this.authService.registro({
-        avatar: this.selectedFile,
-        nombre: this.registerForm.get('nombre')?.value,
-        email: this.registerForm.get('email')?.value,
-        password: this.registerForm.get('passwords')?.get('passwd')?.value,
-      }).subscribe(resp => {
+
+      this.authService.registro(this.usuario).subscribe(resp => {
         if (!resp.success) {
-          this.registroCorrecto = false;
+          this.registroCorrecto = 1;
+          this.result.msg = resp.msg;
+
+        }else{
+          this.registroCorrecto = 2;
+          this.result.msg = resp.msg;
         }
+        console.log(this.result.msg)
       });
     }
     else {
       this.passwdCorrecta = true;
     }
-  }
-
-  onFileSelected(event:any): any{
-    this.selectedFile = event.target.files[0];
   }
 
   onSubmit() {
