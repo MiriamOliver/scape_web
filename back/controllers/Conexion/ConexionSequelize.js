@@ -33,4 +33,7 @@ class ConexionSequelize {
   };
 }
 
+const sequelize = new ConexionSequelize();
+sequelize.conectar();
+
 module.exports = ConexionSequelize;

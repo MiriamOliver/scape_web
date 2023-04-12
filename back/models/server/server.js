@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const expfileupload = require("express-fileupload");
 
 class Server {
 
@@ -7,12 +8,13 @@ class Server {
         this.app = express();
         this.server = require('http').createServer(this.app);
         this.io = require('socket.io')(this.server);
+        this.authPath = '/';
 
         //Middlewares
-        //this.middlewares();
+        this.middlewares();
 
         //Routes
-        //this.routes();
+        this.routes();
 
         //Websockets.
         //this.sockets();
@@ -22,15 +24,18 @@ class Server {
     middlewares() {
         this.app.use(cors());
         this.app.use(express.json());
-       
+        this.app.use(expfileupload({
+            useTempFiles : true,
+            tempFileDir : '/tmp/',
+            createParentPath: true 
+        }));
     }
 
-    /* routes(){
-        
-
+    routes(){
+        this.app.use(this.authPath , require('../../routes/authRoutes'));
     }
 
-    sockets(){
+    /*sockets(){
         
     } */
 

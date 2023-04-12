@@ -1,0 +1,21 @@
+.portada{
+  background-color: var(--colorRojo);
+  color: var(--colorBlanco);
+  img{
+    width: 200px;
+    margin-top: 100px;
+    margin-bottom: 74px;
+  }
+}
+.intro{
+  background-color: var(--colorGris);
+  label, input{
+    font-size: var(--TamTexto);
+  }
+  form{
+    .error{
+      font-size:var(--TamError);
+      padding: 0.5rem;
+    }
+  }
+}
