@@ -10,3 +10,18 @@ export interface RespRegistro {
   success: boolean;
   msg: string;
 }
+
+export interface Login {
+  email: string;
+  password: string;
+}
+
+export interface Auth {
+  success: boolean;
+  msg: string;
+  data: {
+      id: number;
+      nombre: string;
+      token: string;
+  }
+}
