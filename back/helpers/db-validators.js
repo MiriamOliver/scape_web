@@ -1,4 +1,5 @@
 const models = require('../models/index.js');
+const {Op} = require('sequelize');
 
 const emailExiste = async( email ) => {
     const existeEmail = await models.User.findOne({
@@ -10,7 +11,7 @@ const emailExiste = async( email ) => {
 }
 
 const nombreExiste = async( nombre ) => {
-    console.log(nombre);
+    
     const existeNombre = await models.User.findOne({
         where: {"nombre": nombre}
     })
@@ -28,10 +29,22 @@ const emailDesconocido = async( email ) => {
     }
 }
 
+const emailVerificado = async( email ) => {
+    const verificado = await models.User.findOne({
+        where: {"email": email,
+                "verifiedAt": {[Op.not]: null,}
+                }
+    })
+    if (!verificado) {
+        throw new Error(`El correo: ${ email }, no está verificado`);
+    }
+}
+
 
 
 module.exports = {
     emailExiste,
     nombreExiste,
-    emailDesconocido
+    emailDesconocido,
+    emailVerificado
 }

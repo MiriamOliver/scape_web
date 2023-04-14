@@ -42,7 +42,6 @@ class ConexionUsuario extends ConexionSequelize {
 
     loginUsuario = async (req) => {
 
-
         const user = await models.User.findOne({
             attributes: ['id', 'nombre', 'avatar'],
             where : {
@@ -52,7 +51,7 @@ class ConexionUsuario extends ConexionSequelize {
 
             include: 'RolesAsignados'
         });
-
+        
         const idRol = user.dataValues.RolesAsignados[0].dataValues.id_rol;
         const rol = await models.Rol.findByPk(idRol);
 
