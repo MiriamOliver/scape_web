@@ -19,9 +19,19 @@ const nombreExiste = async( nombre ) => {
     }
 }
 
+const emailDesconocido = async( email ) => {
+    const desconocidoEmail = await models.User.findOne({
+        where: {"email": email}
+    })
+    if ( !desconocidoEmail ) {
+        throw new Error(`El correo: ${ email }, no está registrado`);
+    }
+}
+
 
 
 module.exports = {
     emailExiste,
-    nombreExiste
+    nombreExiste,
+    emailDesconocido
 }

@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      RolesAsignados.belongsTo(models.User, {
+      /* RolesAsignados.belongsTo(models.User, {
         foreignKey: 'id_user',
         targetKey: 'id',
         as: 'User'
@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'id_rol',
         targetKey: 'id',
         as: 'Rol'
-      });
+      }); */
     }
   }
   RolesAsignados.init({

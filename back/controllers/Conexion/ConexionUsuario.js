@@ -1,7 +1,5 @@
 const moment = require('moment');
 const ConexionSequelize = require('./ConexionSequelize');
-const path = require('path');
-const fs   = require('fs');
 const { v4: uuidv4 } = require('uuid');
 const { Sequelize } = require("sequelize");
 const models = require('../../models/index.js');
@@ -40,6 +38,30 @@ class ConexionUsuario extends ConexionSequelize {
         }catch (err){
             throw err;
         }
+    }
+
+    loginUsuario = async (req) => {
+
+
+        const user = await models.User.findOne({
+            attributes: ['id', 'nombre', 'avatar'],
+            where : {
+                email: req.body.email,
+                password: req.body.password
+            },
+
+            include: 'RolesAsignados'
+        });
+
+        const idRol = user.dataValues.RolesAsignados[0].dataValues.id_rol;
+        const rol = await models.Rol.findByPk(idRol);
+
+        return {
+            id: user.dataValues.id,
+            avatar: process.env.URL + process.env.PORT + "/upload/" + user.dataValues.avatar,
+            nombre: user.dataValues.nombre,
+            rol: rol.dataValues.rol,
+        };
     }
 
 
