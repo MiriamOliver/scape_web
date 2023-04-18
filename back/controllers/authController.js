@@ -55,18 +55,18 @@ const correo = require('../helpers/correo')
 
     const loginWithGoogle = async(req, res = response) => {
 
-/*         const { id_token } = req.body;
+      const { id_token } = req.body;
 
         try {
             const { correo, nombre, img } = await googleVerify( id_token );
-            const token = generarJWT(correo);
+            const token = generarJWT(correo, nombre, img);
             res.status(200).json({correo, nombre, img, token});
             
         } catch (error) {
             res.status(400).json({
                 msg: 'Token de Google no es válido'
             })
-        } */
+        } 
     } 
 
 

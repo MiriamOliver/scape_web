@@ -4,6 +4,8 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { AuthService } from '../../services/auth.service';
 import { Login, RespRegistro } from '../../interfaces/auth.interface';
 import {SocialAuthService, GoogleLoginProvider, SocialUser } from '@abacritt/angularx-social-login';
+import jwt_decode from 'jwt-decode';
+
 
 @Component({
   selector: 'app-login',
@@ -60,11 +62,11 @@ export class LoginComponent implements OnInit{
       if (!resp.success) {
         this.loginCorrecto = 1;
         this.result.msg = resp.msg;
-
       }else{
         localStorage.setItem('user', JSON.stringify(resp.data));
         this.loginCorrecto = 2;
         this.result.msg = resp.msg;
+        console.log(jwt_decode(JSON.parse(localStorage.getItem('user')!).token))
       }
     });
   }
