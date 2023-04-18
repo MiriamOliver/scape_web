@@ -51,4 +51,10 @@
       color: var(--colorBlanco);
     }
   }
+  form{
+    .error{
+      font-size:var(--TamError);
+      padding: 0.5rem;
+    }
+  }
 }

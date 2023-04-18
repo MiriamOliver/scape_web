@@ -4,7 +4,8 @@ const { v4: uuidv4 } = require('uuid');
 const { Sequelize } = require("sequelize");
 const models = require('../../models/index.js');
 const File = require('../../helpers/file_upload');
-const correo = require('../../helpers/correo')
+const correo = require('../../helpers/correo');
+const libreria = require('../../helpers/libreria')
 
 
 class ConexionUsuario extends ConexionSequelize {
@@ -103,6 +104,55 @@ class ConexionUsuario extends ConexionSequelize {
             return resultado;
         }
         catch (err) {
+            throw err;
+        }
+    }
+
+    enviarCodigo = async(email) => {
+        let resultado = null
+
+        try{
+            const idUser = await this.getIdUser(email);
+            const usuario = await models.User.findByPk(idUser);
+
+            if(usuario){
+
+                const codigo = libreria.generarCodigo();
+                resultado = await usuario.update({cod_passwd: codigo});
+                if(resultado){
+                    correo.emailRecPasswd(email, codigo);
+                }
+                
+            }
+
+            return resultado;
+
+        }catch (err) {
+            throw err;
+        }
+         
+    }
+    
+    restaurarPasswd = async (codigo, passwd) => {
+        let resultado = null
+
+        try{
+            const idUser = await models.User.findOne({
+                attributes: ['id'],
+                where: { cod_passwd: codigo },
+            });
+
+            const usuario = await models.User.findByPk(idUser.dataValues.id);
+
+            if(usuario){
+
+                resultado = await usuario.update({password: passwd});
+                
+            }
+
+            return resultado;
+
+        }catch (err) {
             throw err;
         }
     }

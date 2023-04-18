@@ -31,12 +31,12 @@ const verificarCorreo = (userId, receptor, ruta) => {
     });
 }
 
-const emailRecPasswd = (userId, receptor) => {
+const emailRecPasswd = (receptor, codigo) => {
     message = {
         from: process.env.EMAIL_ACCOUNT,
         to: receptor,
-        subject: "Recuperar password",
-        html: `Pulsa en el enlace para generar una nueva contraseña: <a href="http://${process.env.HOST_CLIENT}:${process.env.PORT_CLIENT}/auth/recpasswd/${userId}">Pulsa aquí</a>`
+        subject: "Restauración de Contraseña",
+        html: `<p>El código de restauración de contraseña es: <b>${codigo}</b></p>`
     };
 
 

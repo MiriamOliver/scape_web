@@ -83,24 +83,22 @@ const correo = require('../helpers/correo')
 
     const emailPasswd = (req, res = response) => {
         const conx = new ConexionSequelize();
-        conx.getIdUser(req.body.email)
+        conx.enviarCodigo(req.body.email)
         .then(resp => {
-            correo.emailRecPasswd(resp, req.body.email)
+            res.send({success:true, msg:'!OK! Revisa tu correo para obtener el código de restauración de contraseña'});
         }).catch(err => {
             res.send({success:false, msg:'¡Error!. Fallo en la recuperación de contraseña', err});
         });
     }
 
-    const verificarRestaurarPasswd = (req, res = response) => {
+    const guardarPassword = (req, res = response) => {
         const conx = new ConexionSequelize();
-        conx.updateVerificarCorreo(req.params.id)
-            .then(resp => {
-                if (resp) res.send(fHTML.exitoVerificar());
-                else res.send(fHTML.errorVerificar());
-    
-            }).catch(err => {
-                res.send(fHTML.errorVerificar());
-            });
+        conx.restaurarPasswd(req.body.codigo, req.body.password)
+        .then(resp => {
+            res.send({success:true, msg:'!OK! Restauración de contraseña exitosa'});
+        }).catch(err => {
+            res.send({success:false, msg:'¡Error!. Fallo en la restauración de contraseña', err});
+        });
     }
 
     module.exports = {
@@ -109,5 +107,6 @@ const correo = require('../helpers/correo')
         login,
         loginWithGoogle,
         mostrarImg,
-        emailPasswd
+        emailPasswd,
+        guardarPassword
     }

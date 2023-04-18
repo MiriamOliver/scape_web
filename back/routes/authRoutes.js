@@ -44,7 +44,13 @@ router.post('/emailpasswd',
 ],
 controlador.emailPasswd);
 
-//router.post('/recuperarpasswd/:id', controlador.generarPassword);
+router.post('/generarpasswd',
+[
+    check('codigo').not().isEmpty(),
+    check('password').not().isEmpty(),
+    validarCampos
+],
+controlador.guardarPassword);
 
 
 router.get('/upload/:img', controlador.mostrarImg);

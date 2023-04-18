@@ -26,6 +26,7 @@ export class GenerarPasswdComponent implements OnInit{
     this.cambioPasswd = 1;
     this.submitted = false;
     this.genPasswdForm = this.fb.group({
+      codigo: ['', Validators.required],
       passwords: this.fb.group({
         passwd: ['', Validators.required],
         passwdConf: ['', Validators.required]
@@ -41,11 +42,14 @@ export class GenerarPasswdComponent implements OnInit{
   }
 
   genPasswd() {
-    /* this.authService.generarPassword(this.genPasswdForm.get('passwords')?.get('passwd')?.value).subscribe(resp => {
+    this.authService.generarPassword(
+          this.genPasswdForm.get('passwords')?.get('passwd')?.value,
+          this.genPasswdForm.get('codigo')?.value)
+    .subscribe(resp => {
       if (!resp.success) {
         this.cambioPasswd = 2;
       }
-    }); */
+    });
   }
 
   get form() {

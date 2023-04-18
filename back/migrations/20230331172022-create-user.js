@@ -22,7 +22,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       cod_passwd: {
-        type:Sequelize.INTEGER
+        type:Sequelize.STRING
       },
       verifiedAt: {
         type: Sequelize.DATE

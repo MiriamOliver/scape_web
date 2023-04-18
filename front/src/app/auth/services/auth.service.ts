@@ -39,7 +39,7 @@ export class AuthService {
       return this.http.post<RespRegistro>(`${ this.baseUrl }/emailpasswd`, { email: email });
     }
 
-    generarPassword(passwd: string){
-      return this.http.post<RespRegistro>(`${this.baseUrl}/generarpasswd/${id}`, {password: passwd});
+    generarPassword(passwd: string, codigo:string){
+      return this.http.post<RespRegistro>(`${this.baseUrl}/generarpasswd/`, {password: passwd, codigo: codigo});
     }
 }
