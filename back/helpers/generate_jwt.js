@@ -1,9 +1,10 @@
 const jwt = require('jsonwebtoken')
-const generarJWT = (uid = '') => {
+require('dotenv').config();
 
-    
-    console.log("UID:" + uid)
-    let token = jwt.sign({ uid }, process.env.SECRETORPRIVATEKEY, {
+const generarJWT = (uid = '', nombre, rol, avatar) => {
+
+    console.log("UID:" + uid + nombre + rol + avatar)
+    let token = jwt.sign({ uid, nombre, rol, avatar }, process.env.SECRETORPRIVATEKEY, {
         expiresIn: '24h' // 24 hours
     });
     console.log("Token:" + token)

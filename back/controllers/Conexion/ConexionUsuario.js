@@ -1,12 +1,11 @@
 const moment = require('moment');
 const ConexionSequelize = require('./ConexionSequelize');
-const path = require('path');
-const fs   = require('fs');
 const { v4: uuidv4 } = require('uuid');
 const { Sequelize } = require("sequelize");
 const models = require('../../models/index.js');
 const File = require('../../helpers/file_upload');
-const correo = require('../../helpers/correo')
+const correo = require('../../helpers/correo');
+const libreria = require('../../helpers/libreria')
 
 
 class ConexionUsuario extends ConexionSequelize {
@@ -40,6 +39,29 @@ class ConexionUsuario extends ConexionSequelize {
         }catch (err){
             throw err;
         }
+    }
+
+    loginUsuario = async (req) => {
+
+        const user = await models.User.findOne({
+            attributes: ['id', 'nombre', 'avatar'],
+            where : {
+                email: req.body.email,
+                password: req.body.password
+            },
+
+            include: 'RolesAsignados'
+        });
+        
+        const idRol = user.dataValues.RolesAsignados[0].dataValues.id_rol;
+        const rol = await models.Rol.findByPk(idRol);
+
+        return {
+            id: user.dataValues.id,
+            avatar: process.env.URL + process.env.PORT + "/upload/" + user.dataValues.avatar,
+            nombre: user.dataValues.nombre,
+            rol: rol.dataValues.rol,
+        };
     }
 
 
@@ -86,16 +108,64 @@ class ConexionUsuario extends ConexionSequelize {
         }
     }
 
+    enviarCodigo = async(email) => {
+        let resultado = null
 
-    /* getUsuario = async (email) => {
-        let resultado = 0;
-        this.conectar();
-        resultado = await models.User.findOne({
+        try{
+            const idUser = await this.getIdUser(email);
+            const usuario = await models.User.findByPk(idUser);
+
+            if(usuario){
+
+                const codigo = libreria.generarCodigo();
+                resultado = await usuario.update({cod_passwd: codigo});
+                if(resultado){
+                    correo.emailRecPasswd(email, codigo);
+                }
+                
+            }
+
+            return resultado;
+
+        }catch (err) {
+            throw err;
+        }
+         
+    }
+    
+    restaurarPasswd = async (codigo, passwd) => {
+        let resultado = null
+
+        try{
+            const idUser = await models.User.findOne({
+                attributes: ['id'],
+                where: { cod_passwd: codigo },
+            });
+
+            const usuario = await models.User.findByPk(idUser.dataValues.id);
+
+            if(usuario){
+
+                resultado = await usuario.update({password: passwd});
+                
+            }
+
+            return resultado;
+
+        }catch (err) {
+            throw err;
+        }
+    }
+
+
+    getIdUser = async (email) => {
+        const idUser = await models.User.findOne({
+            attributes: ['id'],
             where: { email: email },
         });
-        this.desconectar();
-        return resultado;
-    } */
+
+        return idUser.dataValues.id;
+    } 
 }
 
 
