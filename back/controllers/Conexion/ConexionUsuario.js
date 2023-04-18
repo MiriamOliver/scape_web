@@ -108,15 +108,14 @@ class ConexionUsuario extends ConexionSequelize {
     }
 
 
-    /* getUsuario = async (email) => {
-        let resultado = 0;
-        this.conectar();
-        resultado = await models.User.findOne({
+    getIdUser = async (email) => {
+        const idUser = await models.User.findOne({
+            attributes: ['id'],
             where: { email: email },
         });
-        this.desconectar();
-        return resultado;
-    } */
+
+        return idUser.dataValues.id;
+    } 
 }
 
 

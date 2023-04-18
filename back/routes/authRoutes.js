@@ -31,6 +31,22 @@ router.post('/login',
 
 ],controlador.login);
 
+
+router.post('/google', controlador.loginWithGoogle);
+
+
+router.post('/emailpasswd',
+[
+    check('email').not().isEmpty(),
+    check('email', 'El correo no es válido').isEmail(),
+    check('email', 'El correo no existe').custom(emailDesconocido),
+    validarCampos 
+],
+controlador.emailPasswd);
+
+//router.post('/recuperarpasswd/:id', controlador.generarPassword);
+
+
 router.get('/upload/:img', controlador.mostrarImg);
 
 module.exports = router

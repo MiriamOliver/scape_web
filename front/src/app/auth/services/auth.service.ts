@@ -34,4 +34,12 @@ export class AuthService {
       return this.http.post<Auth>(`${ this.baseUrl }/login`, usuario)
         .pipe(tap(auths => this.auth = auths));
     }
+
+    recPassword(email:string){
+      return this.http.post<RespRegistro>(`${ this.baseUrl }/emailpasswd`, { email: email });
+    }
+
+    generarPassword(passwd: string){
+      return this.http.post<RespRegistro>(`${this.baseUrl}/generarpasswd/${id}`, {password: passwd});
+    }
 }

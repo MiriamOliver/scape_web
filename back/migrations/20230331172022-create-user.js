@@ -21,6 +21,9 @@ module.exports = {
       avatar: {
         type: Sequelize.STRING
       },
+      cod_passwd: {
+        type:Sequelize.INTEGER
+      },
       verifiedAt: {
         type: Sequelize.DATE
       },

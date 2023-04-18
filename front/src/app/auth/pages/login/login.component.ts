@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
-import { Login, RespRegistro } from '../../interfaces/auth.interface'
+import { Login, RespRegistro } from '../../interfaces/auth.interface';
+import {SocialAuthService, GoogleLoginProvider, SocialUser } from '@abacritt/angularx-social-login';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,8 @@ export class LoginComponent implements OnInit{
   constructor(
     private router: Router,
     private fb: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private socialAuthService: SocialAuthService,
   ) {
     this.usuario = {
       email: "",
@@ -64,9 +66,13 @@ export class LoginComponent implements OnInit{
         this.loginCorrecto = 2;
         this.result.msg = resp.msg;
       }
-      console.log(this.result.msg)
-      console.log(localStorage.getItem('user'));
     });
+  }
+
+
+  loginWithGoogle(){
+    console.log('hola');
+    this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
   }
 
 
@@ -74,7 +80,12 @@ export class LoginComponent implements OnInit{
     this.submitted = true;
   }
 
+
   abrirRegistro() {
     this.router.navigate(['auth/registro']);
+  }
+
+  abrirRecPasswd() {
+    this.router.navigate(['auth/recpasswd']);
   }
 }

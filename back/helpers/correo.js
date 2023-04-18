@@ -31,7 +31,26 @@ const verificarCorreo = (userId, receptor, ruta) => {
     });
 }
 
+const emailRecPasswd = (userId, receptor) => {
+    message = {
+        from: process.env.EMAIL_ACCOUNT,
+        to: receptor,
+        subject: "Recuperar password",
+        html: `Pulsa en el enlace para generar una nueva contraseña: <a href="http://${process.env.HOST_CLIENT}:${process.env.PORT_CLIENT}/auth/recpasswd/${userId}">Pulsa aquí</a>`
+    };
+
+
+    transporter.sendMail(message, (error, info) => {
+        if (error) {
+            console.log(error.message)
+        } else {
+            console.log('Email enviado' + info.response);
+        } 
+    });
+}
+
 module.exports = {
-    verificarCorreo
+    verificarCorreo,
+    emailRecPasswd
 }
 
