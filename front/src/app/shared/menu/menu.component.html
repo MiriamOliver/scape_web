@@ -1,1 +1,28 @@
-<p>menu works!</p>
+<nav class="navbar row ps-4 pe-4">
+  <div class="p-0 d-flex col-md-2 justify-content-between align-items-center contenedor-menu">
+    <div class="justify-content-start d-flex align-items-center ms-2">
+      <div class="logo-menu me-2">
+        <img src="../../../assets/imgs/logo.png">
+      </div>
+      <div>
+        <h5>SENGOKU</h5>
+      </div>
+    </div>
+    <!-- <button class="navbar-toggler collapsed me-3 aparecepequenio" type="button" data-bs-toggle="collapse" data-bs-target="#navbarExample04" aria-controls="navbarExample04" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="fa-solid fa-bars"></i>
+    </button> -->
+  </div>
+  <div class="col-md-8">
+    <ng-container *ngIf="rol == 'jugador'">
+      <app-menu-jugador class="contenedor-menu"></app-menu-jugador>
+    </ng-container>
+    <ng-container *ngIf="rol == 'administrador'">
+      <app-menu-administrador class="contenedor-menu"></app-menu-administrador>
+    </ng-container>
+  </div>
+  <div class="menu-icon col-md-2 d-flex justify-content-end">
+    <i class="fa-solid fa-bell me-4"></i>
+    <i class="fa-solid fa-gear me-4"></i>
+    <i class="fa-solid fa-right-from-bracket"></i>
+  </div>
+</nav>

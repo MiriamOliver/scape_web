@@ -11,7 +11,7 @@
     --colorGris:#ECEDED;
     --colorAzul:#00102A;
     --colorDorado:#AE8C44; //#D2AD76
-    --colorBlanco:#FFFFFF;
+    --colorBlanco:#ffffff;
 
     //--------------------TIPOGRAFÍA----------------------//
 
@@ -20,10 +20,19 @@
     //-----------------TAMAÑO-TIPOGRAFÍA------------------//
 
     --TamTitulos: 65px;
+    --TamMenu: 13px;
     --TamTexto:14px;
     --TamError:13px;
+    --TamGame:16px;
 
     //------------------PESO-TIPOGRAFÍA-------------------//
+
+
+    //------------------HOVER-TIPOGRAFÍA-------------------//
+
+    --BottomOffset: 0;
+    --LineHeight: 20px;
+    --LineColor: linear-gradient(-90deg, #ffffff00, #A1011B, #A1011B,#ffffff00)
 
 }
 body{

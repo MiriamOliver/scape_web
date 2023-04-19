@@ -4,7 +4,8 @@ import { FooterComponent } from './footer/footer.component';
 import { MenuComponent } from './menu/menu.component';
 import { MenuJugadorComponent } from './menu-jugador/menu-jugador.component';
 import { MenuAdministradorComponent } from './menu-administrador/menu-administrador.component';
-
+import { SharedRoutingModule } from './shared-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -15,7 +16,16 @@ import { MenuAdministradorComponent } from './menu-administrador/menu-administra
     MenuAdministradorComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    SharedRoutingModule,
+    HttpClientModule
+  ],
+  exports: [
+    CommonModule,
+    MenuComponent,
+    MenuAdministradorComponent,
+    MenuJugadorComponent,
+    FooterComponent
   ]
 })
 export class SharedModule { }

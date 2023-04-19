@@ -8,8 +8,13 @@ const routes: Routes = [
     loadChildren: () => import('./auth/auth.module').then( m => m.AuthModule ),
   },
   {
+    path: 'jugador',
+    loadChildren: () => import('./jugador/jugador.module').then( m => m.JugadorModule),
+  },
+  {
     path: '**',
-    loadChildren: () => import('./auth/auth.module').then( m => m.AuthModule ),
+    redirectTo: ''
+    //loadChildren: () => import('./auth/auth.module').then( m => m.AuthModule ),
   }
 ];
 
