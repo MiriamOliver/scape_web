@@ -27,7 +27,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     MenuComponent,
     MenuAdministradorComponent,
     MenuJugadorComponent,
-    FooterComponent
+    FooterComponent,
+    SidebarComponent
   ]
 })
 export class SharedModule { }

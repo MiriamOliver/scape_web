@@ -1,1 +1,26 @@
-<p>sidebar works!</p>
+<hr class="hr-text mb-3 mt-0" data-content="PERFIL">
+<div class="mb-5 p-2 card m-2">
+  <div class="justify-content-start d-flex align-items-center card-body p-0">
+    <div class="info-user">
+      <img class="rounded-1 me-1" src="{{perfil.avatar}}">
+    </div>
+    <div class="ms-2">
+      <p class="mb-0"><b>{{perfil.nombre}}</b></p>
+      <span>Holita</span>
+    </div>
+  </div>
+</div>
+<hr class="hr-text mb-3 mt-5" data-content="JUGADORES">
+<div>
+  <div class="mb-5 p-2 card m-2" *ngFor="let usuario of usuarios">
+    <div class="justify-content-start d-flex align-items-center card-body p-0 jugadores">
+      <div class="info-jugador">
+        <img class="rounded-1 me-1" src="{{usuarios.avatar}}">
+      </div>
+      <div class="ms-2">
+        <p class="mb-0"><b>{{usuarios.nombre}}</b></p>
+        <span>Holita</span>
+      </div>
+    </div>
+  </div>
+</div>
