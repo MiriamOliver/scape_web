@@ -24,6 +24,9 @@ module.exports = {
       cod_passwd: {
         type:Sequelize.STRING
       },
+      conectado: {
+        type:Sequelize.INTEGER
+      },
       verifiedAt: {
         type: Sequelize.DATE
       },

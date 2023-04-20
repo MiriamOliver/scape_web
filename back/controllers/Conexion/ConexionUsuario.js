@@ -56,6 +56,9 @@ class ConexionUsuario extends ConexionSequelize {
         const idRol = user.dataValues.RolesAsignados[0].dataValues.id_rol;
         const rol = await models.Rol.findByPk(idRol);
 
+        await models.User.update({conectado: 1}, 
+                                {where: {id:user.dataValues.id}});
+
         return {
             id: user.dataValues.id,
             avatar: process.env.URL + process.env.PORT + "/upload/" + user.dataValues.avatar,
