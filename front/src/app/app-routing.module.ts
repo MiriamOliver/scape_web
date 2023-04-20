@@ -12,9 +12,12 @@ const routes: Routes = [
     loadChildren: () => import('./jugador/jugador.module').then( m => m.JugadorModule),
   },
   {
+    path: 'administrador',
+    loadChildren: () => import('./administrador/administrador.module').then( m => m.AdministradorModule),
+  },
+  {
     path: '**',
-    redirectTo: ''
-    //loadChildren: () => import('./auth/auth.module').then( m => m.AuthModule ),
+    loadChildren: () => import('./auth/auth.module').then( m => m.AuthModule ),
   }
 ];
 
