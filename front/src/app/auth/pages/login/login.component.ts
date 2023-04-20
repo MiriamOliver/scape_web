@@ -64,9 +64,12 @@ export class LoginComponent implements OnInit{
         this.result.msg = resp.msg;
       }else{
         localStorage.setItem('user', JSON.stringify(resp.data));
-        this.loginCorrecto = 2;
         this.result.msg = resp.msg;
-        console.log(jwt_decode(JSON.parse(localStorage.getItem('user')!).token))
+        if(JSON.parse(localStorage.getItem('user')!).rol == 'jugador'){
+          this.router.navigate(['jugador/inicio']);
+        }else if(JSON.parse(localStorage.getItem('user')!).rol == 'jugador'){
+          this.router.navigate(['administrador/inicio']);
+        }
       }
     });
   }

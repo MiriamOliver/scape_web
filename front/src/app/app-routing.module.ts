@@ -8,6 +8,14 @@ const routes: Routes = [
     loadChildren: () => import('./auth/auth.module').then( m => m.AuthModule ),
   },
   {
+    path: 'jugador',
+    loadChildren: () => import('./jugador/jugador.module').then( m => m.JugadorModule),
+  },
+  {
+    path: 'administrador',
+    loadChildren: () => import('./administrador/administrador.module').then( m => m.AdministradorModule),
+  },
+  {
     path: '**',
     loadChildren: () => import('./auth/auth.module').then( m => m.AuthModule ),
   }

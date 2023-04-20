@@ -6,6 +6,12 @@ import { AppComponent } from './app.component';
 import { AuthRoutingModule } from './auth/auth-routing.module';
 import { AuthModule } from './auth/auth.module';
 import { FormsModule } from '@angular/forms';
+import { JugadorModule } from './jugador/jugador.module';
+import { JugadorRoutingModule } from './jugador/jugador-routing.module';
+import { SharedModule } from './shared/shared.module';
+import { AdministradorModule } from './administrador/administrador.module';
+import { AdministradorRoutingModule } from './administrador/administrador-routing.module';
+
 
 @NgModule({
   declarations: [
@@ -18,7 +24,12 @@ import { FormsModule } from '@angular/forms';
     AuthModule,
     AuthRoutingModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    JugadorModule,
+    JugadorRoutingModule,
+    SharedModule,
+    AdministradorModule,
+    AdministradorRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
