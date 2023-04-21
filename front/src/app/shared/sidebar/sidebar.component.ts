@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../interfaces/usuario.interface';
 import { UsuarioService } from '../services/usuario.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { switchMap } from 'rxjs';
 
 
 @Component({
@@ -29,9 +30,11 @@ export class SidebarComponent  implements OnInit{
 
 
   ngOnInit(): void {
-    this.jugadorService.getUsuariosConectados()
+    this.activatedRoute.params.pipe(switchMap(({rol}) =>
+    this.jugadorService.getUsuariosConectados(JSON.parse(localStorage.getItem('user')!).rol)))
       .subscribe((usuario: Usuario) => {
-        this.usuario = usuario
+        this.usuarios = usuario
+        console.log(this.usuarios);
     })
   }
 }
