@@ -4,7 +4,7 @@
     list-style: none;
     li{
       text-decoration: none;
-      a{
+      .nav-link{
         font-size: var(--TamMenu);
         color: var(--colorGris);
         position: relative;
@@ -50,6 +50,9 @@
         &:hover{
           background-color: var(--colorRojo);
           color: var(--colorGris);
+        }
+        &:active{
+          border-color: var(--colorRojo);
         }
       }
     }

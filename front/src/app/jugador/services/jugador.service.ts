@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Jugador } from '../interfaces/jugador.interface';
+import { Partida } from '../interfaces/jugador.interface';
 import { environment } from './../../../environments/environment'
 
 
@@ -14,4 +14,7 @@ export class JugadorService {
 
   constructor(private http: HttpClient) { }
 
+  getPartidasDisponibles():Observable<Partida> {
+    return this.http.get<Partida>(`${this.baseUrl}/jugador/partidas`);
+  }
 }
