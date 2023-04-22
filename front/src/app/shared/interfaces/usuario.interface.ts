@@ -1,4 +1,4 @@
-export interface Administrador {
+export interface Usuario {
   nombre: string;
   avatar: string;
 }

@@ -14,8 +14,4 @@ export class JugadorService {
 
   constructor(private http: HttpClient) { }
 
-  public getJugadoresConectados() {
-    return this.http.get<Jugador>(`${this.baseUrl}/jugador/conectados/`,);
-  }
-
 }

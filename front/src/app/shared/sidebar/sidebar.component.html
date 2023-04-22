@@ -1,0 +1,28 @@
+<div class="card perfil m-3">
+  <div class="card-body text-center py-4">
+    <div class="info-user mb-3">
+      <img class="rounded-1 me-1" src="{{perfil.avatar}}">
+    </div>
+    <div class="ms-2 text-center">
+      <p class="mb-0"><b>{{perfil.nombre}}</b></p>
+      <span>Holita</span>
+    </div>
+  </div>
+</div>
+<div class="group-jugador pt-0">
+  <hr class="hr-text-bot m-0 p-1" data-content="JUGADORES">
+  <div class="scroll">
+    <div class="p-2 card user m-2" *ngFor="let usuario of usuarios">
+      <div class="justify-content-start d-flex align-items-center card-body p-0 jugadores">
+        <div class="info-jugador">
+          <img class="rounded-1 me-1" src="{{usuario.avatar}}">
+        </div>
+        <div class="ms-2">
+          <p class="mb-0"><b>{{usuario.nombre}}</b></p>
+          <span>Holita</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr class="hr-text-top m-0">
+</div>

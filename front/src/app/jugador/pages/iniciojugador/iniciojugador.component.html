@@ -1,8 +1,57 @@
 <app-menu></app-menu>
-<div class="row">
-  <main class="col-md-10 p-3"></main>
-  <aside class="col-md-2 pt-4 ps-0">
-    <app-list-conectado></app-list-conectado>
+<div class="row fondo-inicio">
+  <main class="col-md-10 p-5">
+    <div class="row inicio ms-5 me-4 py-5">
+
+      <div class="col-md-3 pestanias nav ps-2 nav-pills ms-5 py-5" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+
+        <button type="button" class="btn mb-4 nav-link active" id="v-pills-presentacion-tab" data-bs-toggle="pill" data-bs-target="#v-pills-presentacion"
+                role="tab" aria-controls="v-pills-presentacion" aria-selected="true">PRESENTACIÓN</button>
+
+        <button type="button" class="btn mb-4 nav-link" id="v-pills-historia-tab" data-bs-toggle="pill" data-bs-target="#v-pills-historia"
+                role="tab" aria-controls="v-pills-historia" aria-selected="false">HISTORIA</button>
+
+        <button type="button" class="btn mb-4 nav-link" id="v-pills-jugabilidad-tab" data-bs-toggle="pill" data-bs-target="#v-pills-jugabilidad"
+        role="tab" aria-controls="v-pills-jugabilidad" aria-selected="false">JUGABILIDAD</button>
+
+      </div>
+
+      <div class="col-md-8 info-inicio tab-content p-5" id="v-pills-tabContent">
+        <div class="tab-pane fade show active" id="v-pills-presentacion" role="tabpanel" aria-labelledby="v-pills-presentacion-tab" tabindex="0">
+          <h6>COMIENZA LA</h6>
+          <h1>AVENTURA</h1>
+          <hr class="hr-text mb-3 mt-3">
+          <P>¿Cuánto sabes sobre cultura japonesa? ¿Y sobre el período Sengoku? Pon a prueba tus conocimientos en este divertido
+            scape web y consigue el máximo número de llaves. ¿Conseguirás llevar a tu equipo a la victoria?. Empieza la aventura ahora.
+          </P>
+        </div>
+        <div class="tab-pane fade" id="v-pills-historia" role="tabpanel" aria-labelledby="v-pills-historia-tab" tabindex="0">
+          <h6>PERIODO</h6>
+          <h1>SENGOKU</h1>
+          <hr class="hr-text mb-3 mt-3">
+          <P>Los clanes daimyō emprendieron esfuerzos de construcción naval durante le período Sengoku, los gobernantes feudales competían por
+             la supremacía por lo que construyeron vastas armadas costeras con cientos de barcos, el más grande se llamaba atakebune.<br><br>
+            Para derrotar a los grandes barcos de madera de sus enemigos, Oda Nobunaga ( daimyō japones ) hizo construir seis Ō-atakebune ("Gran Atakebune")
+             cubiertos de hierro y armados con cañones y rifles. Nobunaga derrotó a la armada del clan Mōri en la desembocadura del río Kizu  en 1578, y comenzó un exitoso bloqueo naval.
+             Sin embargo, los Ō-atakebune se consideran fortalezas flotantes en lugar de verdaderos buques de guerra.
+          </P>
+        </div>
+        <div class="tab-pane fade" id="v-pills-jugabilidad" role="tabpanel" aria-labelledby="v-pills-jugabilidad-tab" tabindex="0">
+          <h6>COMO</h6>
+          <h1>JUGAR</h1>
+          <hr class="hr-text mb-3 mt-3">
+          <P>Pulsa el botón jugar y crea o únete a una partida. Las reglas son sencillas, acierta el mayor número de preguntas para conseguir
+            llaves y salvar a todo tu equipo de un cruel destino.<br><br>
+            Se el primero en acertar la primera pregunta y tu rango ascendera de marinero a almirante.
+            El almirante puede descalificar a uno o varios jugadores durante las rondas de preguntas. <br><br>
+            Si entre todo el equipo llegais a acumular un total de 5 llaves podréis escapar del barco y haceros con la victoria.
+          </P>
+        </div>
+      </div>
+    </div>
+  </main>
+  <aside class="col-md-2 pt-0 ps-0">
+    <app-sidebar></app-sidebar>
   </aside>
 </div>
 <app-footer></app-footer>

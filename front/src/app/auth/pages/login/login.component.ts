@@ -67,7 +67,7 @@ export class LoginComponent implements OnInit{
         this.result.msg = resp.msg;
         if(JSON.parse(localStorage.getItem('user')!).rol == 'jugador'){
           this.router.navigate(['jugador/inicio']);
-        }else if(JSON.parse(localStorage.getItem('user')!).rol == 'jugador'){
+        }else if(JSON.parse(localStorage.getItem('user')!).rol == 'administrador'){
           this.router.navigate(['administrador/inicio']);
         }
       }

@@ -74,7 +74,6 @@ const correo = require('../helpers/correo')
 
         if (req.params.img) {
             const pathImagen = path.join(__dirname, '../uploads', 'imgs', req.params.img);
-            console.log(pathImagen);
             if (fs.existsSync(pathImagen)) {
                 return res.sendFile(pathImagen)
             }
@@ -108,5 +107,5 @@ const correo = require('../helpers/correo')
         loginWithGoogle,
         mostrarImg,
         emailPasswd,
-        guardarPassword
+        guardarPassword,
     }

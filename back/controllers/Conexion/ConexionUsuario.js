@@ -6,6 +6,7 @@ const models = require('../../models/index.js');
 const File = require('../../helpers/file_upload');
 const correo = require('../../helpers/correo');
 const libreria = require('../../helpers/libreria')
+const { Op } = require('sequelize');
 
 
 class ConexionUsuario extends ConexionSequelize {
@@ -55,6 +56,9 @@ class ConexionUsuario extends ConexionSequelize {
         
         const idRol = user.dataValues.RolesAsignados[0].dataValues.id_rol;
         const rol = await models.Rol.findByPk(idRol);
+
+        await models.User.update({conectado: 1}, 
+                                {where: {id:user.dataValues.id}});
 
         return {
             id: user.dataValues.id,
@@ -166,7 +170,35 @@ class ConexionUsuario extends ConexionSequelize {
 
         return idUser.dataValues.id;
     } 
+
+    getConectados = async(rol, id) => {
+
+        let resultado = []
+        if ( rol == 'jugador' ){
+
+            const idRol = await this.getIdRol(rol);
+
+            resultado = await models.User.findAll({
+                where: { conectado: 1, id:{[Op.ne]: id} },
+                include:[{
+                    model: models.RolesAsignados,
+                    as: 'RolesAsignados',
+                    where: { id_rol: 1}
+               }] 
+            });
+            //console.log(resultado);
+    
+        }else if ( rol == 'administrador' ){
+            resultado = await models.User.findAll({
+                where: { conectado: 1, id:{[Op.ne]: id} },
+            });
+        }
+        //console.log(resultado)
+        return resultado
+    }
 }
+
+
 
 
 module.exports = ConexionUsuario;

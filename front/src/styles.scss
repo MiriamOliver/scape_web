@@ -37,5 +37,6 @@
 }
 body{
   font-family: var(--TipoTexto);
+  overflow-x: hidden;
+  position:sticky;
 }
-
