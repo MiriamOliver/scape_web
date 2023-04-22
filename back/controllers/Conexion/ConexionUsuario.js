@@ -190,7 +190,7 @@ class ConexionUsuario extends ConexionSequelize {
     
         }else if ( rol == 'administrador' ){
             resultado = await models.User.findAll({
-                where: { conectado: 1 },
+                where: { conectado: 1, id:{[Op.ne]: id} },
             });
         }
         //console.log(resultado)

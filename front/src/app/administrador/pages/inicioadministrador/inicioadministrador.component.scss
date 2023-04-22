@@ -4,7 +4,7 @@
   main{
     .inicio{
       margin: auto;
-      margin-top: 65px;
+      margin-top: 30px;
       background-color: #00102abd;
       border-radius: 6px;
       .nav-pills{
@@ -42,6 +42,7 @@
       .pestanias{
         width: 242px;
         border-right: 2px solid #AE8C44;
+        display: block;
       }
       .info-inicio{
         margin-left: 33px;
@@ -53,6 +54,7 @@
           }
           p{
             color: var(--colorGris);
+            font-size: var(--TamTexto);
           }
           .hr-text {
             line-height: 1em;
