@@ -13,6 +13,7 @@ import { switchMap } from 'rxjs';
 export class SalaComponent implements OnInit{
 
   public jugadores:any = [];
+  public comenzar:boolean = true;
 
   constructor(
     private jugadorService: JugadorService,
@@ -24,8 +25,15 @@ export class SalaComponent implements OnInit{
         .pipe(switchMap(({id}) => this.jugadorService.getJugadoresPartida(id)))
         .subscribe((jugador:Jugador) => {
             this.jugadores = jugador;
-          }
-        );
-      }
+            console.log(this.jugadores);
+            if(this.jugadores.length >= 3 && this.jugadores.length <= 5){
+              this.comenzar = false;
+            }
+        }
+      );
+    }
 
+    empezarPartida(){
+
+    }
 }

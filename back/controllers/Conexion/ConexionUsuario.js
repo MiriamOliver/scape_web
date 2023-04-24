@@ -183,17 +183,15 @@ class ConexionUsuario extends ConexionSequelize {
                 include:[{
                     model: models.RolesAsignados,
                     as: 'RolesAsignados',
-                    where: { id_rol: 1}
+                    where: { id_rol: idRol.dataValues.id}
                }] 
             });
-            //console.log(resultado);
     
         }else if ( rol == 'administrador' ){
             resultado = await models.User.findAll({
                 where: { conectado: 1, id:{[Op.ne]: id} },
             });
         }
-        //console.log(resultado)
         return resultado
     }
 }

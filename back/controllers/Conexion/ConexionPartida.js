@@ -39,6 +39,30 @@ class ConexionPartida extends ConexionSequelize {
         }
     }
 
+    getJugadoresSala = async(id) => {
+
+        let jugadores = [];
+        let listaId = [];
+        
+        let idJugadores = await models.PartidaJugador.findAll({
+                            attributes:['id_jugador'],
+                            where:{id_partida:id}
+                        });
+
+        idJugadores.forEach(element => {
+            listaId.push(element.dataValues.id_jugador)
+        });
+        console.log(listaId);
+
+        jugadores = await models.User.findAll({
+            attributes:['id','nombre','avatar'],
+            where: {id:{[Op.in]: listaId}}
+        });
+        
+        return jugadores;
+        
+    }
+
 }
 
 module.exports = ConexionPartida;

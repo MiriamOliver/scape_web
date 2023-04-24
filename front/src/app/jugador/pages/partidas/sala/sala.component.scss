@@ -1,8 +1,37 @@
 .fondo-partida{
   background-image: url(../../../../../assets/imgs/fondo-inicio.jpg);
   main{
-    .jugadores{
-
+    .carta-jugadores{
+      .carta{
+        width: 160px;
+        height: 380px;
+        background-color: var(--colorTransparente);
+        border-radius: 0 0 80px 80px;
+        border: 2px solid var(--colorDorado);
+        div{
+          border-radius: 0 0 80px 80px;
+          padding-bottom: 16px;
+          //height: 362px;
+          background-color: var(--colorAzul);
+          img{
+            margin-top: 4px;
+            margin-bottom: 3px;
+            width: 120px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 0 0 60px 60px;
+            border: 3px solid var(--colorDorado);
+          }
+        }
+        p{
+          margin-top: 10px;
+          color: var(--colorDorado);
+          font-size: 18px;
+        }
+      }
+    }
+    button{
+      width: 136px;
     }
   }
   aside{
