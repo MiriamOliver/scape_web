@@ -37,7 +37,7 @@ class Server {
     routes(){
         this.app.use(this.authPath , require('../../routes/authRoutes'));
         this.app.use(this.usuariosPath,require('../../routes/usuarioRoutes'));
-        this.app.use(this.usuariosPath,require('../../routes/partidaRoutes'));
+        this.app.use(this.partidasPath,require('../../routes/partidaRoutes'));
     }
 
     /*sockets(){

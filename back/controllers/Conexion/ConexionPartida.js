@@ -15,7 +15,7 @@ class ConexionPartida extends ConexionSequelize {
     }
 
     createPartida = async(anfitrion) => {
-
+        console.log(anfitrion);
         try{
 
             const partida = await models.Partida.create({
@@ -25,7 +25,7 @@ class ConexionPartida extends ConexionSequelize {
 
             if(partida){
 
-                const jugPartida = await models.PartidaJugador.create({
+                await models.PartidaJugador.create({
                     id_jugador: anfitrion,
                     id_partida: partida.dataValues.id,
                 })                
@@ -34,6 +34,7 @@ class ConexionPartida extends ConexionSequelize {
             return partida.dataValues;
             
         }catch (err){
+            
             throw err;
         }
     }

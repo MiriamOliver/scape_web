@@ -1,0 +1,29 @@
+<app-menu></app-menu>
+  <div class="row fondo-partida">
+    <main class="col-md-10">
+      <div class="row">
+        <div class="col-md-3" style="background-color: blueviolet;">
+
+        </div>
+        <div class="col-md-9 p-5">
+          <div class="row">
+            <div class="col-9 pb-3 pt-4 d-flex">
+              <a class="nav-link"><button type="button" class="btn btn-light">Disponibles</button></a>
+              <a class="nav-link px-3"><button type="button" class="btn btn-light">Creadas</button></a>
+              <a class="nav-link"><button type="button" class="btn btn-light">En Curso</button></a>
+            </div>
+            <div class="col-3 pb-3 pt-4 d-flex justify-content-end">
+              <button type="button" class="btn btn-light" (click)=crear()>Crear Partida</button>
+            </div>
+          </div>
+          <app-listado></app-listado>
+
+        </div>
+      </div>
+    </main>
+    <aside class="col-md-2 pt-0 ps-0">
+      <app-sidebar></app-sidebar>
+    </aside>
+  </div>
+<app-footer></app-footer>
+

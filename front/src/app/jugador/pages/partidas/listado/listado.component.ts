@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { Partida } from '../../interfaces/jugador.interface';
-import { JugadorService } from '../../services/jugador.service';
+import { Partida } from 'src/app/jugador/interfaces/jugador.interface';
+import { JugadorService } from 'src/app/jugador/services/jugador.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs';
 
 @Component({
-  selector: 'app-partidas',
-  templateUrl: './partidas.component.html',
-  styleUrls: ['./partidas.component.scss']
+  selector: 'app-listado',
+  templateUrl: './listado.component.html',
+  styleUrls: ['./listado.component.scss']
 })
-export class PartidasComponent implements OnInit{
+export class ListadoComponent implements OnInit{
 
   public partidas:any = [];
 
