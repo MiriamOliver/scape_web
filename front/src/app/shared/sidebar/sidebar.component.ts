@@ -14,24 +14,19 @@ export class SidebarComponent  implements OnInit{
 
   public usuarios:any = [];
 
+  constructor(
+    private usuarioService: UsuarioService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router) { }
+
   perfil: Usuario = {
     nombre: JSON.parse(localStorage.getItem('user')!).nombre,
     avatar: JSON.parse(localStorage.getItem('user')!).avatar
   }
-  usuario: Usuario = {
-    nombre: 'jugador',
-    avatar: JSON.parse(localStorage.getItem('user')!).avatar
-  }
-
-  constructor(
-    private jugadorService: UsuarioService,
-    private activatedRoute: ActivatedRoute,
-    private router: Router) { }
-
 
   ngOnInit(): void {
     this.activatedRoute.params.pipe(switchMap(({rol}) =>
-    this.jugadorService.getUsuariosConectados(JSON.parse(localStorage.getItem('user')!).rol)))
+    this.usuarioService.getUsuariosConectados(JSON.parse(localStorage.getItem('user')!).rol)))
       .subscribe((usuario: Usuario) => {
         this.usuarios = usuario
         console.log(this.usuarios);

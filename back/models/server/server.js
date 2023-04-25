@@ -9,7 +9,8 @@ class Server {
         this.server = require('http').createServer(this.app);
         this.io = require('socket.io')(this.server);
         this.authPath = '/';
-        this.usuariosPath = '/usuarios'
+        this.usuariosPath = '/usuarios';
+        this.partidasPath = '/partidas'
 
         //Middlewares
         this.middlewares();
@@ -36,6 +37,7 @@ class Server {
     routes(){
         this.app.use(this.authPath , require('../../routes/authRoutes'));
         this.app.use(this.usuariosPath,require('../../routes/usuarioRoutes'));
+        this.app.use(this.partidasPath,require('../../routes/partidaRoutes'));
     }
 
     /*sockets(){

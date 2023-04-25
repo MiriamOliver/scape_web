@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Jugador } from '../interfaces/jugador.interface';
+import { Partida, Jugador } from '../interfaces/jugador.interface';
 import { environment } from './../../../environments/environment'
 
 
@@ -14,4 +14,15 @@ export class JugadorService {
 
   constructor(private http: HttpClient) { }
 
+  getPartidasDisponibles():Observable<Partida> {
+    return this.http.get<Partida>(`${this.baseUrl}/partidas/disponibles`);
+  }
+
+  crearPartida(id:number):Observable<Partida>{
+    return this.http.post<Partida>(`${this.baseUrl}/partidas/crear`, {anfitrion: id});
+  }
+
+  getJugadoresPartida(id:number):Observable<Jugador>{
+    return this.http.get<Jugador>(`${this.baseUrl}/partidas/sala/${id}`,);
+  }
 }

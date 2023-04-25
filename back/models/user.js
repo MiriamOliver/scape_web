@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
         //targetKey: 'id'
       });
 
-      User.hasOne(models.Jugador, {
+      User.hasMany(models.Jugador, {
         as: 'Jugador', 
         foreignKey: 'id',
         //targetKey: 'id'

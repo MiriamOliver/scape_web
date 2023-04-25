@@ -5,11 +5,19 @@ import { JugadorRoutingModule } from './jugador-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
+import { PartidasComponent } from './pages/partidas/partidas/partidas.component';
+import { AgregarComponent } from './pages/partidas/agregar/agregar.component';
+import { ListadoComponent } from './pages/partidas/listado/listado.component';
+import { SalaComponent } from './pages/partidas/sala/sala.component';
 
 
 @NgModule({
   declarations: [
     IniciojugadorComponent,
+    PartidasComponent,
+    AgregarComponent,
+    ListadoComponent,
+    SalaComponent,
   ],
   imports: [
     CommonModule,
