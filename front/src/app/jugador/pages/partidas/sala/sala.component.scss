@@ -1,6 +1,9 @@
 .fondo-partida{
   background-image: url(../../../../../assets/imgs/fondo-inicio.jpg);
   main{
+    .contenedor-chat{
+      background-color: var(--colorTransparente);
+    }
     .carta-jugadores{
       .carta{
         width: 160px;

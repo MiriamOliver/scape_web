@@ -19,6 +19,7 @@
   .scroll{
     overflow-y: scroll;
     max-height: 329px;
+    height: 329px;
     &::-webkit-scrollbar {
       width: 4px;
       border-radius: 4px;
