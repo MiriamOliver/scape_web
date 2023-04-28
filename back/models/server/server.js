@@ -1,13 +1,21 @@
 const express = require('express');
 const cors = require('cors');
 const expfileupload = require("express-fileupload");
+const socket = require('./server-socket');
+//const { websocket } = require('../../helpers/websocket');
 
 class Server {
 
     constructor() {
         this.app = express();
         this.server = require('http').createServer(this.app);
-        this.io = require('socket.io')(this.server);
+        //this.io = require('socket.io')(this.server);
+        /* this.io = new Server(5001, {
+            cors: {
+                origin: "*",
+                methods: ["GET", "POST"]
+            }
+        }); */
         this.authPath = '/';
         this.usuariosPath = '/usuarios';
         this.partidasPath = '/partidas'
@@ -19,7 +27,7 @@ class Server {
         this.routes();
 
         //Websockets.
-        //this.sockets();
+        this.sockets(); 
         
     }
 
@@ -40,9 +48,9 @@ class Server {
         this.app.use(this.partidasPath,require('../../routes/partidaRoutes'));
     }
 
-    /*sockets(){
-        
-    } */
+    sockets(){
+        socket.sockerServer()
+    }
 
     listen() {
         this.server.listen(process.env.PORT, () => {
