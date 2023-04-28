@@ -36,8 +36,15 @@ export class JugadorService  extends Socket {
     });
   }
 
-  getPartidasDisponibles():Observable<Partida> {
-    return this.http.get<Partida>(`${this.baseUrl}/partidas/disponibles`);
+  getPartidasDisponibles(id:number) {
+    return this.http.get<Partida>(`${this.baseUrl}/partidas/disponibles/${id}`);
+  }
+
+  getPartidasCreadas(id:number) {
+    return this.http.get<Partida>(`${this.baseUrl}/partidas/creadas/${id}`);
+  }
+  getPartidasEnCurso(id:number) {
+    return this.http.get<Partida>(`${this.baseUrl}/partidas/curso/${id}`);
   }
 
   crearPartida(id:number):Observable<Partida>{

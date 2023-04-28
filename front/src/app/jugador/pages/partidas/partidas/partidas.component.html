@@ -7,17 +7,19 @@
         </div>
         <div class="col-md-9 p-5">
           <div class="row">
-            <div class="col-9 pb-3 pt-4 d-flex">
-              <a class="nav-link"><button type="button" class="btn btn-light">Disponibles</button></a>
-              <a class="nav-link px-3"><button type="button" class="btn btn-light">Creadas</button></a>
-              <a class="nav-link"><button type="button" class="btn btn-light">En Curso</button></a>
+            <div class="col-9 pb-3 pt-4 d-flex" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+              <button type="button" class="btn btn-light nav-link active" id="v-pills-disponibles-tab" data-bs-toggle="pill" data-bs-target="#v-pills-disponibles"
+                      role="tab" aria-controls="v-pills-disponibles" aria-selected="true" (click)="partidasDisponibles()">Disponibles</button>
+              <button type="button" class="btn btn-light nav-link mx-3" id="v-pills-creadas-tab" data-bs-toggle="pill" data-bs-target="#v-pills-creadas"
+                      role="tab" aria-controls="v-pills-creadas" aria-selected="false" (click)="partidasCreadas()">Creadas</button>
+              <button type="button" class="btn btn-light nav-link" id="v-pills-curso-tab" data-bs-toggle="pill" data-bs-target="#v-pills-curso"
+                      role="tab" aria-controls="v-pills-curso" aria-selected="false" (click)="partidasEnCurso()">En Curso</button>
             </div>
             <div class="col-3 pb-3 pt-4 d-flex justify-content-end">
               <button type="button" class="btn btn-light" (click)=crear()>Crear Partida</button>
             </div>
           </div>
           <app-listado></app-listado>
-
         </div>
       </div>
     </main>

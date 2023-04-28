@@ -19,9 +19,9 @@ export class ListadoComponent implements OnInit{
     private router: Router) { }
 
   ngOnInit(): void {
-    this.jugadorService.getPartidasDisponibles()
+    /* this.jugadorService.getPartidasDisponibles()
       .subscribe((partida: Partida) => {
         this.partidas = partida
-    })
+    }) */
   }
 }

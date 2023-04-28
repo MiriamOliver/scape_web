@@ -8,13 +8,42 @@
         <div class="col-3">Estado</div>
       </div>
     </div>
-    <div class="border-0 p-0 m-0">
+    <div class="tab-content" id="v-pills-tabContent">
+      <div class="border-0 p-0 m-0 tab-pane fade show active" id="v-pills-disponibles" role="tabpanel" aria-labelledby="v-pills-disponibles-tab" tabindex="0">
+        <p>probando disponibles</p>
+        <ul class="border-0 row p-2 mt-2 m-0 lista rounded-1" *ngFor="let partida of partidas">
+          <li class="col-3 list-group-item border-0">{{partida.id}}</li>
+          <li class="col-3 list-group-item border-0">{{partida.anfitrion}}</li>
+          <li class="col-3 list-group-item border-0">{{partida.participantes}}</li>
+          <li class="col-3 list-group-item border-0">{{partida.estado}}</li>
+        </ul>
+      </div>
+      <div class="border-0 p-0 m-0 tab-pane fade" id="v-pills-creadas" role="tabpanel" aria-labelledby="v-pills-creadas-tab" tabindex="0">
+        <p>probando creadas</p>
+        <ul class="border-0 row p-2 mt-2 m-0 lista rounded-1" *ngFor="let partida of partidas">
+          <li class="col-3 list-group-item border-0">{{partida.id}}</li>
+          <li class="col-3 list-group-item border-0">{{partida.anfitrion}}</li>
+          <li class="col-3 list-group-item border-0">{{partida.participantes}}</li>
+          <li class="col-3 list-group-item border-0">{{partida.estado}}</li>
+        </ul>
+      </div>
+      <div class="border-0 p-0 m-0 tab-pane fade" id="v-pills-curso" role="tabpanel" aria-labelledby="v-pills-curso-tab" tabindex="0">
+        <p>probando curso</p>
+        <ul class="border-0 row p-2 mt-2 m-0 lista rounded-1" *ngFor="let partida of partidas">
+          <li class="col-3 list-group-item border-0">{{partida.id}}</li>
+          <li class="col-3 list-group-item border-0">{{partida.anfitrion}}</li>
+          <li class="col-3 list-group-item border-0">{{partida.participantes}}</li>
+          <li class="col-3 list-group-item border-0">{{partida.estado}}</li>
+        </ul>
+      </div>
+    </div>
+    <!-- <div class="border-0 p-0 m-0">
       <ul class="border-0 row p-2 mt-2 m-0 lista rounded-1" *ngFor="let partida of partidas">
         <li class="col-3 list-group-item border-0">{{partida.id}}</li>
         <li class="col-3 list-group-item border-0">{{partida.anfitrion}}</li>
         <li class="col-3 list-group-item border-0">{{partida.participantes}}</li>
         <li class="col-3 list-group-item border-0">{{partida.estado}}</li>
       </ul>
-    </div>
+    </div> -->
   </div>
 </div>
