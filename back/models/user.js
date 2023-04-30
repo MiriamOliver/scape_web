@@ -13,13 +13,16 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(models.RolesAsignados, {
         as: 'RolesAsignados', 
         foreignKey: 'id_user',
-        //targetKey: 'id'
       });
 
       User.hasMany(models.Jugador, {
         as: 'Jugador', 
         foreignKey: 'id',
-        //targetKey: 'id'
+      });
+
+      User.hasMany(models.Partida, {
+        as: 'PartidasUsuarios', 
+        foreignKey: 'anfitrion',
       });
     }
   }

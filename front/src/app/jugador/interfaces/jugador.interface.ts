@@ -6,6 +6,6 @@ export interface Jugador {
 export interface Partida {
   id: number;
   anfitrion: string;
-  participantes: number;
+  jugadores: number;
   estado: string;
 }

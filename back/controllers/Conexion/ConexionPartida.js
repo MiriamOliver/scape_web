@@ -7,6 +7,7 @@ const File = require('../../helpers/file_upload');
 const correo = require('../../helpers/correo');
 const libreria = require('../../helpers/libreria')
 const { Op } = require('sequelize');
+const { QueryTypes } = require('sequelize');
 
 class ConexionPartida extends ConexionSequelize {
 
@@ -52,7 +53,6 @@ class ConexionPartida extends ConexionSequelize {
         idJugadores.forEach(element => {
             listaId.push(element.dataValues.id_jugador)
         });
-        console.log(listaId);
 
         jugadores = await models.User.findAll({
             attributes:['id','nombre','avatar'],
@@ -61,6 +61,40 @@ class ConexionPartida extends ConexionSequelize {
         
         return jugadores;
         
+    }
+
+    getPartidasDisponibles = async(id) => {
+
+        let resultado = null;
+
+        resultado = await models.sequelize.query(`SELECT partidas.id, partidas.anfitrion, partidas.estado, users.nombre, 
+                                                  COUNT(partidasjugadores.id_jugador) AS 'jugadores' FROM partidas JOIN users ON partidas.anfitrion=users.id 
+                                                  JOIN partidasjugadores ON partidas.id=partidasjugadores.id_partida WHERE estado='disponible' AND anfitrion != ? 
+                                                  GROUP BY partidasjugadores.id_partida;`, { replacements: [id], type: QueryTypes.SELECT });
+        return resultado;  
+    }
+
+    getPartidasCreadas = async(id) => {
+
+        let resultado = null;
+
+        resultado = await models.sequelize.query(`SELECT partidas.id, partidas.anfitrion, partidas.estado, users.nombre, 
+                                                  COUNT(partidasjugadores.id_jugador) AS 'jugadores' FROM partidas JOIN users ON partidas.anfitrion=users.id 
+                                                  JOIN partidasjugadores ON partidas.id=partidasjugadores.id_partida WHERE estado='disponible' AND anfitrion = ? 
+                                                  GROUP BY partidasjugadores.id_partida;`, { replacements: [id], type: QueryTypes.SELECT });
+        
+        return resultado;  
+    }
+
+    getPartidasEnCurso = async(id) => {
+
+        let resultado = null;
+
+        resultado = await models.sequelize.query(`SELECT partidas.id, partidas.anfitrion, partidas.estado, users.nombre, 
+                                                  COUNT(partidasjugadores.id_jugador) AS 'jugadores' FROM partidas JOIN users ON partidas.anfitrion=users.id 
+                                                  JOIN partidasjugadores ON partidas.id=partidasjugadores.id_partida WHERE estado = 'curso' AND partidasjugadores.id_jugador = ? 
+                                                  GROUP BY partidasjugadores.id_partida;`, { replacements: [id], type: QueryTypes.SELECT });
+        return resultado;
     }
 
 }

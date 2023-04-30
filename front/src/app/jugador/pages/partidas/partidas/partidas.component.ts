@@ -19,6 +19,8 @@ export class PartidasComponent implements OnInit{
     private router: Router) { }
 
   ngOnInit(): void {
+    this.partidas = []
+    this.partidasDisponibles();
 
   }
 
@@ -32,5 +34,30 @@ export class PartidasComponent implements OnInit{
       }
 
     });
+  }
+
+  partidasDisponibles(){
+    this.partidas = [];
+    this.jugadorService.getPartidasDisponibles(JSON.parse(localStorage.getItem('user')!).id)
+      .subscribe((partida: Partida) => {
+        console.log(partida);
+        this.partidas = partida
+    })
+  }
+
+  partidasCreadas(){
+    this.partidas = [];
+    this.jugadorService.getPartidasCreadas(JSON.parse(localStorage.getItem('user')!).id)
+      .subscribe((partida: Partida) => {
+        this.partidas = partida
+    })
+  }
+
+  partidasEnCurso(){
+    this.partidas = [];
+    this.jugadorService.getPartidasEnCurso(JSON.parse(localStorage.getItem('user')!).id)
+      .subscribe((partida: Partida) => {
+        this.partidas = partida
+    })
   }
 }

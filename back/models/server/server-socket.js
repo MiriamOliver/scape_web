@@ -1,5 +1,4 @@
 const { Server } = require('socket.io');
-//const { websocket } = require('../../helpers/websocket');
 
 const sockerServer = () => {
 
@@ -10,11 +9,7 @@ const sockerServer = () => {
     });
 
     io.on('connection', function (socket) {
-        console.log(socket);
-        console.log(socket.id)
-        console.log(socket.handshake);
-        console.log('-----------')
-        console.log(socket.handshake.query);
+
         /** handshake: Es el id de conexion con el dispositivo cliente */
         const id_handshake = socket.id;
     
@@ -24,11 +19,10 @@ const sockerServer = () => {
         let {payload} = socket.handshake.query;
     
         if (!payload) {
-            console.log('no payload')
+
         } else {
-            console.log('hay payload')
+
             payload = JSON.parse(payload)
-            console.log(payload.id);
         
             /**
              * Una vez enviado la informacion del usuario conectado en este caso es un peequeño objecto que contiene nombre y id,
@@ -57,7 +51,7 @@ const sockerServer = () => {
                          * y posteriormente se emite un "message" a todos los dispositivos unidos a la sala.
                          */
                         const inPayloadCookie = JSON.parse(res.cookiePayload);
-                        console.log(inPayloadCookie);
+
                         const inPayload = res.payload;
     
                         io.to(`room_${inPayloadCookie.id}`).emit('message',{

@@ -21,7 +21,6 @@ const crearPartida = (req, res = response) => {
 
 const mostrarJugadoresSala = ( req, res = response ) => {
     const conex = new ConexionSequelize();
-    console.log(req.params.id)
     conex.getJugadoresSala(req.params.id)
         .then( resp => {
             resp.forEach(element => {
@@ -34,7 +33,44 @@ const mostrarJugadoresSala = ( req, res = response ) => {
         })
 }
 
+const partidasDisponibles = ( req, res = response ) => {
+    const conex = new ConexionSequelize();
+    conex.getPartidasDisponibles(req.params.id)
+        .then( resp => {
+            res.status(200).json(resp);
+        })
+        .catch(err => {
+            res.status(203).json({'msg':'No se han encontrado registros'});
+        })
+}
+
+const partidasCreadas = ( req, res = response ) => {
+    const conex = new ConexionSequelize();
+    conex.getPartidasCreadas(req.params.id)
+        .then( resp => {
+            console.log(resp)
+            res.status(200).json(resp);
+        })
+        .catch(err => {
+            res.status(203).json({'msg':'No se han encontrado registros'});
+        })
+}
+
+const partidasEnCurso = ( req, res = response ) => {
+    const conex = new ConexionSequelize();
+    conex.getPartidasEnCurso(req.params.id)
+        .then( resp => {
+            res.status(200).json(resp);
+        })
+        .catch(err => {
+            res.status(203).json({'msg':'No se han encontrado registros'});
+        })
+}
+
 module.exports = {
     crearPartida,
     mostrarJugadoresSala,
+    partidasDisponibles,
+    partidasCreadas,
+    partidasEnCurso
 }

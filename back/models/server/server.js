@@ -9,13 +9,6 @@ class Server {
     constructor() {
         this.app = express();
         this.server = require('http').createServer(this.app);
-        //this.io = require('socket.io')(this.server);
-        /* this.io = new Server(5001, {
-            cors: {
-                origin: "*",
-                methods: ["GET", "POST"]
-            }
-        }); */
         this.authPath = '/';
         this.usuariosPath = '/usuarios';
         this.partidasPath = '/partidas'
