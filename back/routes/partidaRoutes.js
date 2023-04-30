@@ -8,6 +8,10 @@ router.post('/crear', controlador.crearPartida);
 
 router.get('/sala/:id', controlador.mostrarJugadoresSala);
 
-//router.post('/disponibles', controlador.crearPartida);
+router.get('/disponibles/:id', controlador.partidasDisponibles);
+
+router.get('/creadas/:id', controlador.partidasCreadas);
+
+router.get('/curso/:id', controlador.partidasEnCurso);
 
 module.exports = router

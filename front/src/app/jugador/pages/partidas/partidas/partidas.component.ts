@@ -19,6 +19,7 @@ export class PartidasComponent implements OnInit{
     private router: Router) { }
 
   ngOnInit(): void {
+    this.partidas = []
     this.partidasDisponibles();
 
   }
@@ -39,6 +40,7 @@ export class PartidasComponent implements OnInit{
     this.partidas = [];
     this.jugadorService.getPartidasDisponibles(JSON.parse(localStorage.getItem('user')!).id)
       .subscribe((partida: Partida) => {
+        console.log(partida);
         this.partidas = partida
     })
   }
