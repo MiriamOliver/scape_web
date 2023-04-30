@@ -9,3 +9,7 @@ export interface Partida {
   jugadores: number;
   estado: string;
 }
+
+export interface RespPartida {
+  msg: string;
+}

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { EventEmitter, Injectable, Output } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Partida, Jugador } from '../interfaces/jugador.interface';
+import { Partida, Jugador, RespPartida } from '../interfaces/jugador.interface';
 import { environment } from './../../../environments/environment'
 import { Socket }  from 'ngx-socket-io';
 
@@ -53,5 +53,9 @@ export class JugadorService  extends Socket {
 
   getJugadoresPartida(id:number):Observable<Jugador>{
     return this.http.get<Jugador>(`${this.baseUrl}/partidas/sala/${id}`,);
+  }
+
+  unirsePartida(iduser:number, id:any){
+    return this.http.post<RespPartida>(`${this.baseUrl}/partidas/unirse`, {id_partida: id, id_jugador: id});
   }
 }

@@ -36,6 +36,18 @@ export class PartidasComponent implements OnInit{
     });
   }
 
+  unirseSala(id:any){
+    this.jugadorService.unirsePartida(JSON.parse(localStorage.getItem('user')!).id, id)
+    .subscribe(resp => {
+      /* if (resp) {
+        this.router.navigate(['jugador/partida/sala/'+ resp.id]);
+      }else{
+        //
+      } */
+
+    });
+  }
+
   partidasDisponibles(){
     this.partidas = [];
     this.jugadorService.getPartidasDisponibles(JSON.parse(localStorage.getItem('user')!).id)

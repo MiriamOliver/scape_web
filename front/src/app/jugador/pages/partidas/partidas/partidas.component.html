@@ -47,7 +47,7 @@
                   <li class="col-2 list-group-item border-0">{{partida.id}}</li>
                   <li class="col-4 list-group-item border-0">{{partida.nombre}}</li>
                   <li class="col-3 list-group-item border-0">{{partida.jugadores}} / 5</li>
-                  <li class="col-3 list-group-item border-0"><button type="button" class="btn rounded">{{partida.estado}}</button></li>
+                  <li class="col-3 list-group-item border-0"><button type="button" (click)="unirseSala(partida.id)" class="btn rounded">{{partida.estado}}</button></li>
                 </ul>
               </div>
             </div>
