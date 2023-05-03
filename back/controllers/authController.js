@@ -10,12 +10,13 @@ const correo = require('../helpers/correo')
 
   const register =  (req = request, res = response) => {
     const conx = new ConexionSequelize();
+    console.log('llego')
     conx.registrarUsuario(req)    
         .then( msg => {
-            res.status(201).json({success:true, msg:'¡Registrado correctamente!. Revise su correo electrónico para verificar su registro'});
+            res.status(201).json({success:true, msg:'¡Registrado correctamente!. \n Revise su correo electrónico para verificar su registro'});
         })
         .catch ( err => {
-            res.status(203).json({success:false, msg:'¡Error!. Fallo en el registro', err});
+            res.status(203).json({success:false, msg:'¡Error!. \n Fallo en el registro', err});
         });
     }
 
@@ -86,7 +87,7 @@ const correo = require('../helpers/correo')
         .then(resp => {
             res.send({success:true, msg:'!OK! Revisa tu correo para obtener el código de restauración de contraseña'});
         }).catch(err => {
-            res.send({success:false, msg:'¡Error!. Fallo en la recuperación de contraseña', err});
+            res.send({success:false, msg:'¡Error!. Fallo en la recuperación de contraseña. El email es incorrecto', err});
         });
     }
 

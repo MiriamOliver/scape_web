@@ -14,6 +14,7 @@ import jwt_decode from 'jwt-decode';
 })
 export class LoginComponent implements OnInit{
 
+  timer: number | undefined;
   loginCorrecto: number = -1;
   submitted: boolean = false;
   loginForm!: FormGroup;
@@ -62,6 +63,8 @@ export class LoginComponent implements OnInit{
       if (!resp.success) {
         this.loginCorrecto = 1;
         this.result.msg = resp.msg;
+        clearTimeout(this.timer);
+        this.timer = window.setTimeout(() => {this.loginCorrecto = -1;}, 5000);
       }else{
         localStorage.setItem('user', JSON.stringify(resp.data));
         this.result.msg = resp.msg;

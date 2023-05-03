@@ -56,6 +56,6 @@ export class JugadorService  extends Socket {
   }
 
   unirsePartida(iduser:number, id:any){
-    return this.http.post<RespPartida>(`${this.baseUrl}/partidas/unirse`, {id_partida: id, id_jugador: id});
+    return this.http.post(`${this.baseUrl}/partidas/unirse`, {id_partida: id, id_jugador: iduser});
   }
 }

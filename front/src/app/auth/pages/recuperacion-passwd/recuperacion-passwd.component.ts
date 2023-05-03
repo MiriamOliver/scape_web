@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
-
+import { RespRecPasswd } from '../../interfaces/auth.interface';
 
 
 @Component({
@@ -12,18 +12,25 @@ import { AuthService } from '../../services/auth.service';
 })
 export class RecuperacionPasswdComponent implements OnInit{
 
+  timer: number | undefined;
   submitted: boolean = false;
   passwdForm!: FormGroup;
-  cambioPasswd = 1;
+  cambioPasswd = -1;
+  result!: RespRecPasswd;
 
   constructor(
     private router: Router,
     private fb: FormBuilder,
     private authService: AuthService,
-  ) {}
+  ) {
+    this.result = {
+      msg: "",
+      success: false
+    }
+  }
 
   ngOnInit(): void {
-    this.cambioPasswd = 1;
+    this.cambioPasswd = -1;
     this.submitted = false;
     this.passwdForm = this.fb.group({
       email: ['', Validators.compose([
@@ -35,9 +42,16 @@ export class RecuperacionPasswdComponent implements OnInit{
 
   recPasswd() {
     this.authService.recPassword(this.passwdForm.get('email')?.value).subscribe(resp => {
+      console.log(resp);
       if (resp.success) {
         this.router.navigate(['auth/genpasswd'])
+      }else{
+        this.cambioPasswd = 2;
+        console.log(resp.msg);
+        this.result.msg = resp.msg
       }
+      clearTimeout(this.timer);
+      this.timer = window.setTimeout(() => {this.cambioPasswd = -1;}, 3000);
     });
   }
 

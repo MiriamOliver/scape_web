@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { confirmarPasswd } from '../../validators/validator';
+import { RespGenPasswd } from '../../interfaces/auth.interface';
 
 
 @Component({
@@ -12,15 +13,23 @@ import { confirmarPasswd } from '../../validators/validator';
 })
 export class GenerarPasswdComponent implements OnInit{
 
+  timer: number | undefined;
   submitted: boolean = false;
   genPasswdForm!: FormGroup;
   cambioPasswd = 1;
+  genPasswdCorrecto = -1;
+  result:RespGenPasswd
 
   constructor(
     private router: Router,
     private fb: FormBuilder,
     private authService: AuthService,
-  ) {}
+  ) {
+    this.result = {
+      msg: "",
+      success: false
+    }
+  }
 
   ngOnInit(): void {
     this.cambioPasswd = 1;
@@ -47,8 +56,14 @@ export class GenerarPasswdComponent implements OnInit{
           this.genPasswdForm.get('codigo')?.value)
     .subscribe(resp => {
       if (!resp.success) {
-        this.cambioPasswd = 2;
-      }
+          this.genPasswdCorrecto = 1;
+          this.result.msg = resp.msg;
+          clearTimeout(this.timer);
+          this.timer = window.setTimeout(() => {this.genPasswdCorrecto = -1;}, 5000);
+        }else{
+          this.genPasswdCorrecto = 2;
+          this.result.msg = resp.msg;
+        }
     });
   }
 
@@ -62,5 +77,9 @@ export class GenerarPasswdComponent implements OnInit{
 
   abrirRestPasswd() {
     this.router.navigate(['auth/recpasswd']);
+  }
+
+  abrirLogin(){
+      this.router.navigate(['auth/login']);
   }
 }

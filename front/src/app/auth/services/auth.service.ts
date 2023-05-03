@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from './../../../environments/environment'
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Registro, RespRegistro, Login, Auth } from '../interfaces/auth.interface';
+import { Registro, RespRegistro, Login, Auth, RespGenPasswd, RespRecPasswd } from '../interfaces/auth.interface';
 import { Observable, tap } from 'rxjs';
 
 @Injectable({
@@ -35,11 +35,11 @@ export class AuthService {
         .pipe(tap(auths => this.auth = auths));
     }
 
-    recPassword(email:string){
-      return this.http.post<RespRegistro>(`${ this.baseUrl }/emailpasswd`, { email: email });
+    recPassword(email:string): Observable<RespRecPasswd>{
+      return this.http.post<RespRecPasswd>(`${ this.baseUrl }/emailpasswd`, { email: email });
     }
 
-    generarPassword(passwd: string, codigo:string){
-      return this.http.post<RespRegistro>(`${this.baseUrl}/generarpasswd/`, {password: passwd, codigo: codigo});
+    generarPassword(passwd: string, codigo:string): Observable<RespGenPasswd>{
+      return this.http.post<RespGenPasswd>(`${this.baseUrl}/generarpasswd/`, {password: passwd, codigo: codigo});
     }
 }

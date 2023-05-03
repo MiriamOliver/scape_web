@@ -36,16 +36,18 @@ export class PartidasComponent implements OnInit{
     });
   }
 
-  unirseSala(id:any){
-    this.jugadorService.unirsePartida(JSON.parse(localStorage.getItem('user')!).id, id)
-    .subscribe(resp => {
-      /* if (resp) {
-        this.router.navigate(['jugador/partida/sala/'+ resp.id]);
-      }else{
-        //
-      } */
+  unirseSala(id:any, estado:any){
 
-    });
+    if(estado == 'curso'){
+
+      this.router.navigate(['jugador/partida/juego/'+ id]);
+
+      }else if(estado == 'disponible'){
+      this.jugadorService.unirsePartida(JSON.parse(localStorage.getItem('user')!).id, id)
+      .subscribe(resp => {
+        this.router.navigate(['jugador/partida/sala/'+ id]);
+      });
+    }
   }
 
   partidasDisponibles(){

@@ -68,7 +68,16 @@
   </div>
 </div>
 
-<div>
+<div class="position-absolute top-50 start-50 translate-middle mensaje card shadow-lg p-3 mb-5 bg-body rounded" *ngIf="loginCorrecto == 1" style="width: 400px;">
+  <div class="card-body">
+    <span><i class="fa-solid fa-triangle-exclamation me-2" style="color:var(--colorRojo)"></i>
+      {{result.msg}}</span>
+  </div>
+</div>
+
+
+
+<!-- <div>
   <h1>Google Signin</h1>
   <hr>
   <div id="g_id_onload" data-client_id="1091657452086-au153pumqd0rv84v0b79vcbcquglrulp.apps.googleusercontent.com"
@@ -80,7 +89,7 @@
   </div>
   <button id="g_id_signout">Sign Out</button>
   <hr>
-</div>
+</div> -->
 
 <script>
 

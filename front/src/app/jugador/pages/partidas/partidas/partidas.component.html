@@ -6,7 +6,7 @@
           <div class="tab-content pt-4" id="v-pills-tabContent">
             <div class="border-0 p-3 ms-5 tab-pane fade show active info-partida rounded-1" id="v-pills-disponibles" role="tabpanel" aria-labelledby="v-pills-disponibles-tab" tabindex="0">
               <h6 class="mb-2 pb-2">Partidas disponibles</h6>
-              <p>En esta lista se encuentran las partidas en las que puedes colaborar.<br><br> Pulsa en el botón "disponible" y entra en una nueva partida</p>
+              <p>En esta lista se encuentran las partidas en las que puedes colaborar.<br><br> Pulsa en el botón "Apuntarse" y entra en una nueva partida</p>
             </div>
             <div class="border-0 p-3 ms-5 tab-pane fade info-partida rounded-1" id="v-pills-creadas" role="tabpanel" aria-labelledby="v-pills-creadas-tab" tabindex="0">
               <h6 class="mb-2 pb-2">Partidas creadas</h6>
@@ -47,7 +47,7 @@
                   <li class="col-2 list-group-item border-0">{{partida.id}}</li>
                   <li class="col-4 list-group-item border-0">{{partida.nombre}}</li>
                   <li class="col-3 list-group-item border-0">{{partida.jugadores}} / 5</li>
-                  <li class="col-3 list-group-item border-0"><button type="button" (click)="unirseSala(partida.id)" class="btn rounded">{{partida.estado}}</button></li>
+                  <li class="col-3 list-group-item border-0"><button type="button" (click)="unirseSala(partida.id, partida.estado)" class="btn rounded" [disabled] ="partida.jugadores >= 5">Apuntarse</button></li>
                 </ul>
               </div>
             </div>
