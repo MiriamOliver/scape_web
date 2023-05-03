@@ -25,7 +25,7 @@ const emailDesconocido = async( email ) => {
         where: {"email": email}
     })
     if ( !desconocidoEmail ) {
-        throw new Error(`El correo: ${ email }, no está registrado`);
+        throw new Error(`Correo desconocido`);
     }
 }
 
@@ -36,7 +36,7 @@ const emailVerificado = async( email ) => {
                 }
     })
     if (!verificado) {
-        throw new Error(`El correo: ${ email }, no está verificado`);
+        throw new Error(`Correo no verificado. Revisa tu correo para verificar tu cuenta`);
     }
 }
 

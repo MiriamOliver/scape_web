@@ -3,6 +3,7 @@ const ConexionSequelize = require('./Conexion/ConexionPartida');
 const fHTML = require('../helpers/filesHtml');
 const path = require('path');
 const fs   = require('fs');
+const { body } = require("express-validator");
 
 const crearPartida = (req, res = response) => {
     const conex = new ConexionSequelize();
@@ -67,10 +68,23 @@ const partidasEnCurso = ( req, res = response ) => {
         })
 }
 
+const unirseSala = ( req, res = response ) => {
+    const conex = new ConexionSequelize();
+    conex.unirseSalaPartida(req.body)
+        .then( resp => {
+            console.log(resp);
+            res.status(200).json(resp);
+        })
+        .catch(err => {
+            res.status(203).json({'msg':'No se han encontrado registros'});
+        })
+}
+
 module.exports = {
     crearPartida,
     mostrarJugadoresSala,
     partidasDisponibles,
     partidasCreadas,
-    partidasEnCurso
+    partidasEnCurso,
+    unirseSala
 }

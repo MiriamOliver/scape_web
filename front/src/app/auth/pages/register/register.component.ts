@@ -12,6 +12,7 @@ import { Registro, RespRegistro } from '../../interfaces/auth.interface';
 })
 export class RegisterComponent implements OnInit {
 
+  timer: number | undefined;
   selectedFile: string = "";
   passwdCorrecta: boolean = true;
   registroCorrecto: number = -1;
@@ -86,12 +87,12 @@ export class RegisterComponent implements OnInit {
         if (!resp.success) {
           this.registroCorrecto = 1;
           this.result.msg = resp.msg;
-
         }else{
           this.registroCorrecto = 2;
           this.result.msg = resp.msg;
         }
-        console.log(this.result.msg)
+        clearTimeout(this.timer);
+        this.timer = window.setTimeout(() => {this.registroCorrecto = -1;}, 8000);
       });
     }
     else {

@@ -6,6 +6,8 @@ const { validarCampos } = require('../middlewares/validar-campos');
 
 router.post('/crear', controlador.crearPartida);
 
+router.post('/unirse', controlador.unirseSala);
+
 router.get('/sala/:id', controlador.mostrarJugadoresSala);
 
 router.get('/disponibles/:id', controlador.partidasDisponibles);
