@@ -68,6 +68,14 @@ class ConexionUsuario extends ConexionSequelize {
         };
     }
 
+    logoutUsuario = async(id) => {
+
+        let result = await models.User.update({conectado: 0}, 
+                                          {where: {id:id}});
+
+        return result;
+    }
+
 
     asignarRol = async (idUser, idRol) => {
         const resp = await models.RolesAsignados.create({

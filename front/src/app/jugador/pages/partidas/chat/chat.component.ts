@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { JugadorService } from 'src/app/jugador/services/jugador.service';
+import { Component, OnInit } from '@angular/core';
+//import { JugadorService} from 'src/app/jugador/services/jugador.service';
+import { JugadorsocketService } from 'src/app/jugador/services/jugadorsocket.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -7,49 +8,34 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.scss']
 })
-export class ChatComponent {
+export class ChatComponent implements OnInit{
   user:any;
-  user_id:any;
+  id_partida:any;
+  avatar:any;
   msg:any;
   show_message:any;
   messages: any[]=[];
   public input_message:any;
 
   constructor(
-    protected socketService: JugadorService,
+    protected socketService: JugadorsocketService,
     private activatedRoute: ActivatedRoute,
   ) {
-    socketService.outEven.subscribe(res => {
-      this.messages.push(res);
-      console.log(this.messages);
-    })
-
+    this.user = JSON.parse(localStorage.getItem('user')!).nombre;
+    this.id_partida = this.activatedRoute.snapshot.params['id'];
+    this.avatar = JSON.parse(localStorage.getItem('user')!).avatar;
    }
 
   ngOnInit() {
-
     localStorage.setItem('chat', JSON.stringify({
-      avatar: JSON.parse(localStorage.getItem('user')!).avatar,
-      nombre: JSON.parse(localStorage.getItem('user')!).nombre,
-      id:this.activatedRoute.snapshot.params['id']
+      avatar: this.avatar,
+      nombre: this.user,
+      id: this.id_partida
     }));
-    /* try{
-      this.show_message = JSON.parse(localStorage.getItem('chat')!);
-      console.log(JSON.parse(localStorage.getItem('chat')!))
-    }catch(e){
-      this.show_message = null
-    } */
-
+    this.socketService.outEven.subscribe(res => {
+      this.messages.push(res);
+    })
   }
-
-   /* mockedUser = () => {
-
-    localStorage.setItem('chat', JSON.stringify({
-      user:this.user ,
-      id:this.user_id
-    }));
-    window.location.reload();
-   } */
 
    sendData = (event:any) =>{
     this.socketService.emitEvent(event,
@@ -59,7 +45,5 @@ export class ChatComponent {
       console.log(this.input_message);
    this.input_message = null;
    }
-
-
 
 }

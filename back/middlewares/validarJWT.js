@@ -12,12 +12,11 @@ const validarJWT = (req , res , next) => {  //Estas asignaciones son necesarias 
         
         const {uid} = jwt.verify(token, process.env.SECRETORPRIVATEKEY);
         req.dniToken = uid;
-        console.log(uid);
-        console.log(token);
+
         next();
         
     }catch(error){
-        console.log(error);
+
         res.status(401).json({'msg':'Token no válido.'});
     }
 }

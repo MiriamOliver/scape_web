@@ -3,11 +3,11 @@ require('dotenv').config();
 
 const generarJWT = (uid = '', nombre, rol, avatar) => {
 
-    console.log("UID:" + uid + nombre + rol + avatar)
+  
     let token = jwt.sign({ uid, nombre, rol, avatar }, process.env.SECRETORPRIVATEKEY, {
         expiresIn: '24h' // 24 hours
     });
-    console.log("Token:" + token)
+
     return token;
 }
 

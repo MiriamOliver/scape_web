@@ -10,8 +10,6 @@ const googleVerify = async( idToken = '' ) => {
       // Or, if multiple clients access the backend:
       //[CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3]
   });
-
-  console.log(ticket); //Aquí podemos ver el payload que nos devuelve Google con la información del usuario.
   
   const { name: nombre, 
           picture: img, 

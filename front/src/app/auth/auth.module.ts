@@ -10,7 +10,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { InicioComponent } from './pages/inicio/inicio.component';
 import { SocialAuthServiceConfig, GoogleLoginProvider, SocialLoginModule } from '@abacritt/angularx-social-login';
 import { environment } from 'src/environments/environment';
-import { AuthInterceptor } from './services/auth.config.interceptor';
+//import { AuthInterceptor } from './services/auth.config.interceptor';
 import { RecuperacionPasswdComponent } from './pages/recuperacion-passwd/recuperacion-passwd.component';
 import { GenerarPasswdComponent } from './pages/generar-passwd/generar-passwd.component';
 
@@ -26,7 +26,7 @@ import { GenerarPasswdComponent } from './pages/generar-passwd/generar-passwd.co
   ],
   providers: [
 
-    {
+    /* {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true,
@@ -42,7 +42,7 @@ import { GenerarPasswdComponent } from './pages/generar-passwd/generar-passwd.co
           }
         ]
       } as SocialAuthServiceConfig,
-    }
+    } */
   ],
   imports: [
     CommonModule,

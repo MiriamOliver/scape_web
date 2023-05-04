@@ -22,3 +22,19 @@ Iniciar el cliente:
 ## Base de Datos
 Crear una base de datos llamada scape_web <br>
 Importar el archivo scape_web.sql <br>
+
+## Datos usuarios
+
+Jugador
+
+    email: xlmiru95lx@gmail.com
+    passwd:1234
+
+    email: naotora@gmail.com
+    passwd:1234
+
+Administrador
+
+    email: oda@gmail.com
+    passwd:1234
+

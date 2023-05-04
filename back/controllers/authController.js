@@ -10,7 +10,7 @@ const correo = require('../helpers/correo')
 
   const register =  (req = request, res = response) => {
     const conx = new ConexionSequelize();
-    console.log('llego')
+
     conx.registrarUsuario(req)    
         .then( msg => {
             res.status(201).json({success:true, msg:'¡Registrado correctamente!. \n Revise su correo electrónico para verificar su registro'});
@@ -101,11 +101,22 @@ const correo = require('../helpers/correo')
         });
     }
 
+    const logout = (req = request, res = response) => {
+        const conx = new ConexionSequelize();
+        conx.logoutUsuario(req.body.id)
+        .then(resp => {
+            res.send({success:true, msg:'!OK!'});
+        }).catch(err => {
+            res.send({success:false, msg:'¡Error!', err});
+        });
+    }
+
     module.exports = {
         register,
         verificarCorreo,
         login,
         loginWithGoogle,
+        logout,
         mostrarImg,
         emailPasswd,
         guardarPassword,
