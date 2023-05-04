@@ -17,7 +17,7 @@ class ConexionPartida extends ConexionSequelize {
     }
 
     createPartida = async(anfitrion) => {
-        console.log(anfitrion);
+
         try{
 
             const partida = await models.Partida.create({
@@ -60,7 +60,7 @@ class ConexionPartida extends ConexionSequelize {
             where: {id:{[Op.in]: listaId}}
         });
         
-        console.log(jugadores);
+
         return jugadores;
         
     }
@@ -101,7 +101,7 @@ class ConexionPartida extends ConexionSequelize {
 
     unirseSalaPartida = async(body) => {
         
-        console.log(body);
+
         let result = '';
 
         result = await models.PartidaJugador.findOne({

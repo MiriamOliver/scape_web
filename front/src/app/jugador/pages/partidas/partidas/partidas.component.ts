@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Partida } from 'src/app/jugador/interfaces/jugador.interface';
 import { JugadorService } from 'src/app/jugador/services/jugador.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { switchMap } from 'rxjs';
+//import { switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-partidas',

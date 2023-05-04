@@ -10,7 +10,7 @@ const correo = require('../helpers/correo')
 
   const register =  (req = request, res = response) => {
     const conx = new ConexionSequelize();
-    console.log('llego')
+
     conx.registrarUsuario(req)    
         .then( msg => {
             res.status(201).json({success:true, msg:'¡Registrado correctamente!. \n Revise su correo electrónico para verificar su registro'});

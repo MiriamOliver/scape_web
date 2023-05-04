@@ -9,7 +9,7 @@ const sockerServer = () => {
     });
 
     io.on('connection', function (socket) {
-
+        console.log(socket.handshake.q);
         /** handshake: Es el id de conexion con el dispositivo cliente */
         const id_handshake = socket.id;
     
@@ -17,11 +17,9 @@ const sockerServer = () => {
          * acerca del usuario que esta logeado en el Front. Para ello lo enviamos dentro de un objeto por defecto llamado "query"
          */
         let {payload} = socket.handshake.query;
-    
-        if (!payload) {
 
-        } else {
-
+        if (payload != 'null') {
+            console.log('entro');
             payload = JSON.parse(payload)
         
             /**

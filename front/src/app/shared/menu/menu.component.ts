@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import jwt_decode from 'jwt-decode';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UsuarioService } from '../services/usuario.service';
 
@@ -25,6 +24,7 @@ export class MenuComponent {
       console.log(resp);
       if(resp.success){
         localStorage.removeItem('user');
+        localStorage.removeItem('chat');
         this.router.navigate(['']);
       }
     });

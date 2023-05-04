@@ -49,7 +49,7 @@ const partidasCreadas = ( req, res = response ) => {
     const conex = new ConexionSequelize();
     conex.getPartidasCreadas(req.params.id)
         .then( resp => {
-            console.log(resp)
+
             res.status(200).json(resp);
         })
         .catch(err => {
@@ -72,7 +72,7 @@ const unirseSala = ( req, res = response ) => {
     const conex = new ConexionSequelize();
     conex.unirseSalaPartida(req.body)
         .then( resp => {
-            console.log(resp);
+
             res.status(200).json(resp);
         })
         .catch(err => {
