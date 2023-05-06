@@ -116,6 +116,32 @@ class ConexionPartida extends ConexionSequelize {
         return result;
     }
 
+    mensajesPartida = async(data, mensaje)=> {
+        try{
+
+            let user = await models.User.findOne({
+                attributes:['id','nombre','avatar'],
+                where:{nombre: data.nombre}
+            })
+    
+            let result = await models.Chat.create({
+                id_user:user.dataValues.id,
+                id_partida: data.id,
+                mensaje: mensaje.message
+            });
+
+            return {
+                id_partida:data.id,
+                id_user: user.dataValues.id,
+                avatar: process.env.URL + process.env.PORT + "/upload/" + user.dataValues.avatar,
+                nombre: user.dataValues.nombre,
+                msg: mensaje.message
+            };
+
+        }catch(err){
+            throw err;
+        }
+    }
 }
 
 module.exports = ConexionPartida;
