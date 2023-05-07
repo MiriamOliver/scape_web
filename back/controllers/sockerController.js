@@ -3,13 +3,17 @@ const Conexion = require('./Conexion/ConexionPartida');
 const socketController = (socket) => {
 
     const id_handshake = socket.id;
+    console.log(id_handshake);
     let {payload} = socket.handshake.query;
 
     if (payload != 'null') {
                
         payload = JSON.parse(payload) 
         
-        socket.join(`room_${payload.id}`); 
+
+        console.log(payload);
+        socket.join(payload.id); 
+
 
         //ESCUCHAR
         socket.on('default', (res) => {
@@ -34,6 +38,7 @@ const chatPartida = (socket, res) => {
             conx = new Conexion();
             conx.mensajesPartida(inPayloadCookie, inPayload)
                 .then((resp) => {
+                    socket.to(inPayloadCookie.id).emit('message', resp);
                     socket.emit('message', resp);
                 });
             

@@ -33,4 +33,12 @@ export class JugadorsocketService extends Socket{
         payload
     });
   }
+
+  /* emitJugadores = (event = 'jugadores',payload = {}) => {
+    this.ioSocket.emit('jugadores', {
+        cookiePayload:localStorage.getItem('user'),
+        event,
+        payload
+    });
+  } */
 }

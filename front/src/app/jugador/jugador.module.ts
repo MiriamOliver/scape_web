@@ -9,6 +9,7 @@ import { PartidasComponent } from './pages/partidas/partidas/partidas.component'
 import { AgregarComponent } from './pages/partidas/agregar/agregar.component';
 import { SalaComponent } from './pages/partidas/sala/sala.component';
 import { ChatComponent } from './pages/partidas/chat/chat.component';
+import { JuegoComponent } from './pages/partidas/juego/juego.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { ChatComponent } from './pages/partidas/chat/chat.component';
     AgregarComponent,
     SalaComponent,
     ChatComponent,
+    JuegoComponent,
   ],
   imports: [
     CommonModule,
