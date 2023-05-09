@@ -142,6 +142,60 @@ class ConexionPartida extends ConexionSequelize {
             throw err;
         }
     }
+
+    usuariosPartida = async(datos) => {
+        //console.log(datos)
+       // let listaUser = [];
+       console.log('nuevo usuario')
+        try{
+
+            let user = await models.User.findOne({
+                attributes:['id','nombre','avatar'],
+                where:{nombre: datos.nombre}
+            });
+            /*user.forEach(element => {
+                listaUser.push(element.dataValues.id)
+            });
+
+            console.log(user);
+            console.log(listaUser); */
+    
+            /* let jugadores = await models.User.findAll({
+                attributes:['id','nombre','avatar'],
+                where: {id:{[Op.in]: listaUser}}
+            }); */
+
+/*             let jugadorpartida = await models.PartidaJugador.findOne({
+                where:{id_jugador: user.dataValues.id, 
+                       id_partida: datos.id}
+            });
+
+            if(!jugadorpartida){
+                await models.PartidaJugador.create({
+                    id_jugador:user.dataValues.id,
+                    id_partida: data.id,
+                });
+            } */
+
+            let jugador = await models.PartidaJugador.findOne({
+                where:{id_jugador: user.dataValues.id, 
+                       id_partida: datos.id}
+                }); 
+
+           return {
+                id_partida:datos.id,
+                id_user: user.dataValues.id,
+                avatar: process.env.URL + process.env.PORT + "/upload/" + user.dataValues.avatar,
+                nombre: user.dataValues.nombre,
+                llaves: jugador.dataValues.llaves,
+                activo: jugador.dataValues.activo,
+                rol: jugador.dataValues.rol,  
+            };
+    
+        }catch(err){
+            throw err;
+        } 
+    }
 }
 
 module.exports = ConexionPartida;

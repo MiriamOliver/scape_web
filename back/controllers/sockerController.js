@@ -1,19 +1,20 @@
 const Conexion = require('./Conexion/ConexionPartida');
 
+const userConectados = [];
+
 const socketController = (socket) => {
 
     const id_handshake = socket.id;
-    console.log(id_handshake);
+
     let {payload} = socket.handshake.query;
 
     if (payload != 'null') {
                
         payload = JSON.parse(payload) 
-        
 
-        console.log(payload);
         socket.join(payload.id); 
 
+        mostrarUsuariosConectados(socket, payload);
 
         //ESCUCHAR
         socket.on('default', (res) => {
@@ -22,8 +23,17 @@ const socketController = (socket) => {
     }
     
     socket.on('disconnect', function () {
-        console.log('user disconnected');
+        conx.desconectarUsuariosPartida(payload) 
+        .then((resp) => {
+            socket.to(payload.id).emit('disconnect', resp);
+            socket.emit('disconnect', resp);
+        });
+        /* const userIndice = userConectados.indexOf(payload); //Indice del usuario
+        if (use !== -1) {
+            userConectadoserIndic.splice(userIndice, 1); //quita el usuario que se haya desconectado
+        } */
     });
+
 };
 
 const chatPartida = (socket, res) => {
@@ -47,6 +57,25 @@ const chatPartida = (socket, res) => {
             /** Otros posibles casos */
             break;
     }
+}
+
+const mostrarUsuariosConectados = (socket, payload) => {
+    //console.log('voy a ver el payload')
+    //console.log(payload);
+    //console.log(userConectados);
+    //console.log(payload);
+    //userConectados.push(payload);
+    /* socket.to(payload.id).emit('connected', userConectados);
+            socket.emit('connected', userConectados); */
+    console.log('entro un nuevo payload');
+    conx = new Conexion();
+    console.log(payload);
+    conx.usuariosPartida(payload) 
+        .then((resp) => {
+            socket.to(payload.id).emit('connected', resp);
+            socket.emit('connected', resp);
+        });
+    //console.log(userConectados);
 }
 
 module.exports = {

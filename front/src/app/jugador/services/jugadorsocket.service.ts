@@ -10,6 +10,8 @@ import { Socket }  from 'ngx-socket-io';
 export class JugadorsocketService extends Socket{
 
   @Output() outEven: EventEmitter<any> = new EventEmitter();
+  @Output() connectUserEven: EventEmitter<any> = new EventEmitter();
+  @Output() desconnectUserEven: EventEmitter<any> = new EventEmitter();
 
   private baseUrl: string = environment.baseUrl;
 
@@ -23,6 +25,10 @@ export class JugadorsocketService extends Socket{
       }
     });
     this.ioSocket.on('message', (res: any) => this.outEven.emit(res))
+
+    this.ioSocket.on('disconnect', (res:any) =>this.desconnectUserEven.emit(res))
+
+    this.ioSocket.on('connected', (res:any) => this.connectUserEven.emit(res))
   }
 
   emitEvent = (event = 'default',payload = {}) => {
@@ -33,6 +39,14 @@ export class JugadorsocketService extends Socket{
         payload
     });
   }
+
+  /* emitEventUser = (event = 'users',payload = {}) => {
+    this.ioSocket.emit('users', {
+        cookiePayload:localStorage.getItem('jugadores_partida'),
+        event,
+        payload
+    });
+  } */
 
   /* emitJugadores = (event = 'jugadores',payload = {}) => {
     this.ioSocket.emit('jugadores', {
