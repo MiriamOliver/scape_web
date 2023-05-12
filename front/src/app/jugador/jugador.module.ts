@@ -10,6 +10,8 @@ import { AgregarComponent } from './pages/partidas/agregar/agregar.component';
 import { SalaComponent } from './pages/partidas/sala/sala.component';
 import { ChatComponent } from './pages/partidas/chat/chat.component';
 import { JuegoComponent } from './pages/partidas/juego/juego.component';
+import { JugadoresconectadosComponent } from './pages/partidas/jugadoresconectados/jugadoresconectados.component';
+import { JugadoressalaComponent } from './pages/partidas/jugadoressala/jugadoressala.component';
 
 
 @NgModule({
@@ -20,6 +22,8 @@ import { JuegoComponent } from './pages/partidas/juego/juego.component';
     SalaComponent,
     ChatComponent,
     JuegoComponent,
+    JugadoresconectadosComponent,
+    JugadoressalaComponent,
   ],
   imports: [
     CommonModule,

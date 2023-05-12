@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Partida, Jugador } from '../interfaces/jugador.interface';
+import { Partida, Jugador, InfoPartida } from '../interfaces/jugador.interface';
 import { environment } from './../../../environments/environment'
 
 
@@ -30,11 +30,11 @@ export class JugadorService  {
     return this.http.post<Partida>(`${this.baseUrl}/partidas/crear`, {anfitrion: id});
   }
 
-  getJugadoresPartida(id:number):Observable<Jugador>{
-    return this.http.get<Jugador>(`${this.baseUrl}/partidas/sala/${id}`,);
+  getPartida(id:number):Observable<InfoPartida>{
+    return this.http.get<InfoPartida>(`${this.baseUrl}/partidas/sala/${id}`,);
   }
 
-  unirsePartida(iduser:number, id:any){
-    return this.http.post(`${this.baseUrl}/partidas/unirse`, {id_partida: id, id_jugador: iduser});
+  unirsePartida(iduser:number, id:any):Observable<Partida>{
+    return this.http.post<Partida>(`${this.baseUrl}/partidas/unirse`, {id_partida: id, id_jugador: iduser});
   }
 }

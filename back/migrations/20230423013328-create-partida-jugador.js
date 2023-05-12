@@ -12,13 +12,20 @@ module.exports = {
         allowNull: false,
       },
       llaves: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        default: 0,
+      },
+      fallos: {
+        type: Sequelize.INTEGER,
+        default: 0,
       },
       activo: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        default: 1,
       },
       rol: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        default: 'marinero',
       },
     });
   },

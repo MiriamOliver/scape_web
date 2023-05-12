@@ -17,6 +17,7 @@ module.exports = (sequelize, DataTypes) => {
     id_jugador: DataTypes.BIGINT,
     id_partida: DataTypes.BIGINT,
     llaves: DataTypes.INTEGER,
+    fallos: DataTypes.INTEGER,
     activo: DataTypes.INTEGER,
     rol: DataTypes.STRING
   }, {

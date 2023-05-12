@@ -20,13 +20,24 @@ const crearPartida = (req, res = response) => {
         })
 }
 
-const mostrarJugadoresSala = ( req, res = response ) => {
+/* const mostrarJugadoresSala = ( req, res = response ) => {
     const conex = new ConexionSequelize();
     conex.getJugadoresSala(req.params.id)
         .then( resp => {
             resp.forEach(element => {
                 element.avatar = process.env.URL + process.env.PORT + "/upload/" + element.avatar;
             });
+            res.status(200).json(resp);
+        })
+        .catch(err => {
+            res.status(203).json({'msg':'No se han encontrado registros'});
+        })
+} */
+
+const conseguirPartida = ( req, res = response ) => {
+    const conex = new ConexionSequelize();
+    conex.getPartida(req.params.id)
+        .then( resp => {
             res.status(200).json(resp);
         })
         .catch(err => {
@@ -72,8 +83,12 @@ const unirseSala = ( req, res = response ) => {
     const conex = new ConexionSequelize();
     conex.unirseSalaPartida(req.body)
         .then( resp => {
-
-            res.status(200).json(resp);
+            console.log(resp);
+            res.status(200).json({msg:'Unirse a sala',
+                                  id:resp.id,
+                                  anfitrion:resp.anfitrion,
+                                  estado:resp.estado,
+                                });
         })
         .catch(err => {
             res.status(203).json({'msg':'No se han encontrado registros'});
@@ -82,9 +97,9 @@ const unirseSala = ( req, res = response ) => {
 
 module.exports = {
     crearPartida,
-    mostrarJugadoresSala,
     partidasDisponibles,
     partidasCreadas,
     partidasEnCurso,
-    unirseSala
+    unirseSala,
+    conseguirPartida
 }

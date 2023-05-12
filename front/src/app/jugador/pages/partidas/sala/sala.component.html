@@ -3,24 +3,12 @@
     <main class="col-md-10">
       <div class="row">
         <div class="col-md-3 contenedor-chat pe-0">
-          <a class="nav-link pt-4 ps-4 pb-2" href="./jugador/partida"><button type="button" class="btn btn-light">Lista Partidas</button></a>
           <div class="pt-3">
             <app-chat></app-chat>
           </div>
         </div>
         <div class="col-md-9 p-5 carta-jugadores">
-          <div class="d-flex justify-content-center pb-4 pt-5 text-center">
-            <div class="carta m-2 p-2" *ngFor="let jugador of jugadores">
-              <div class="p-2">
-                <img src="{{jugador.avatar}}">
-              </div>
-              <p>{{jugador.nombre}}</p>
-            </div>
-          </div>
-          <div class="d-flex justify-content-center pt-4 p-2">
-            <button type="button" class="btn btn-light me-2">Cancelar</button>
-            <button [disabled] ="comenzar" type="button" class="btn btn-light ms-2"  (click)=empezarPartida()>Jugar</button>
-          </div>
+          <app-jugadoressala></app-jugadoressala>
         </div>
       </div>
     </main>

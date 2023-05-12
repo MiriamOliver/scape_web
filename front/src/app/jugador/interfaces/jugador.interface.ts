@@ -10,6 +10,12 @@ export interface Partida {
   estado: string;
 }
 
+export interface InfoPartida {
+  id: number;
+  anfitrion: number;
+  estado: string;
+}
+
 export interface RespPartida {
   msg: string;
 }

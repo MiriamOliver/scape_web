@@ -26,9 +26,9 @@ export class JugadorsocketService extends Socket{
     });
     this.ioSocket.on('message', (res: any) => this.outEven.emit(res))
 
-    this.ioSocket.on('disconnect', (res:any) =>this.desconnectUserEven.emit(res))
+    this.ioSocket.on('desconectado', (res:any) => this.connectUserEven.emit(res))
 
-    this.ioSocket.on('connected', (res:any) => this.connectUserEven.emit(res))
+    this.ioSocket.on('conectados', (res:any) => this.connectUserEven.emit(res))
   }
 
   emitEvent = (event = 'default',payload = {}) => {
@@ -40,13 +40,19 @@ export class JugadorsocketService extends Socket{
     });
   }
 
-  /* emitEventUser = (event = 'users',payload = {}) => {
-    this.ioSocket.emit('users', {
-        cookiePayload:localStorage.getItem('jugadores_partida'),
+  userConectadosEvent = (event = 'conectados',payload = {}) => {
+    this.ioSocket.emit('conectados', {
         event,
         payload
     });
-  } */
+  }
+
+  userDesconectadoEvent = (event = 'desconectado',payload = {}) => {
+    this.ioSocket.emit('desconectado', {
+        event,
+        payload
+    });
+  }
 
   /* emitJugadores = (event = 'jugadores',payload = {}) => {
     this.ioSocket.emit('jugadores', {

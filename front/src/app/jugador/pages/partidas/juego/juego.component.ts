@@ -10,7 +10,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class JuegoComponent implements OnInit{
 
-  public users: any[]=[];
 
   constructor(
     private jugadorService: JugadorService,
@@ -18,27 +17,10 @@ export class JuegoComponent implements OnInit{
     protected socketService: JugadorsocketService,
     private router: Router)
     {
-      this.socketService.connectUserEven.subscribe(res => {
-        this.users.push(res);
-        console.log(this.users);
-      })
     }
 
     ngOnInit() {
-      console.log('hola')
-      /* this.socketService.emitEventUser(event,
-        {
-          id_partida:JSON.parse(localStorage.getItem('chat')!).id,
-          id_user:JSON.parse(localStorage.getItem('user')!).id,
-          user:JSON.parse(localStorage.getItem('user')!).nombre,
-          avatar:JSON.parse(localStorage.getItem('user')!).avatar,
-        }) */
+
     }
 
-    ngOnDestroy(){
-      this.socketService.desconnectUserEven.subscribe(res => {
-        console.log(res);
-        //this.users.indexOf(res)
-      })
-    }
 }

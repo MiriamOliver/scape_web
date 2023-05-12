@@ -8,7 +8,7 @@ router.post('/crear', controlador.crearPartida);
 
 router.post('/unirse', controlador.unirseSala);
 
-router.get('/sala/:id', controlador.mostrarJugadoresSala);
+router.get('/sala/:id', controlador.conseguirPartida);
 
 router.get('/disponibles/:id', controlador.partidasDisponibles);
 

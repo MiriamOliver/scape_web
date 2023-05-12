@@ -27,25 +27,25 @@ export class PartidasComponent implements OnInit{
   crear(){
     this.jugadorService.crearPartida(JSON.parse(localStorage.getItem('user')!).id)
     .subscribe(resp => {
-      if (resp) {
+        localStorage.setItem('partida', JSON.stringify({
+          id: resp.id,
+          anfitrion: resp.anfitrion,
+          estado:resp.estado,
+        }));
         this.router.navigate(['jugador/partida/sala/'+ resp.id]);
-      }else{
-        //
-      }
-
     });
   }
 
   unirseSala(id:any, estado:any){
-
-    if(estado == 'curso'){
-
-      this.router.navigate(['jugador/partida/juego/'+ id]);
-
-      }else if(estado == 'disponible'){
+    if(estado == 'disponible'){
       this.jugadorService.unirsePartida(JSON.parse(localStorage.getItem('user')!).id, id)
       .subscribe(resp => {
-        this.router.navigate(['jugador/partida/sala/'+ id]);
+        localStorage.setItem('partida', JSON.stringify({
+          id: id,
+          anfitrion: resp.anfitrion,
+          estado:resp.estado,
+        }));
+        this.router.navigate(['jugador/partida/sala/'+ resp.id]);
       });
     }
   }

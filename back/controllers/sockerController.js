@@ -1,6 +1,6 @@
 const Conexion = require('./Conexion/ConexionPartida');
 
-const userConectados = [];
+
 
 const socketController = (socket) => {
 
@@ -14,25 +14,28 @@ const socketController = (socket) => {
 
         socket.join(payload.id); 
 
-        mostrarUsuariosConectados(socket, payload);
-
+        
         //ESCUCHAR
         socket.on('default', (res) => {
             chatPartida(socket, res);
         })
-    }
-    
-    socket.on('disconnect', function () {
-        conx.desconectarUsuariosPartida(payload) 
-        .then((resp) => {
-            socket.to(payload.id).emit('disconnect', resp);
-            socket.emit('disconnect', resp);
+
+        socket.on('conectados', (res) => {
+            mostrarUsuariosConectados(socket, payload, res);
+        })
+
+        socket.on('desconectado', (res) => {
+            usuarioDesconectado(socket, payload, res);
+            /* socket.on('disconnect', (res) => {
+                console.log(res);
+                //UsuarioDesconectado(socket, payload, res);
+            }) */
+            /* const userIndice = userConectados.indexOf(payload); //Indice del usuario
+            if (use !== -1) {
+                userConectadoserIndic.splice(userIndice, 1); //quita el usuario que se haya desconectado
+            } */
         });
-        /* const userIndice = userConectados.indexOf(payload); //Indice del usuario
-        if (use !== -1) {
-            userConectadoserIndic.splice(userIndice, 1); //quita el usuario que se haya desconectado
-        } */
-    });
+    }
 
 };
 
@@ -48,6 +51,7 @@ const chatPartida = (socket, res) => {
             conx = new Conexion();
             conx.mensajesPartida(inPayloadCookie, inPayload)
                 .then((resp) => {
+                    console.log(inPayloadCookie.id);
                     socket.to(inPayloadCookie.id).emit('message', resp);
                     socket.emit('message', resp);
                 });
@@ -59,23 +63,36 @@ const chatPartida = (socket, res) => {
     }
 }
 
-const mostrarUsuariosConectados = (socket, payload) => {
-    //console.log('voy a ver el payload')
-    //console.log(payload);
-    //console.log(userConectados);
-    //console.log(payload);
-    //userConectados.push(payload);
-    /* socket.to(payload.id).emit('connected', userConectados);
-            socket.emit('connected', userConectados); */
-    console.log('entro un nuevo payload');
-    conx = new Conexion();
-    console.log(payload);
-    conx.usuariosPartida(payload) 
-        .then((resp) => {
-            socket.to(payload.id).emit('connected', resp);
-            socket.emit('connected', resp);
+const mostrarUsuariosConectados = (socket, payload, res) => {
+    let userConectados = [];
+    if(res.event == 'conectados') {
+        conx = new Conexion();
+        conx.usuariosPartida(res.payload)
+        .then((users) => {
+            users.forEach(user => {
+                user.avatar = process.env.URL + process.env.PORT + "/upload/" + user.avatar;
+                userConectados.push(user.dataValues);
+            });
+            socket.to(payload.id).emit('conectados',userConectados);
+            socket.emit('conectados', userConectados); 
         });
-    //console.log(userConectados);
+    }       
+}
+
+const usuarioDesconectado = (socket, payload, res) => {
+    let userConectados = [];
+    if(res.event == 'desconectado') {
+        conx = new Conexion();
+        conx.usuarioDesconectado(res.payload)
+        .then((users) => {
+            users.forEach(user => {
+                user.avatar = process.env.URL + process.env.PORT + "/upload/" + user.avatar;
+                userConectados.push(user.dataValues);
+            });
+            socket.to(payload.id).emit('desconectado',userConectados);
+            socket.emit('desconectado', userConectados);
+        });
+    }     
 }
 
 module.exports = {

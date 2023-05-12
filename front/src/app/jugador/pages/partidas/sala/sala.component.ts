@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Partida } from 'src/app/jugador/interfaces/jugador.interface';
-import { Jugador } from 'src/app/jugador/interfaces/jugador.interface';
+import { Jugador, Partida, InfoPartida } from 'src/app/jugador/interfaces/jugador.interface';
 import { JugadorService } from 'src/app/jugador/services/jugador.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs';
+import { JugadorsocketService } from 'src/app/jugador/services/jugadorsocket.service';
 
 
 @Component({
@@ -15,8 +15,8 @@ export class SalaComponent implements OnInit{
 
   public jugadores:any = [];
   public comenzar:boolean = true;
-  private id_partida:any;
   public messages: any[]=[];
+  private partida:InfoPartida;
 
   constructor(
     private jugadorService: JugadorService,
@@ -28,26 +28,19 @@ export class SalaComponent implements OnInit{
         id: this.activatedRoute.snapshot.params['id'],
         avatar : JSON.parse(localStorage.getItem('user')!).avatar,
       }));
+      this.partida = {
+        id : 0,
+        anfitrion : 0,
+        estado : '',
+      }
     }
 
-    ngOnInit(): void {
+    ngOnInit() {
       this.activatedRoute.params
-        .pipe(switchMap(({id}) => this.jugadorService.getJugadoresPartida(id)))
-        .subscribe((jugador:Jugador) => {
-            this.jugadores = jugador;
-            if(this.jugadores.length >= 3 && this.jugadores.length <= 5){
-              this.comenzar = false;
-            }
+        .pipe(switchMap(({id}) => this.jugadorService.getPartida(id)))
+        .subscribe((partida:InfoPartida) => {
+            this.partida = partida;
         }
       );
-    }
-
-    empezarPartida(){
-      this.id_partida = this.activatedRoute.snapshot.params['id'];
-      this.router.navigate(['jugador/partida/juego/'+ this.id_partida]);
-    }
-
-    cancelarPartida(){
-      //this.jugadorService.
     }
 }
