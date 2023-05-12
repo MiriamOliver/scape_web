@@ -20,20 +20,16 @@ const socketController = (socket) => {
             chatPartida(socket, res);
         })
 
+        socket.on('juego', (res) => {
+            estadoPartida(socket, payload, res);
+        })
+
         socket.on('conectados', (res) => {
             mostrarUsuariosConectados(socket, payload, res);
         })
 
         socket.on('desconectado', (res) => {
             usuarioDesconectado(socket, payload, res);
-            /* socket.on('disconnect', (res) => {
-                console.log(res);
-                //UsuarioDesconectado(socket, payload, res);
-            }) */
-            /* const userIndice = userConectados.indexOf(payload); //Indice del usuario
-            if (use !== -1) {
-                userConectadoserIndic.splice(userIndice, 1); //quita el usuario que se haya desconectado
-            } */
         });
     }
 
@@ -93,6 +89,18 @@ const usuarioDesconectado = (socket, payload, res) => {
             socket.emit('desconectado', userConectados);
         });
     }     
+}
+
+const estadoPartida = (socket, payload, res) => {
+    if(res.event == 'juego') {
+        conx = new Conexion();
+        conx.empezarPartida(res.payload)
+        .then((resp) => {
+            console.log(resp);
+            socket.to(payload.id).emit('juego',resp);
+            socket.emit('juego', resp);
+        });
+    }
 }
 
 module.exports = {

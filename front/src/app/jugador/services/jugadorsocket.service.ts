@@ -12,6 +12,7 @@ export class JugadorsocketService extends Socket{
   @Output() outEven: EventEmitter<any> = new EventEmitter();
   @Output() connectUserEven: EventEmitter<any> = new EventEmitter();
   @Output() desconnectUserEven: EventEmitter<any> = new EventEmitter();
+  @Output() estadoPartidaEven: EventEmitter<any> = new EventEmitter();
 
   private baseUrl: string = environment.baseUrl;
 
@@ -29,6 +30,8 @@ export class JugadorsocketService extends Socket{
     this.ioSocket.on('desconectado', (res:any) => this.connectUserEven.emit(res))
 
     this.ioSocket.on('conectados', (res:any) => this.connectUserEven.emit(res))
+
+    this.ioSocket.on('juego', (res:any) => this.estadoPartidaEven.emit(res))
   }
 
   emitEvent = (event = 'default',payload = {}) => {
@@ -54,11 +57,11 @@ export class JugadorsocketService extends Socket{
     });
   }
 
-  /* emitJugadores = (event = 'jugadores',payload = {}) => {
-    this.ioSocket.emit('jugadores', {
-        cookiePayload:localStorage.getItem('user'),
+  empezarPartidaEvent = (event = 'juego',payload = {}) => {
+    this.ioSocket.emit('juego', {
         event,
         payload
     });
-  } */
+  }
+
 }

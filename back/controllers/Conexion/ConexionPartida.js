@@ -131,6 +131,20 @@ class ConexionPartida extends ConexionSequelize {
         return partida.dataValues;
     }
 
+    empezarPartida = async(datos) => {
+        
+        let partida = '';
+
+        await models.Partida.update({estado: 'curso'}, 
+            {where: {id:datos.id_partida}}
+            );
+
+        partida = await models.Partida.findOne({
+            where : {id:datos.id_partida}
+        })
+        return partida.dataValues;
+    }
+
     mensajesPartida = async(data, mensaje)=> {
         try{
 

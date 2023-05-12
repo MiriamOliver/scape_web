@@ -40,6 +40,13 @@ export class JugadoressalaComponent implements OnInit{
           localStorage.removeItem('chat');
         }
       });
+      this.socketService.estadoPartidaEven.subscribe(res => {
+        console.log(res.estado);
+        if(res.estado == 'curso'){
+          console.log('cambiar');
+          this.router.navigate(['jugador/partida/juego/'+ this.partida]);
+        }
+      })
 
     }
 
@@ -55,14 +62,14 @@ export class JugadoressalaComponent implements OnInit{
     }
 
     empezarPartida(){
-      /* this.socketService.empezarPartidaEvent('juego',
+      this.socketService.empezarPartidaEvent('juego',
         {
           id_anfitrion: this.anfitrion,
           id_partida:JSON.parse(localStorage.getItem('chat')!).id,
           id_user:JSON.parse(localStorage.getItem('user')!).id,
           user:JSON.parse(localStorage.getItem('user')!).nombre,
           avatar:JSON.parse(localStorage.getItem('user')!).avatar,
-        }) */
+        })
       this.router.navigate(['jugador/partida/juego/'+ this.partida]);
     }
 
