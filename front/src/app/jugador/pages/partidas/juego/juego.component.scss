@@ -1,14 +1,18 @@
 .cabecera{
   background-color: var(--colorAzul);
-  height: 54px;
+  height: 56px;
 }
 .pie{
   background-color: var(--colorAzul);
-  height: 77px;
+  height: 78px;
 }
-main{
-  .contenedor-chat{
-    background-color: var(--colorTransparente);
+.fondo-partida{
+  background-image: url(../../../../../assets/imgs/fondo-inicio.jpg);
+  main{
+    .contenedor-chat{
+      background-color: var(--colorTransparente);
+    }
   }
 }
+
 

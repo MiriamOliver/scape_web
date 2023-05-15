@@ -24,6 +24,18 @@ const socketController = (socket) => {
             estadoPartida(socket, payload, res);
         })
 
+        socket.on('enigmas', (res) => {
+            conseguirEnigma(socket, payload, res);
+        })
+
+        socket.on('actualizarjugador', (res) => {
+            actualizarPartidaJugador(socket, payload, res);
+        })
+
+        socket.on('actualizarpartida', (res) => {
+            actualizarPartida(socket, payload, res);
+        })
+
         socket.on('conectados', (res) => {
             mostrarUsuariosConectados(socket, payload, res);
         })
@@ -102,6 +114,46 @@ const estadoPartida = (socket, payload, res) => {
         });
     }
 }
+
+const conseguirEnigma = (socket, payload, res) => {
+    if(res.event == 'enigmas') {
+        conx = new Conexion();
+        conx.getEnigma(res.payload)
+        .then((resp) => {
+            socket.to(payload.id).emit('enigmas',resp);
+            socket.emit('enigmas', resp);
+        }); 
+    }
+}
+
+const actualizarPartidaJugador = (socket, payload, res) => {
+    let userConectados = [];
+    if(res.event == 'conectados') {
+        conx = new Conexion();
+        conx.updatePartidaJugador(res.payload)
+        .then((users) => {
+            users.forEach(user => {
+                user.avatar = process.env.URL + process.env.PORT + "/upload/" + user.avatar;
+                userConectados.push(user.dataValues);
+            });
+            socket.to(payload.id).emit('conectados',userConectados);
+            socket.emit('conectados', userConectados); 
+        });  
+    }
+}
+
+const actualizarPartida = (socket, payload, res) => {
+    if(res.event == 'actualizarpartida') {
+        conx = new Conexion();
+        conx.updatePartida(res.payload)
+        .then((resp) => {
+            socket.to(payload.id).emit('actualizarpartida',resp);
+            socket.emit('actualizarpartida', resp);
+        });  
+    }
+}
+
+
 
 module.exports = {
     socketController,

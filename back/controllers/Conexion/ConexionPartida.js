@@ -242,7 +242,71 @@ class ConexionPartida extends ConexionSequelize {
          }catch(err){
              throw err;
          }
-     }
+    }
+
+    getEnigma = async(datos) => {
+
+        let enigmas = await models.Enigma.findAll();
+
+        let alea = Math.trunc(Math.random() * enigmas.length);
+        
+        let enigma = enigmas[alea].dataValues;
+
+        return{
+            id:enigma.id,
+            pregunta:enigma.pregunta,
+            correcta:enigma.resp_correcta,
+            opciones: [
+                enigma.resp_uno,
+                enigma.resp_dos,
+                enigma.resp_tres,
+                enigma.resp_correcta
+            ]
+        }
+    }
+
+    updatePartida = async(datos) => {
+        console.log(datos);
+        let partida = '';
+
+        await models.Partida.update({llaves: datos.llaves}, 
+            {where: {id:datos.id_partida}}
+            );
+
+        partida = await models.Partida.findOne({
+            attributes:['id','llaves','anfitrion','tiempo','estado'],
+            where : {id:datos.id_partida}
+        })
+        return partida.dataValues;
+    }
+
+    updatePartidaJugador = async(datos) => {
+        console.log(datos);
+
+        await models.PartidaJugador.update({llaves: datos.llaves, 
+                                            fallos: datos.fallos}, 
+            {where:{id_partida: datos.id_partida, 
+                    id_jugador: datos.id_user}}
+            );
+
+        let jugador = await models.User.findAll({
+                include:[{
+                    model: models.PartidaJugador,
+                    as: 'PartidasJugadores',
+                    attributes:[],
+                    where: { id_partida: datos.id_partida}
+                }],
+                attributes: ['id','nombre','avatar', 
+                            [Sequelize.col('PartidasJugadores.id_partida'), 'id_partida'],
+                            [Sequelize.col('PartidasJugadores.llaves'), 'llaves'],
+                            [Sequelize.col('PartidasJugadores.fallos'), 'fallos'],
+                            [Sequelize.col('PartidasJugadores.activo'), 'activo'],
+                            [Sequelize.col('PartidasJugadores.rol'), 'rol'],
+                        ]
+            }); 
+
+           return jugador;
+    } 
 }
 
 module.exports = ConexionPartida;

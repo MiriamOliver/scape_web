@@ -19,3 +19,19 @@ export interface InfoPartida {
 export interface RespPartida {
   msg: string;
 }
+
+export interface Enigma {
+  id:number,
+  pregunta:string,
+  correcta:string,
+  opciones: [],
+}
+
+export interface Juego {
+  id: number;
+  anfitrion: number;
+  estado: string;
+  llaves:number;
+  tiempo:number;
+  resultado:string;
+}

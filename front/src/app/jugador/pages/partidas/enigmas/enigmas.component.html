@@ -1,0 +1,38 @@
+<div class="mensaje-enigmas" *ngIf="enigmas == 1">
+  <div class="temporizador p-2 rounded-1 d-flex justify-content-center align-items-center mb-3 text-center">
+  <p class="rounded-1 m-0">{{temporizador}}</p>
+  </div>
+  <div class="contenedor-juego p-2 rounded-1">
+    <hr class="hr-text-bot m-0 p-1 mb-2" data-content="PREGUNTA">
+    <div class="mb-5 rounded-1 pregunta d-flex justify-content-center align-items-center">
+      <p>{{pregunta}}</p>
+    </div>
+    <div class="container text-center">
+      <hr class="hr-text-bot m-0 p-1 mb-2" data-content="RESPUESTAS">
+      <div class="row">
+        <div class="input-container col-6 p-0" *ngFor="let opcion of opciones">
+          <input id="{{opcion}}" [value]="opcion" class="radio-button" type="radio" name="respuesta" id="btn-opciones" [(ngModel)]="respuesta"/>
+          <label for="{{opcion}}" class="radio-tile-label py-3 rounded-1" for="btn-opciones">{{opcion}}</label>
+        </div>
+      </div>
+      <button  [disabled] ="boton" class="btn mt-2 rounded-1" (click)="checkRespuesta()">Confirmar</button>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="mensaje-descanso" *ngIf="mensajeDescanso == 1">
+  <div class="temporizador p-2 rounded-1 d-flex justify-content-center align-items-center mb-3 text-center">
+    <p class="rounded-1 m-0">{{espera}}</p>
+  </div>
+  <div class="contenedor-juego p-2 rounded-1">
+    <hr class="hr-text-bot m-0 p-1 mb-2" data-content="PREPÁRATE">
+    <div class="rounded-1 espera d-flex justify-content-center align-items-center">
+      <div>
+        <p>Comenzamos en:</p>
+        <h1 class="text-center">{{espera}}</h1>
+      </div>
+    </div>
+  </div>
+</div>

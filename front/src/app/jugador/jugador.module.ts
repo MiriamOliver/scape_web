@@ -12,6 +12,7 @@ import { ChatComponent } from './pages/partidas/chat/chat.component';
 import { JuegoComponent } from './pages/partidas/juego/juego.component';
 import { JugadoresconectadosComponent } from './pages/partidas/jugadoresconectados/jugadoresconectados.component';
 import { JugadoressalaComponent } from './pages/partidas/jugadoressala/jugadoressala.component';
+import { EnigmasComponent } from './pages/partidas/enigmas/enigmas.component';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { JugadoressalaComponent } from './pages/partidas/jugadoressala/jugadores
     JuegoComponent,
     JugadoresconectadosComponent,
     JugadoressalaComponent,
+    EnigmasComponent,
   ],
   imports: [
     CommonModule,
