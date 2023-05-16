@@ -317,6 +317,37 @@ class ConexionPartida extends ConexionSequelize {
         
         return {id: body.id};
     }
+
+    getResultadoFinalPartida = async(id) => {
+
+        let partida = await models.Partida.findOne({
+            attributes:['id','llaves', 'tiempo', 'resultado'],
+            where:{id:id}
+        })
+
+        return partida.dataValues;
+    }
+
+    getResultadoFinalJugadorPartida = async(id) => {
+
+        let jugador = await models.User.findAll({
+            include:[{
+                model: models.PartidaJugador,
+                as: 'PartidasJugadores',
+                attributes:[],
+                where: { id_partida: id}
+            }],
+            attributes: ['id','nombre','avatar', 
+                        [Sequelize.col('PartidasJugadores.llaves'), 'llaves'],
+                        [Sequelize.col('PartidasJugadores.fallos'), 'fallos'],
+                        [Sequelize.col('PartidasJugadores.rol'), 'rol'],
+                    ]
+        }); 
+
+        console.log(jugador);
+
+       return jugador;
+    }
 }
 
 module.exports = ConexionPartida;

@@ -18,4 +18,8 @@ router.get('/curso/:id', controlador.partidasEnCurso);
 
 router.put('/resultado/:id', controlador.finalizarPartida);
 
+router.get('/resultado/partida/:id', controlador.getResultadoPartida);
+
+router.get('/resultado/jugadores/:id', controlador.getResultadoJugadorPartida);
+
 module.exports = router

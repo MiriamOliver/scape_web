@@ -82,12 +82,38 @@ const unirseSala = ( req, res = response ) => {
 }
 
 const finalizarPartida = ( req, res = response ) => {
-    console.log('entro');
     const conex = new ConexionSequelize();
     console.log(req.body);
     conex.resultadoFinalPartida(req.body)
         .then( resp => {
             res.status(200).json(resp);
+        })
+        .catch(err => {
+            res.status(203).json({'msg':'No se han encontrado registros'});
+        })
+}
+
+const getResultadoPartida = ( req, res = response ) => {
+    const conex = new ConexionSequelize();
+    console.log(req.body);
+    conex.getResultadoFinalPartida(req.params.id)
+        .then( resp => {
+            res.status(200).json(resp);
+        })
+        .catch(err => {
+            res.status(203).json({'msg':'No se han encontrado registros'});
+        })
+}
+
+const getResultadoJugadorPartida = ( req, res = response ) => {
+    const conex = new ConexionSequelize();
+    console.log(req.body);
+    conex.getResultadoFinalJugadorPartida(req.params.id)
+        .then( jugadores => {
+            jugadores.forEach(jugador => {
+                jugador.avatar = process.env.URL + process.env.PORT + "/upload/" + jugador.avatar
+            });
+            res.status(200).json(jugadores);
         })
         .catch(err => {
             res.status(203).json({'msg':'No se han encontrado registros'});
@@ -101,5 +127,7 @@ module.exports = {
     partidasEnCurso,
     unirseSala,
     conseguirPartida,
-    finalizarPartida
+    finalizarPartida,
+    getResultadoPartida,
+    getResultadoJugadorPartida
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { JugadorService } from 'src/app/jugador/services/jugador.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ResultadoJugador, Juego } from 'src/app/jugador/interfaces/jugador.interface';
@@ -8,7 +8,7 @@ import { ResultadoJugador, Juego } from 'src/app/jugador/interfaces/jugador.inte
   templateUrl: './resultado.component.html',
   styleUrls: ['./resultado.component.scss']
 })
-export class ResultadoComponent implements OnInit{
+export class ResultadoComponent implements OnInit, OnDestroy{
 
   public jugadores:any = [];
   public partida!:Juego;
@@ -17,7 +17,16 @@ export class ResultadoComponent implements OnInit{
     private jugadorService: JugadorService,
     private activatedRoute: ActivatedRoute,
     private router: Router)
-    { }
+    {
+      this.partida = {
+        id : 0,
+        anfitrion : 0,
+        estado : '',
+        llaves : 0,
+        tiempo : 0,
+        resultado : '',
+      }
+     }
 
   ngOnInit(){
     this.jugadorService.getResultadoJugadorPartida(JSON.parse(localStorage.getItem('partida')!).id)
@@ -29,5 +38,22 @@ export class ResultadoComponent implements OnInit{
       .subscribe((partida: Juego) => {
         this.partida = partida;
     })
+  }
+
+  ngOnDestroy(){
+    localStorage.removeItem('partida');
+    localStorage.removeItem('chat');
+  }
+
+  abrirInicio(){
+    localStorage.removeItem('partida');
+    localStorage.removeItem('chat');
+    this.router.navigate(['jugador/inicio']);
+  }
+
+  abrirPartidas(){
+    localStorage.removeItem('partida');
+    localStorage.removeItem('chat');
+    this.router.navigate(['jugador/partida']);
   }
 }
