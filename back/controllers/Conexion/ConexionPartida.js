@@ -307,6 +307,16 @@ class ConexionPartida extends ConexionSequelize {
 
            return jugador;
     } 
+
+    resultadoFinalPartida = async(body) => {
+        await models.Partida.update({resultado: body.resultado, 
+                                     tiempo: body.tiempo,
+                                     estado: 'terminada'}, 
+                                {where:{id: body.id}}
+                                );
+        
+        return {id: body.id};
+    }
 }
 
 module.exports = ConexionPartida;

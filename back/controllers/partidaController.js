@@ -20,20 +20,6 @@ const crearPartida = (req, res = response) => {
         })
 }
 
-/* const mostrarJugadoresSala = ( req, res = response ) => {
-    const conex = new ConexionSequelize();
-    conex.getJugadoresSala(req.params.id)
-        .then( resp => {
-            resp.forEach(element => {
-                element.avatar = process.env.URL + process.env.PORT + "/upload/" + element.avatar;
-            });
-            res.status(200).json(resp);
-        })
-        .catch(err => {
-            res.status(203).json({'msg':'No se han encontrado registros'});
-        })
-} */
-
 const conseguirPartida = ( req, res = response ) => {
     const conex = new ConexionSequelize();
     conex.getPartida(req.params.id)
@@ -95,11 +81,25 @@ const unirseSala = ( req, res = response ) => {
         })
 }
 
+const finalizarPartida = ( req, res = response ) => {
+    console.log('entro');
+    const conex = new ConexionSequelize();
+    console.log(req.body);
+    conex.resultadoFinalPartida(req.body)
+        .then( resp => {
+            res.status(200).json(resp);
+        })
+        .catch(err => {
+            res.status(203).json({'msg':'No se han encontrado registros'});
+        })
+}
+
 module.exports = {
     crearPartida,
     partidasDisponibles,
     partidasCreadas,
     partidasEnCurso,
     unirseSala,
-    conseguirPartida
+    conseguirPartida,
+    finalizarPartida
 }

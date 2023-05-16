@@ -13,6 +13,7 @@ import { JuegoComponent } from './pages/partidas/juego/juego.component';
 import { JugadoresconectadosComponent } from './pages/partidas/jugadoresconectados/jugadoresconectados.component';
 import { JugadoressalaComponent } from './pages/partidas/jugadoressala/jugadoressala.component';
 import { EnigmasComponent } from './pages/partidas/enigmas/enigmas.component';
+import { ResultadoComponent } from './pages/partidas/resultado/resultado.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { EnigmasComponent } from './pages/partidas/enigmas/enigmas.component';
     JugadoresconectadosComponent,
     JugadoressalaComponent,
     EnigmasComponent,
+    ResultadoComponent,
   ],
   imports: [
     CommonModule,

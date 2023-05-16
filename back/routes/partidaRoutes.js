@@ -16,4 +16,6 @@ router.get('/creadas/:id', controlador.partidasCreadas);
 
 router.get('/curso/:id', controlador.partidasEnCurso);
 
+router.put('/resultado/:id', controlador.finalizarPartida);
+
 module.exports = router

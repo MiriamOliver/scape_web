@@ -16,6 +16,7 @@ export class JugadoressalaComponent implements OnInit{
   public comenzar:boolean = true;
   private anfitrion:number;
   private partida:number;
+  private idPartida:number;
 
   constructor(
     private jugadorService: JugadorService,
@@ -25,6 +26,7 @@ export class JugadoressalaComponent implements OnInit{
     {
       this.anfitrion = JSON.parse(localStorage.getItem('partida')!).anfitrion;
       this.partida = JSON.parse(localStorage.getItem('user')!).id;
+      this.idPartida = JSON.parse(localStorage.getItem('chat')!).id;
 
       this.jugadores = [];
       this.socketService.connectUserEven.subscribe(res => {
@@ -44,7 +46,7 @@ export class JugadoressalaComponent implements OnInit{
         console.log(res.estado);
         if(res.estado == 'curso'){
           console.log('cambiar');
-          this.router.navigate(['jugador/partida/juego/'+ this.partida]);
+          this.router.navigate(['jugador/partida/juego/'+ this.idPartida]);
         }
       })
 

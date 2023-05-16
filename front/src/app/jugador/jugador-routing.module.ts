@@ -4,6 +4,7 @@ import { IniciojugadorComponent } from './pages/iniciojugador/iniciojugador.comp
 import { PartidasComponent } from './pages/partidas/partidas/partidas.component';
 import { SalaComponent } from './pages/partidas/sala/sala.component';
 import { JuegoComponent } from './pages/partidas/juego/juego.component';
+import { ResultadoComponent } from './pages/partidas/resultado/resultado.component';
 
 
 const routes: Routes = [
@@ -13,7 +14,8 @@ const routes: Routes = [
       { path: 'inicio', component: IniciojugadorComponent },
       { path: 'partida', component: PartidasComponent},
       { path: 'partida/sala/:id', component: SalaComponent},
-      { path: 'partida/juego/:id', component: JuegoComponent}
+      { path: 'partida/juego/:id', component: JuegoComponent},
+      { path: 'partida/resultado/:id', component: ResultadoComponent}
     ]
   }
 ];

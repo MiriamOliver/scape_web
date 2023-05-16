@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
   Partida.init({
     llaves: DataTypes.INTEGER,
     anfitrion: DataTypes.INTEGER,
-    tiempo: DataTypes.INTEGER,
+    tiempo: DataTypes.STRING,
     estado: DataTypes.STRING,
     resultado: DataTypes.STRING
   }, {

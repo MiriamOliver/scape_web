@@ -35,3 +35,12 @@ export interface Juego {
   tiempo:number;
   resultado:string;
 }
+
+export interface ResultadoJugador {
+  id:number,
+  nombre:string,
+  avatar:string,
+  llaves:number,
+  fallos:number,
+  rol:string,
+}

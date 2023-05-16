@@ -31,6 +31,8 @@ export class EnigmasComponent implements OnInit{
   llavesPartida:number = 0;
   llaves:number = 0;
   fallos:number = 0;
+  private segundos:number = 0;
+  private cont:number = 0;
 
   constructor(
     private jugadorService: JugadorService,
@@ -67,11 +69,36 @@ export class EnigmasComponent implements OnInit{
     this.empezandoPartida();
   }
 
+  calcularTiempo(){
+    this.segundos = 1800 - this.tiempo_general;
+    while(this.segundos > 59){
+      this.cont ++;
+      this.segundos = this.segundos - 60;
+    }
+    return (this.cont+':'+this.segundos).toString();
+  }
+
   empezandoPartida(){
     if(this.tiempo_general > 0){
-      this.tiempoEspera();
-    }else{
-      console.log('acabo_partida');
+      console.log('holita');
+      console.log(this.llavesPartida);
+      if(this.llavesPartida >= 5 ){
+        this.jugadorService.finalizarPartida(JSON.parse(localStorage.getItem('chat')!).id, 'ganada', this.calcularTiempo())
+        .subscribe(resp => {
+          if(resp){
+            this.router.navigate(['jugador/partida/resultado/'+ resp.id]);
+          }
+        });
+      }else{
+        this.tiempoEspera();
+      }
+    }else if (this.tiempo_general <= 0){
+      this.jugadorService.finalizarPartida(JSON.parse(localStorage.getItem('chat')!).id, 'perdida', '30')
+      .subscribe(resp => {
+          if(resp){
+            this.router.navigate(['jugador/partida/resultado/'+ resp.id]);
+          }
+        });
     }
   }
 
@@ -103,7 +130,7 @@ export class EnigmasComponent implements OnInit{
         }
         this.mensajeDescanso = 1;
         this.enigmas = -1;
-        this.tiempoEspera();
+        this.empezandoPartida();
       }
     }, 1000);
     this.temporizador--;
@@ -140,6 +167,29 @@ export class EnigmasComponent implements OnInit{
         })
     }
   }
+
+  /* comprobarPartida(){
+    console.log(this.llavesPartida);
+    if(this.llavesPartida >= 1 && this.tiempo_general > 0){
+      console.log('probando');
+
+      this.jugadorService.finalizarPartida(JSON.parse(localStorage.getItem('chat')!).id, 'ganada', this.calcularTiempo())
+      .subscribe(resp => {
+          if(resp){
+            console.log(resp);
+            this.router.navigate(['jugador/partida/resultado/'+ resp.id]);
+          }
+        });
+    }else if(this.tiempo_general <= 0){
+      this.jugadorService.finalizarPartida(JSON.parse(localStorage.getItem('chat')!).id, 'perdida', '30')
+      .subscribe(resp => {
+          if(resp){
+            console.log(resp);
+            this.router.navigate(['jugador/partida/resultado/'+ resp.id]);
+          }
+        });
+    }
+  } */
 
   enviarEnigmas(){
     this.boton = false;

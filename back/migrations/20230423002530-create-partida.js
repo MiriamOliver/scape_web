@@ -16,7 +16,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       tiempo: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       estado: {
         type: Sequelize.STRING
