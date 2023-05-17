@@ -83,7 +83,7 @@ export class EnigmasComponent implements OnInit{
       console.log('holita');
       console.log(this.llavesPartida);
       if(this.llavesPartida >= 5 ){
-        this.jugadorService.finalizarPartida(JSON.parse(localStorage.getItem('chat')!).id, 'ganada', this.calcularTiempo())
+        this.jugadorService.finalizarPartida(JSON.parse(localStorage.getItem('chat')!).id, 'ganada', this.calcularTiempo(), JSON.parse(localStorage.getItem('user')!).id, this.llaves)
         .subscribe(resp => {
           if(resp){
             this.router.navigate(['jugador/partida/resultado/'+ resp.id]);
@@ -93,7 +93,7 @@ export class EnigmasComponent implements OnInit{
         this.tiempoEspera();
       }
     }else if (this.tiempo_general <= 0){
-      this.jugadorService.finalizarPartida(JSON.parse(localStorage.getItem('chat')!).id, 'perdida', '30')
+      this.jugadorService.finalizarPartida(JSON.parse(localStorage.getItem('chat')!).id, 'perdida', '30', JSON.parse(localStorage.getItem('user')!).id, this.llaves)
       .subscribe(resp => {
           if(resp){
             this.router.navigate(['jugador/partida/resultado/'+ resp.id]);

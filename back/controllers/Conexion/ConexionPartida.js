@@ -283,6 +283,18 @@ class ConexionPartida extends ConexionSequelize {
     updatePartidaJugador = async(datos) => {
         console.log(datos);
 
+        let almirante = await models.PartidaJugador.findOne({
+                        where:{id_partida:datos.id_partida,
+                                rol: 'almirante'}
+        })
+
+        if(almirante == null){
+            await models.PartidaJugador.update({rol: 'almirante'}, 
+                            {where:{id_partida: datos.id_partida, 
+                            id_jugador: datos.id_user}}
+                        );
+        }
+
         await models.PartidaJugador.update({llaves: datos.llaves, 
                                             fallos: datos.fallos}, 
             {where:{id_partida: datos.id_partida, 
@@ -314,7 +326,18 @@ class ConexionPartida extends ConexionSequelize {
                                      estado: 'terminada'}, 
                                 {where:{id: body.id}}
                                 );
-        
+
+        if(body.resultado =='ganada'){
+
+            models.sequelize.query(`UPDATE jugadores SET ganadas = ganadas + 1, partidas = partidas + 1, llaves = llaves + ? WHERE id = ?;`, 
+                                    { replacements: [body.llaves, body.id_user], type: QueryTypes.UPDATE });
+
+        }else{
+
+            models.sequelize.query(`UPDATE jugadores SET perdidas = perdidas + 1, partidas = partidas + 1, llaves = llaves + ? WHERE id = ?;`, 
+                                    { replacements: [body.llaves, body.id_user], type: QueryTypes.UPDATE });
+
+        }                     
         return {id: body.id};
     }
 

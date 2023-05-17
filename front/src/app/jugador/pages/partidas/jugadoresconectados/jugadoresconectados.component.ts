@@ -21,7 +21,6 @@ export class JugadoresconectadosComponent implements OnInit{
       this.users = [];
       this.socketService.connectUserEven.subscribe(res => {
         this.users = res;
-        //this.users.push(res);
       })
     }
 

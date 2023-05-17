@@ -38,9 +38,8 @@ export class JugadorService  {
     return this.http.post<Partida>(`${this.baseUrl}/partidas/unirse`, {id_partida: id, id_jugador: iduser});
   }
 
-  finalizarPartida(id:number, resultado:string, tiempo:string) {
-    console.log(tiempo)
-    return this.http.put<Partida>(`${this.baseUrl}/partidas/resultado/${id}`, {id:id, resultado:resultado, tiempo:tiempo});
+  finalizarPartida(id:number, resultado:string, tiempo:string, id_user:number, llaves:number) {
+    return this.http.put<Partida>(`${this.baseUrl}/partidas/resultado/${id}`, {id:id, resultado:resultado, tiempo:tiempo, id_user:id_user, llaves:llaves});
   }
 
   getResultadoPartida(id:number):Observable<Juego>{
