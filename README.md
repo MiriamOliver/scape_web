@@ -28,13 +28,17 @@ Importar el archivo scape_web.sql <br>
 Jugador
 
     email: xlmiru95lx@gmail.com
-    passwd:1234
+    passwd: 1234
 
     email: naotora@gmail.com
-    passwd:1234
+    passwd: 1234
 
+    email: nene@example.com
+    passwd: 1234
+
+    
 Administrador
 
     email: oda@gmail.com
-    passwd:1234
+    passwd: 1234
 
