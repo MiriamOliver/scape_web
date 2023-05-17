@@ -14,27 +14,21 @@ export class ChatComponent implements OnInit{
   avatar:any;
   msg:any;
   show_message:any;
-  messages: any[]=[];
+  public messages: any[]=[];
   public input_message:any;
 
   constructor(
     protected socketService: JugadorsocketService,
     private activatedRoute: ActivatedRoute,
   ) {
-    this.user = JSON.parse(localStorage.getItem('user')!).nombre;
-    this.id_partida = this.activatedRoute.snapshot.params['id'];
-    this.avatar = JSON.parse(localStorage.getItem('user')!).avatar;
-   }
-
-  ngOnInit() {
-    localStorage.setItem('chat', JSON.stringify({
-      avatar: this.avatar,
-      nombre: this.user,
-      id: this.id_partida
-    }));
     this.socketService.outEven.subscribe(res => {
+      console.log(res);
       this.messages.push(res);
     })
+  }
+
+  ngOnInit() {
+
   }
 
    sendData = (event:any) =>{

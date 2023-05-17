@@ -1,0 +1,122 @@
+$primary-color: #079ad9;
+
+/* .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+} */
+.mensaje-descanso, .mensaje-enigmas{
+  height: 590px;
+}
+.temporizador{
+  margin: auto;
+  width: 200px;
+  background-color: var(--colorTransparente);
+  p{
+    padding: 10.8px;
+    font-size: 23px;
+    width: 100%;
+    background-color: var(--colorRojo);
+    color: var(--colorDorado);
+  }
+}
+.contenedor-juego{
+  background-color: var(--colorTransparente);
+
+  button{
+    margin: auto;
+    background-color: var(--colorDorado);
+    width: 400px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--colorAzul);
+  }
+  .pregunta{
+    background-color: var(--colorAzul);
+    color: var(--colorDorado);
+    width: 100%;
+    height: 200px;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  .espera{
+    background-color: var(--colorAzul);
+    color: var(--colorDorado);
+    height: 300px;
+    h1{
+      color: var(--colorRojo);
+      font-size: 60px;
+    }
+  }
+
+  .input-container {
+    position: relative;
+
+    //make actual radio input invisible
+    // + stretch to fill container
+    .radio-button {
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      cursor: pointer;
+    }
+
+    //default tile styles
+    .radio-tile-label {
+      width: calc(100% - 0.25rem);
+      margin-bottom: 0.25rem;
+      background-color: var(--colorGris);
+      text-align: center;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--colorAzul);
+    }
+
+    //active tile styles
+    .radio-button:checked + .radio-tile-label {
+      background-color: var(--colorAzul);
+      color: var(--colorDorado);
+      //transform: scale(1.1, 1.1);
+    }
+  }
+
+  .hr-text-bot{
+    line-height: 1em;
+    position: relative;
+    outline: 0;
+    border: 0;
+    color: black;
+    text-align: center;
+    //height: -3.5em;
+    opacity: 1;
+    font-size: 1px;
+    &:after {
+      content: attr(data-content);
+      position: relative;
+      display: inline-block;
+      padding: 0 .5em;
+      line-height: 1.5em;
+      color: var(--colorDorado);
+      //background-color: var(--colorAzul);
+      font-weight: 700;
+      font-size: 14px;
+    }
+  }
+
+  .hr-text-bot:before {
+    content: '';
+    background: linear-gradient(to right, transparent, #AE8C44, transparent);
+    position: absolute;
+    left: 0;
+    top: 97%;
+    width: 100%;
+    height: 1px;
+  }
+}

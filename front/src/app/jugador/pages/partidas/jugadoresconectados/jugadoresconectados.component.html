@@ -1,0 +1,27 @@
+<div class="lateral">
+  <div class="p-2 fondo-tabla rounded-1">
+    <div class="card border-0 tabla">
+      <div class="card-header border-0 p-2 py-3">
+        <div class="row p-0 m-0 me-3 text-center">
+          <div class="col-5">Jugador</div>
+          <div class="col-2"><i class="fa-solid fa-key"></i></div>
+          <div class="col-2"><i class="fa-solid fa-circle-xmark"></i></div>
+          <div class="col-3">Estado</div>
+        </div>
+      </div>
+      <div class="border-0 p-0 m-0 lista-tabla">
+        <ul class="border-0 row mt-2 me-2 m-0 p-1 lista rounded-1 d-flex text-center"  *ngFor="let jugador of users" >
+          <li class="col-5 list-group-item border-0 d-flex flex-row align-items-start">
+            <img class="rounded-1 me-1" src="{{jugador.avatar}}">
+            <p class="text-start">{{jugador.nombre}}</p>
+          </li>
+          <li class="col-2 list-group-item border-0">{{jugador.llaves}}</li>
+          <li class="col-2 list-group-item border-0">{{jugador.fallos}}</li>
+          <li class="col-3 list-group-item border-0">
+            <input class="form-check-input" name="isHabilitado" type="checkbox" value="1" id="flexCheckDefault">
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

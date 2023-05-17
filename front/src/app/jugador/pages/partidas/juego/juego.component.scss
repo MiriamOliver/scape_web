@@ -1,3 +1,11 @@
+.cabecera{
+  background-color: var(--colorAzul);
+  height: 56px;
+}
+.pie{
+  background-color: var(--colorAzul);
+  height: 78px;
+}
 .fondo-partida{
   background-image: url(../../../../../assets/imgs/fondo-inicio.jpg);
   main{
@@ -5,9 +13,6 @@
       background-color: var(--colorTransparente);
     }
   }
-  aside{
-    background-color: #00102ad4;
-    max-height: 100vh;
-    height: 640px;
-  }
 }
+
+

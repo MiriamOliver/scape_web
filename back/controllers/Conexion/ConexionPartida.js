@@ -65,6 +65,16 @@ class ConexionPartida extends ConexionSequelize {
         
     }
 
+    getPartida = async(id) =>{
+
+        let result = await models.Partida.findOne({
+            attributes:['id','anfitrion','estado'],
+            where: {id:id}
+        })
+
+        return result.dataValues;
+    }
+
     getPartidasDisponibles = async(id) => {
 
         let resultado = null;
@@ -100,8 +110,8 @@ class ConexionPartida extends ConexionSequelize {
     }
 
     unirseSalaPartida = async(body) => {
-        
 
+        let partida = '';
         let result = '';
 
         result = await models.PartidaJugador.findOne({
@@ -113,9 +123,254 @@ class ConexionPartida extends ConexionSequelize {
                 id_jugador:body.id_jugador
             })
         }
-        return result;
+
+        partida = await models.Partida.findOne({
+            where:{id: body.id_partida}
+        });
+
+        return partida.dataValues;
     }
 
+    empezarPartida = async(datos) => {
+        
+        let partida = '';
+
+        await models.Partida.update({estado: 'curso'}, 
+            {where: {id:datos.id_partida}}
+            );
+
+        partida = await models.Partida.findOne({
+            where : {id:datos.id_partida}
+        })
+        return partida.dataValues;
+    }
+
+    mensajesPartida = async(data, mensaje)=> {
+        try{
+
+            let user = await models.User.findOne({
+                attributes:['id','nombre','avatar'],
+                where:{nombre: data.nombre}
+            })
+    
+            let result = await models.Chat.create({
+                id_user:user.dataValues.id,
+                id_partida: data.id,
+                mensaje: mensaje.message
+            });
+
+            return {
+                id_partida:data.id,
+                id_user: user.dataValues.id,
+                avatar: process.env.URL + process.env.PORT + "/upload/" + user.dataValues.avatar,
+                nombre: user.dataValues.nombre,
+                msg: mensaje.message
+            };
+
+        }catch(err){
+            throw err;
+        }
+    }
+
+    usuariosPartida = async(datos) => {
+       
+       try{
+            let jugador = await models.User.findAll({
+                include:[{
+                    model: models.PartidaJugador,
+                    as: 'PartidasJugadores',
+                    attributes:[],
+                    where: { id_partida: datos.id_partida}
+                }],
+                attributes: ['id','nombre','avatar', 
+                            [Sequelize.col('PartidasJugadores.id_partida'), 'id_partida'],
+                            [Sequelize.col('PartidasJugadores.llaves'), 'llaves'],
+                            [Sequelize.col('PartidasJugadores.fallos'), 'fallos'],
+                            [Sequelize.col('PartidasJugadores.activo'), 'activo'],
+                            [Sequelize.col('PartidasJugadores.rol'), 'rol'],
+                        ]
+            }); 
+
+           return jugador;
+    
+        }catch(err){
+            throw err;
+        }
+    }
+
+    usuarioDesconectado = async(datos) => {
+       console.log(datos);
+        try{
+
+            if(datos.id_anfitrion != datos.id_user){
+                await models.PartidaJugador.destroy({
+                    where:{
+                        id_jugador:datos.id_user,
+                        id_partida: datos.id_partida
+                    }
+                })
+            }else if(datos.id_anfitrion == datos.id_user){
+                await models.PartidaJugador.destroy({
+                    where:{
+                        id_partida: datos.id_partida
+                    }
+                });
+
+                await models.Partida.destroy({
+                    where:{id:datos.id_partida}
+                })
+            }
+
+             let jugador = await models.User.findAll({
+                 include:[{
+                     model: models.PartidaJugador,
+                     as: 'PartidasJugadores',
+                     attributes:[],
+                     where: { id_partida: datos.id_partida}
+                 }],
+                 attributes: ['id','nombre','avatar', 
+                             [Sequelize.col('PartidasJugadores.id_partida'), 'id_partida'],
+                             [Sequelize.col('PartidasJugadores.llaves'), 'llaves'],
+                             [Sequelize.col('PartidasJugadores.fallos'), 'fallos'],
+                             [Sequelize.col('PartidasJugadores.activo'), 'activo'],
+                             [Sequelize.col('PartidasJugadores.rol'), 'rol'],
+                         ]
+             }); 
+ 
+            return jugador;
+     
+         }catch(err){
+             throw err;
+         }
+    }
+
+    getEnigma = async(datos) => {
+
+        let enigmas = await models.Enigma.findAll();
+
+        let alea = Math.trunc(Math.random() * enigmas.length);
+        
+        let enigma = enigmas[alea].dataValues;
+
+        return{
+            id:enigma.id,
+            pregunta:enigma.pregunta,
+            correcta:enigma.resp_correcta,
+            opciones: [
+                enigma.resp_uno,
+                enigma.resp_dos,
+                enigma.resp_tres,
+                enigma.resp_correcta
+            ]
+        }
+    }
+
+    updatePartida = async(datos) => {
+        console.log(datos);
+        let partida = '';
+
+        await models.Partida.update({llaves: datos.llaves}, 
+            {where: {id:datos.id_partida}}
+            );
+
+        partida = await models.Partida.findOne({
+            attributes:['id','llaves','anfitrion','tiempo','estado'],
+            where : {id:datos.id_partida}
+        })
+        return partida.dataValues;
+    }
+
+    updatePartidaJugador = async(datos) => {
+        console.log(datos);
+
+        let almirante = await models.PartidaJugador.findOne({
+                        where:{id_partida:datos.id_partida,
+                                rol: 'almirante'}
+        })
+
+        if(almirante == null){
+            await models.PartidaJugador.update({rol: 'almirante'}, 
+                            {where:{id_partida: datos.id_partida, 
+                            id_jugador: datos.id_user}}
+                        );
+        }
+
+        await models.PartidaJugador.update({llaves: datos.llaves, 
+                                            fallos: datos.fallos}, 
+            {where:{id_partida: datos.id_partida, 
+                    id_jugador: datos.id_user}}
+            );
+
+        let jugador = await models.User.findAll({
+                include:[{
+                    model: models.PartidaJugador,
+                    as: 'PartidasJugadores',
+                    attributes:[],
+                    where: { id_partida: datos.id_partida}
+                }],
+                attributes: ['id','nombre','avatar', 
+                            [Sequelize.col('PartidasJugadores.id_partida'), 'id_partida'],
+                            [Sequelize.col('PartidasJugadores.llaves'), 'llaves'],
+                            [Sequelize.col('PartidasJugadores.fallos'), 'fallos'],
+                            [Sequelize.col('PartidasJugadores.activo'), 'activo'],
+                            [Sequelize.col('PartidasJugadores.rol'), 'rol'],
+                        ]
+            }); 
+
+           return jugador;
+    } 
+
+    resultadoFinalPartida = async(body) => {
+        await models.Partida.update({resultado: body.resultado, 
+                                     tiempo: body.tiempo,
+                                     estado: 'terminada'}, 
+                                {where:{id: body.id}}
+                                );
+
+        if(body.resultado =='ganada'){
+
+            models.sequelize.query(`UPDATE jugadores SET ganadas = ganadas + 1, partidas = partidas + 1, llaves = llaves + ? WHERE id = ?;`, 
+                                    { replacements: [body.llaves, body.id_user], type: QueryTypes.UPDATE });
+
+        }else{
+
+            models.sequelize.query(`UPDATE jugadores SET perdidas = perdidas + 1, partidas = partidas + 1, llaves = llaves + ? WHERE id = ?;`, 
+                                    { replacements: [body.llaves, body.id_user], type: QueryTypes.UPDATE });
+
+        }                     
+        return {id: body.id};
+    }
+
+    getResultadoFinalPartida = async(id) => {
+
+        let partida = await models.Partida.findOne({
+            attributes:['id','llaves', 'tiempo', 'resultado'],
+            where:{id:id}
+        })
+
+        return partida.dataValues;
+    }
+
+    getResultadoFinalJugadorPartida = async(id) => {
+
+        let jugador = await models.User.findAll({
+            include:[{
+                model: models.PartidaJugador,
+                as: 'PartidasJugadores',
+                attributes:[],
+                where: { id_partida: id}
+            }],
+            attributes: ['id','nombre','avatar', 
+                        [Sequelize.col('PartidasJugadores.llaves'), 'llaves'],
+                        [Sequelize.col('PartidasJugadores.fallos'), 'fallos'],
+                        [Sequelize.col('PartidasJugadores.rol'), 'rol'],
+                    ]
+        }); 
+
+        console.log(jugador);
+
+       return jugador;
+    }
 }
 
 module.exports = ConexionPartida;
