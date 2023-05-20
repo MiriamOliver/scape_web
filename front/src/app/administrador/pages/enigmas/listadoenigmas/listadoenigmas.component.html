@@ -1,0 +1,64 @@
+<div class="row">
+  <div class="col-md-4 mt-5 pe-0">
+    <div *ngIf="infoEnigma == 1" class="info p-2 text-center rounded-1 ms-5">
+      <hr class="hr-text-bot m-0 p-1 mb-2" data-content="DETALLES ENIGMA">
+      <h5 class="p-4 rounded-1">{{enigma.pregunta}}</h5>
+      <div class="mb-2">
+        <p class="recuadro p-2 m-0 rounded-top">Creador</p>
+        <p class="datos p-2 m-0 rounded-bottom">{{enigma.creador}}</p>
+      </div>
+      <div class="mb-2">
+        <p class="recuadro p-2 m-0 rounded-top">Opciones</p>
+        <ul class="datos p-2 m-0 rounded-bottom">
+          <li class="opciones" *ngFor="let opcion of enigma.opciones">{{opcion}}</li>
+        </ul>
+      </div>
+      <div>
+        <p class="recuadro p-2 m-0 rounded-top">Respuesta</p>
+        <p class="datos p-2 m-0 rounded-bottom">{{enigma.correcta}}</p>
+      </div>
+    </div>
+    <div *ngIf="infoEnigma == -1" class="info p-2 rounded-1 ms-5">
+      <hr class="hr-text-bot m-0 p-1 mb-2" data-content="DETALLES ENIGMA">
+      <p class="p-3 m-0">Datos generales sobre enigma.<br><br>Pulsa en el icono de información de cualquier enigma para ver más detalles sobre este</p>
+    </div>
+  </div>
+  <div class="col-md-8 p-5 ps-2 pe-4">
+    <div class="row">
+      <div class="col-9 pb-3 pt-4 d-flex" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+        <button type="button" class="btn btn-light nav-link active p-2" data-bs-toggle="pill"
+                role="tab" aria-selected="true" (click)="enigmasAjenos()">Enigmas Ajenos</button>
+        <button type="button" class="btn btn-light nav-link mx-3 p-2" data-bs-toggle="pill"
+                role="tab" aria-selected="true" (click)="enigmasCreados()">Enigmas Creados</button>
+      </div>
+      <div class="col-3 pb-3 pt-4 d-flex justify-content-start">
+        <button type="button" class="btn btn-light p-2" (click)=crear()>Crear Enigma</button>
+      </div>
+    </div>
+    <div class="p-2 fondo-tabla rounded-1 me-2">
+      <hr class="hr-text-bot m-0 p-1 mb-2" data-content="LISTA ENIGMAS">
+      <div class="card border-0 tabla">
+        <div class="card-header border-0 p-2 py-3">
+          <div class="row p-0 m-0 me-3 text-center">
+            <div class="col-1">ID</div>
+            <div class="col-3">Creador</div>
+            <div class="col-6">Pregunta</div>
+            <div class="col-2">Acciones</div>
+          </div>
+        </div>
+        <div class="border-0 p-0 m-0 lista-tabla">
+          <ul class="border-0 row p-1 mt-2 me-2 m-0 lista rounded-1 d-flex align-items-center text-center" *ngFor="let enigma of enigmas">
+            <li class="col-1 list-group-item border-0">{{enigma.id}}</li>
+            <li class="col-3 list-group-item border-0">{{enigma.creador}}</li>
+            <li class="col-6 list-group-item border-0">{{enigma.pregunta}}</li>
+            <li class="col-2 list-group-item border-0 d-flex gap-2 justify-content-center">
+              <button type="button" (click)="obtenerEnigma(enigma.id)" class="btn rounded p-2"><i class="fa-solid fa-circle-info"></i></button>
+              <button type="button" (click)="modificarEnigma(enigma.id)" class="btn rounded p-2" *ngIf="btnCreador == 1"><i class="fa-solid fa-pen circle"></i></button>
+              <button type="button" (click)="borrarEnigma(enigma.id)" class="btn rounded p-2" *ngIf="btnCreador == 1"><i class="fa-solid fa-trash circle"></i></button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

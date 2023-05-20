@@ -1,10 +1,10 @@
 const Conexion = require('./Conexion/ConexionPartida');
-
+const ConexionEnigma = require('./Conexion/ConexionEnigma');
 
 
 const socketController = (socket) => {
 
-    const id_handshake = socket.id;
+    //const id_handshake = socket.id;
 
     let {payload} = socket.handshake.query;
 
@@ -36,6 +36,10 @@ const socketController = (socket) => {
             actualizarPartida(socket, payload, res);
         })
 
+        socket.on('listadoenigmas', (res) => {
+            listadoEnigmas(socket, payload, res);
+        })
+
         socket.on('conectados', (res) => {
             mostrarUsuariosConectados(socket, payload, res);
         })
@@ -56,7 +60,7 @@ const chatPartida = (socket, res) => {
              */
             const inPayloadCookie = JSON.parse(res.cookiePayload);
             const inPayload = res.payload;
-            conx = new Conexion();
+            let conx = new Conexion();
             conx.mensajesPartida(inPayloadCookie, inPayload)
                 .then((resp) => {
                     console.log(inPayloadCookie.id);
@@ -74,7 +78,7 @@ const chatPartida = (socket, res) => {
 const mostrarUsuariosConectados = (socket, payload, res) => {
     let userConectados = [];
     if(res.event == 'conectados') {
-        conx = new Conexion();
+        let conx = new Conexion();
         conx.usuariosPartida(res.payload)
         .then((users) => {
             users.forEach(user => {
@@ -90,7 +94,7 @@ const mostrarUsuariosConectados = (socket, payload, res) => {
 const usuarioDesconectado = (socket, payload, res) => {
     let userConectados = [];
     if(res.event == 'desconectado') {
-        conx = new Conexion();
+        let conx = new Conexion();
         conx.usuarioDesconectado(res.payload)
         .then((users) => {
             users.forEach(user => {
@@ -105,7 +109,7 @@ const usuarioDesconectado = (socket, payload, res) => {
 
 const estadoPartida = (socket, payload, res) => {
     if(res.event == 'juego') {
-        conx = new Conexion();
+        let conx = new Conexion();
         conx.empezarPartida(res.payload)
         .then((resp) => {
             console.log(resp);
@@ -117,7 +121,7 @@ const estadoPartida = (socket, payload, res) => {
 
 const conseguirEnigma = (socket, payload, res) => {
     if(res.event == 'enigmas') {
-        conx = new Conexion();
+        let conx = new Conexion();
         conx.getEnigma(res.payload)
         .then((resp) => {
             socket.to(payload.id).emit('enigmas',resp);
@@ -129,7 +133,7 @@ const conseguirEnigma = (socket, payload, res) => {
 const actualizarPartidaJugador = (socket, payload, res) => {
     let userConectados = [];
     if(res.event == 'conectados') {
-        conx = new Conexion();
+        let conx = new Conexion();
         conx.updatePartidaJugador(res.payload)
         .then((users) => {
             users.forEach(user => {
@@ -144,11 +148,25 @@ const actualizarPartidaJugador = (socket, payload, res) => {
 
 const actualizarPartida = (socket, payload, res) => {
     if(res.event == 'actualizarpartida') {
-        conx = new Conexion();
+        let conx = new Conexion();
         conx.updatePartida(res.payload)
         .then((resp) => {
             socket.to(payload.id).emit('actualizarpartida',resp);
             socket.emit('actualizarpartida', resp);
+        });  
+    }
+}
+
+const listadoEnigmas = (socket, payload, res) => {
+    let listaEnigmas = [];
+    if(res.event == 'listadoenigmas') {
+        let conx = new ConexionEnigma();
+        conx.getEnigmas(res.payload)
+        .then((enigmas) => {
+            enigmas.forEach(enigma => {
+                listaEnigmas.push(enigma.dataValues);
+            });
+            socket.emit('listadoenigmas', listaEnigmas);
         });  
     }
 }

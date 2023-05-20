@@ -14,11 +14,13 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Enigma.init({
+    creador: DataTypes.STRING,
     pregunta: DataTypes.STRING,
     resp_uno: DataTypes.STRING,
     resp_dos: DataTypes.STRING,
     resp_tres: DataTypes.STRING,
-    resp_correcta: DataTypes.STRING
+    resp_cuatro: DataTypes.STRING,
+    correcta: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Enigma',

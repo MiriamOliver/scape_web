@@ -148,12 +148,12 @@ class ConexionPartida extends ConexionSequelize {
     mensajesPartida = async(data, mensaje)=> {
         try{
 
-            let user = await models.User.findOne({
+            await models.User.findOne({
                 attributes:['id','nombre','avatar'],
                 where:{nombre: data.nombre}
             })
     
-            let result = await models.Chat.create({
+            await models.Chat.create({
                 id_user:user.dataValues.id,
                 id_partida: data.id,
                 mensaje: mensaje.message
@@ -255,12 +255,12 @@ class ConexionPartida extends ConexionSequelize {
         return{
             id:enigma.id,
             pregunta:enigma.pregunta,
-            correcta:enigma.resp_correcta,
+            correcta:enigma.correcta,
             opciones: [
                 enigma.resp_uno,
                 enigma.resp_dos,
                 enigma.resp_tres,
-                enigma.resp_correcta
+                enigma.resp_cuatro
             ]
         }
     }

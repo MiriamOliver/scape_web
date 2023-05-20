@@ -9,6 +9,9 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      creador: {
+        type: Sequelize.STRING
+      },
       pregunta: {
         type: Sequelize.STRING
       },
@@ -21,7 +24,10 @@ module.exports = {
       resp_tres: {
         type: Sequelize.STRING
       },
-      resp_correcta: {
+      resp_cuatro: {
+        type: Sequelize.STRING
+      },
+      correcta: {
         type: Sequelize.STRING
       },
       createdAt: {
