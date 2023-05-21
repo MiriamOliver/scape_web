@@ -12,6 +12,7 @@ class Server {
         this.authPath = '/';
         this.usuariosPath = '/usuarios';
         this.partidasPath = '/partidas'
+        this.enigmasPath = '/enigmas'
 
         //Middlewares
         this.middlewares();
@@ -39,6 +40,7 @@ class Server {
         this.app.use(this.authPath , require('../../routes/authRoutes'));
         this.app.use(this.usuariosPath,require('../../routes/usuarioRoutes'));
         this.app.use(this.partidasPath,require('../../routes/partidaRoutes'));
+        this.app.use(this.enigmasPath,require('../../routes/enigmaRoutes'));
     }
 
     sockets(){

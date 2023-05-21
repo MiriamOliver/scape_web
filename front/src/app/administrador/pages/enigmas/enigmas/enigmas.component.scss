@@ -1,0 +1,13 @@
+.fondo-enigmas{
+  background-image: url(../../../../../assets/imgs/fondo-inicio.jpg);
+  main{
+    .contenedor-chat{
+      background-color: var(--colorTransparente);
+    }
+  }
+  aside{
+    background-color: #00102ad4;
+    max-height: 100vh;
+    height: 640px;
+  }
+}

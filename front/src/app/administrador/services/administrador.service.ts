@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Administrador } from '../interfaces/administrador.interface';
+import { Administrador, Enigma } from '../interfaces/administrador.interface';
 import { environment } from './../../../environments/environment'
 
 @Injectable({
@@ -13,4 +13,11 @@ export class AdministradorService {
 
   constructor(private http: HttpClient) { }
 
+  obtenerEnigma(id:any):Observable<Enigma>{
+    return this.http.get<Enigma>(`${this.baseUrl}/enigmas/mostrar/${id}`,);
+  }
+
+  obtenerEnigmasCreados(id:any):Observable<Enigma>{
+    return this.http.get<Enigma>(`${this.baseUrl}/enigmas/mostrar/creados/${id}`,);
+  }
 }
