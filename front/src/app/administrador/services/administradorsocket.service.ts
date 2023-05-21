@@ -17,7 +17,7 @@ export class AdministradorsocketService extends Socket{
       url: environment.serverSocket,
       options: {
           query: {
-              payload: localStorage.getItem('user')
+              payload: localStorage.getItem('datosAdmin')
           }
       }
     });

@@ -89,8 +89,7 @@ class ConexionEnigma extends ConexionSequelize {
 
 
     createEnigma = async(enigma) => {
-        
-        console.log('crear');
+    
         console.log(enigma)
 
         let result = await models.Enigma.create({
@@ -106,6 +105,14 @@ class ConexionEnigma extends ConexionSequelize {
         return result;
     }
 
+    deleteEnigma = async(enigma) => {
+    
+        let result = await models.Enigma.destroy({
+                                where:{id:enigma.id_enigma}
+        });
+
+        return result;
+    }
 }
 
 module.exports = ConexionEnigma;

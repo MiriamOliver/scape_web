@@ -14,7 +14,6 @@ const socketController = (socket) => {
 
         socket.join(payload.id); 
 
-        
         //ESCUCHAR
         socket.on('default', (res) => {
             chatPartida(socket, res);
@@ -46,6 +45,10 @@ const socketController = (socket) => {
 
         socket.on('listadoenigmas', (res) => {
             listadoEnigmas(socket, payload, res);
+        })
+
+        socket.on('borrarenigma', (res) => {
+            borrarEnigma(socket, payload, res);
         })
 
         socket.on('conectados', (res) => {
@@ -174,6 +177,7 @@ const listadoEnigmas = (socket, payload, res) => {
             enigmas.forEach(enigma => {
                 listaEnigmas.push(enigma.dataValues);
             });
+            socket.to(payload.id).emit('listadoenigmas',listaEnigmas);
             socket.emit('listadoenigmas', listaEnigmas);
         });  
     }
@@ -184,8 +188,8 @@ const actualizarEnigma = (socket, payload, res) => {
         let conx = new ConexionEnigma();
         conx.updateEnigma(res.payload)
         .then((resp) => {
-            //socket.to(payload.id).emit('listadoenigmas',resp);
-            socket.broadcast.emit('listadoenigmas', resp);
+            socket.to(payload.id).emit('listadoenigmas',resp);
+            //socket.emit('listadoenigmas', resp);
         });  
     }
 }
@@ -196,8 +200,19 @@ const crearEnigma = (socket, payload, res) => {
         let conx = new ConexionEnigma();
         conx.createEnigma(res.payload)
         .then((resp) => {
-            //socket.to(payload.id).emit('listadoenigmas',resp);
-            socket.broadcast.emit('listadoenigmas', resp);
+            socket.to(payload.id).emit('listadoenigmas',resp);
+            //socket.emit('listadoenigmas', resp);
+        });  
+    }
+}
+
+const borrarEnigma = (socket, payload, res) => {
+    if(res.event == 'listadoenigmas') {
+        let conx = new ConexionEnigma();
+        conx.deleteEnigma(res.payload)
+        .then((resp) => {
+            socket.to(payload.id).emit('listadoenigmas',resp);
+            //socket.emit('listadoenigmas', resp);
         });  
     }
 }

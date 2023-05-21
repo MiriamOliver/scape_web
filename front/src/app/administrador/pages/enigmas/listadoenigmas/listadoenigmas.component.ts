@@ -59,10 +59,11 @@ export class ListadoEnigmasComponent implements OnInit{
   }
 
   borrarEnigma(id:any){
-    this.socketService.borrarEnigmaEvent('borrarenigma',
+    this.socketService.borrarEnigmaEvent('listadoenigmas',
         {
           id_enigma: id
         })
+    this.enigmasCreados();
   }
 
   modificarEnigma(id:any){
