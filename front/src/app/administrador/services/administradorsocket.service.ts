@@ -38,6 +38,17 @@ export class AdministradorsocketService extends Socket{
     });
   }
 
+  actualizarEnigma = (event = 'actualizarenigmas',payload = {}) => {
+    this.ioSocket.emit('actualizarenigmas', {
+        event,
+        payload
+    });
+  }
 
-
+  crearEnigma = (event = 'crearenigmas',payload = {}) => {
+    this.ioSocket.emit('crearenigmas', {
+        event,
+        payload
+    });
+  }
 }

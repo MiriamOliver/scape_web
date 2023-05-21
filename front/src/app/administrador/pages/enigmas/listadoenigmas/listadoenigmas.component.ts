@@ -66,7 +66,7 @@ export class ListadoEnigmasComponent implements OnInit{
   }
 
   modificarEnigma(id:any){
-    this.router.navigate(['administrador/enigma/modificar'+ id]);
+    this.router.navigate(['administrador/enigma/editar/'+ id]);
   }
 
   obtenerEnigma(id:any){

@@ -67,6 +67,45 @@ class ConexionEnigma extends ConexionSequelize {
         return enigmas
     }
 
+    updateEnigma = async(enigma) => {
+
+        console.log(enigma);
+
+        let result = await models.Enigma.update({
+                                    pregunta:enigma.pregunta,
+                                    creador:enigma.creador,
+                                    resp_uno:enigma.opciones[0],
+                                    resp_dos:enigma.opciones[1],
+                                    resp_tres:enigma.opciones[2],
+                                    resp_cuatro:enigma.opciones[3],
+                                    correcta: enigma.correcta
+                                },
+                                {where: {id:enigma.id}}
+        );
+
+        return result 
+
+    }
+
+
+    createEnigma = async(enigma) => {
+        
+        console.log('crear');
+        console.log(enigma)
+
+        let result = await models.Enigma.create({
+                                pregunta:enigma.pregunta,
+                                creador:enigma.creador,
+                                resp_uno:enigma.opciones[0],
+                                resp_dos:enigma.opciones[1],
+                                resp_tres:enigma.opciones[2],
+                                resp_cuatro:enigma.opciones[3],
+                                correcta: enigma.correcta
+        });
+
+        return result;
+    }
+
 }
 
 module.exports = ConexionEnigma;

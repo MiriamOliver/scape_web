@@ -8,5 +8,5 @@ export interface Enigma{
   creador:string,
   pregunta:string,
   correcta:string,
-  opciones: [],
+  opciones:any,
 }

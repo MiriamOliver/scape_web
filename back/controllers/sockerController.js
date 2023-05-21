@@ -36,6 +36,14 @@ const socketController = (socket) => {
             actualizarPartida(socket, payload, res);
         })
 
+        socket.on('actualizarenigmas', (res) => {
+            actualizarEnigma(socket, payload, res);
+        })
+
+        socket.on('crearenigmas', (res) => {
+            crearEnigma(socket, payload, res);
+        })
+
         socket.on('listadoenigmas', (res) => {
             listadoEnigmas(socket, payload, res);
         })
@@ -167,6 +175,29 @@ const listadoEnigmas = (socket, payload, res) => {
                 listaEnigmas.push(enigma.dataValues);
             });
             socket.emit('listadoenigmas', listaEnigmas);
+        });  
+    }
+}
+
+const actualizarEnigma = (socket, payload, res) => {
+    if(res.event == 'listadoenigmas') {
+        let conx = new ConexionEnigma();
+        conx.updateEnigma(res.payload)
+        .then((resp) => {
+            //socket.to(payload.id).emit('listadoenigmas',resp);
+            socket.broadcast.emit('listadoenigmas', resp);
+        });  
+    }
+}
+
+
+const crearEnigma = (socket, payload, res) => {
+    if(res.event == 'listadoenigmas') {
+        let conx = new ConexionEnigma();
+        conx.createEnigma(res.payload)
+        .then((resp) => {
+            //socket.to(payload.id).emit('listadoenigmas',resp);
+            socket.broadcast.emit('listadoenigmas', resp);
         });  
     }
 }
