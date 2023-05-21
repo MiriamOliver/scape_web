@@ -24,7 +24,12 @@ export class ListadoEnigmasComponent implements OnInit{
     private router: Router)
     {
       this.socketService.listadoEnigmaEven.subscribe(res => {
-        this.enigmas = res;
+        let ajenos:any = [];
+        res.forEach((elem: { creador: any; }) => {
+          if(elem.creador != JSON.parse(localStorage.getItem('user')!).nombre)
+          ajenos.push(elem)
+        });
+        this.enigmas = ajenos;
     });
     this.enigma = {
       id : 0,
