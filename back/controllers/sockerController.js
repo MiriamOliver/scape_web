@@ -184,35 +184,47 @@ const listadoEnigmas = (socket, payload, res) => {
 }
 
 const actualizarEnigma = (socket, payload, res) => {
+    let listaEnigmas = [];
     if(res.event == 'listadoenigmas') {
         let conx = new ConexionEnigma();
         conx.updateEnigma(res.payload)
         .then((resp) => {
-            socket.to(payload.id).emit('listadoenigmas',resp);
-            //socket.emit('listadoenigmas', resp);
+            enigmas.forEach(enigma => {
+                listaEnigmas.push(enigma.dataValues);
+            });
+            //socket.to(payload.id).emit('listadoenigmas',listaEnigmas);
+            socket.broadcast.emit('listadoenigmas', listaEnigmas);
         });  
     }
 }
 
 
 const crearEnigma = (socket, payload, res) => {
+    let listaEnigmas = [];
     if(res.event == 'listadoenigmas') {
         let conx = new ConexionEnigma();
         conx.createEnigma(res.payload)
         .then((resp) => {
-            socket.to(payload.id).emit('listadoenigmas',resp);
-            //socket.emit('listadoenigmas', resp);
+            enigmas.forEach(enigma => {
+                listaEnigmas.push(enigma.dataValues);
+            });
+            //socket.to(payload.id).emit('listadoenigmas',listaEnigmas);
+            socket.broadcast.emit('listadoenigmas', listaEnigmas);
         });  
     }
 }
 
 const borrarEnigma = (socket, payload, res) => {
+    let listaEnigmas = [];
     if(res.event == 'listadoenigmas') {
         let conx = new ConexionEnigma();
         conx.deleteEnigma(res.payload)
         .then((resp) => {
-            socket.to(payload.id).emit('listadoenigmas',resp);
-            //socket.emit('listadoenigmas', resp);
+            enigmas.forEach(enigma => {
+                listaEnigmas.push(enigma.dataValues);
+            });
+            //socket.to(payload.id).emit('listadoenigmas',listaEnigmas);
+            socket.broadcast.emit('listadoenigmas', listaEnigmas);
         });  
     }
 }

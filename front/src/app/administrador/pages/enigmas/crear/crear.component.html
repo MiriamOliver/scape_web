@@ -27,44 +27,52 @@
             </div>
             <div class="col-9 text-start px-5">
 
-              <input type="text"
-              formControlName="respuno"
-              value="{{enigma.opciones[0]}}"
-              [ngClass]="{'is-invalid' : form['respuno'].invalid && form['respuno'].dirty}"
-              class="form-control mb-2"
-              [(ngModel)]="respuno"/>
-              <div *ngIf="form['respuno'].invalid" class="invalid-feedback">
-                <div *ngIf="form['respuno'].errors?.['required']" class="error alert alert-danger mt-2">Escribe la primera respuesta</div>
+              <div>
+                <input type="text"
+                formControlName="respuno"
+                value="{{enigma.opciones[0]}}"
+                [ngClass]="{'is-invalid' : form['respuno'].invalid && form['respuno'].dirty}"
+                class="form-control mb-2"
+                [(ngModel)]="respuno"/>
+                <div *ngIf="form['respuno'].invalid" class="invalid-feedback">
+                  <div *ngIf="form['respuno'].errors?.['required']" class="error alert alert-danger mt-2">Escribe la primera respuesta</div>
+                </div>
               </div>
 
-              <input type="text"
-              formControlName="respdos"
-              value="{{enigma.opciones[1]}}"
-              [ngClass]="{'is-invalid' : form['respdos'].invalid && form['respdos'].dirty}"
-              class="form-control mb-2"
-              [(ngModel)]="respdos"/>
-              <div *ngIf="form['respdos'].invalid" class="invalid-feedback">
-                <div *ngIf="form['respdos'].errors?.['required']" class="error alert alert-danger mt-2">Escribe la segunda respuesta</div>
+              <div>
+                <input type="text"
+                formControlName="respdos"
+                value="{{enigma.opciones[1]}}"
+                [ngClass]="{'is-invalid' : form['respdos'].invalid && form['respdos'].dirty}"
+                class="form-control mb-2"
+                [(ngModel)]="respdos"/>
+                <div *ngIf="form['respdos'].invalid" class="invalid-feedback">
+                  <div *ngIf="form['respdos'].errors?.['required']" class="error alert alert-danger mt-2">Escribe la segunda respuesta</div>
+                </div>
               </div>
 
-              <input type="text"
-              formControlName="resptres"
-              value="{{enigma.opciones[2]}}"
-              [ngClass]="{'is-invalid' : form['resptres'].invalid && form['resptres'].dirty}"
-              class="form-control mb-2"
-              [(ngModel)]="resptres"/>
-              <div *ngIf="form['resptres'].invalid" class="invalid-feedback">
-                <div *ngIf="form['resptres'].errors?.['required']" class="error alert alert-danger mt-2">Escribe la tercera respuesta</div>
+              <div>
+                <input type="text"
+                formControlName="resptres"
+                value="{{enigma.opciones[2]}}"
+                [ngClass]="{'is-invalid' : form['resptres'].invalid && form['resptres'].dirty}"
+                class="form-control mb-2"
+                [(ngModel)]="resptres"/>
+                <div *ngIf="form['resptres'].invalid" class="invalid-feedback">
+                  <div *ngIf="form['resptres'].errors?.['required']" class="error alert alert-danger mt-2">Escribe la tercera respuesta</div>
+                </div>
               </div>
 
-              <input type="text"
-              formControlName="respcuatro"
-              value="{{enigma.opciones[3]}}"
-              [ngClass]="{'is-invalid' : form['respcuatro'].invalid && form['respcuatro'].dirty}"
-              class="form-control"
-              [(ngModel)]="respcuatro"/>
-              <div *ngIf="form['respcuatro'].invalid" class="invalid-feedback">
-                <div *ngIf="form['respcuatro'].errors?.['required']" class="error alert alert-danger mt-2">Escribe la cuarta respuesta</div>
+              <div>
+                <input type="text"
+                formControlName="respcuatro"
+                value="{{enigma.opciones[3]}}"
+                [ngClass]="{'is-invalid' : form['respcuatro'].invalid && form['respcuatro'].dirty}"
+                class="form-control"
+                [(ngModel)]="respcuatro"/>
+                <div *ngIf="form['respcuatro'].invalid" class="invalid-feedback">
+                  <div *ngIf="form['respcuatro'].errors?.['required']" class="error alert alert-danger mt-2">Escribe la cuarta respuesta</div>
+                </div>
               </div>
 
             </div>

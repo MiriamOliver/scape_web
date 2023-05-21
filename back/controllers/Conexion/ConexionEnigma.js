@@ -83,7 +83,12 @@ class ConexionEnigma extends ConexionSequelize {
                                 {where: {id:enigma.id}}
         );
 
-        return result 
+        let enigmas = await models.Enigma.findAll({
+            attributes: ['id','creador','pregunta'],
+            where:{creador:{[Op.notLike]: nombre.dataValues.nombre}}
+        })
+
+        return enigmas;
 
     }
 
@@ -92,7 +97,7 @@ class ConexionEnigma extends ConexionSequelize {
     
         console.log(enigma)
 
-        let result = await models.Enigma.create({
+        await models.Enigma.create({
                                 pregunta:enigma.pregunta,
                                 creador:enigma.creador,
                                 resp_uno:enigma.opciones[0],
@@ -102,16 +107,26 @@ class ConexionEnigma extends ConexionSequelize {
                                 correcta: enigma.correcta
         });
 
-        return result;
+        let enigmas = await models.Enigma.findAll({
+            attributes: ['id','creador','pregunta'],
+            where:{creador:{[Op.notLike]: nombre.dataValues.nombre}}
+        })
+
+        return enigmas;
     }
 
     deleteEnigma = async(enigma) => {
     
-        let result = await models.Enigma.destroy({
+        await models.Enigma.destroy({
                                 where:{id:enigma.id_enigma}
         });
 
-        return result;
+        let enigmas = await models.Enigma.findAll({
+            attributes: ['id','creador','pregunta'],
+            where:{creador:{[Op.notLike]: nombre.dataValues.nombre}}
+        })
+
+        return enigmas;
     }
 }
 
