@@ -8,6 +8,8 @@ import { SharedModule } from '../shared/shared.module';
 import { ListadoEnigmasComponent } from './pages/enigmas/listadoenigmas/listadoenigmas.component';
 import { EnigmasComponent } from './pages/enigmas/enigmas/enigmas.component';
 import { CrearComponent } from './pages/enigmas/crear/crear.component';
+import { PartidasComponent } from './pages/partidas/partidas/partidas.component';
+import { ListadopartidasComponent } from './pages/partidas/listadopartidas/listadopartidas.component';
 
 
 @NgModule({
@@ -15,7 +17,9 @@ import { CrearComponent } from './pages/enigmas/crear/crear.component';
     InicioadministradorComponent,
     EnigmasComponent,
     ListadoEnigmasComponent,
-    CrearComponent
+    CrearComponent,
+    PartidasComponent,
+    ListadopartidasComponent
   ],
   imports: [
     CommonModule,
