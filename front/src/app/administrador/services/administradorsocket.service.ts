@@ -41,9 +41,10 @@ export class AdministradorsocketService extends Socket{
     });
   }
 
-  listadoPartidasEvent = (event = 'listadopartidas') => {
-    this.ioSocket.emit('listadoenigmas', {
+  listadoPartidasEvent = (event = 'listadopartidas',payload = {}) => {
+    this.ioSocket.emit('listadopartidas', {
         event,
+        payload
     });
   }
 

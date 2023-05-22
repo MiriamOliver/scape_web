@@ -22,6 +22,6 @@ export class AdministradorService {
   }
 
   obtenerPartida(id:any):Observable<Partida>{
-    return this.http.get<Partida>(`${this.baseUrl}/partida/mostrar/${id}`,);
+    return this.http.get<Partida>(`${this.baseUrl}/partidas/mostrar/${id}`,);
   }
 }

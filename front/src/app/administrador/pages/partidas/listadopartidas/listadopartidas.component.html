@@ -1,10 +1,14 @@
 <div class="row">
-  <div class="col-md-5 mt-5 pe-0">
-    <div *ngIf="infoEnigma == 1" class="info p-2 text-center rounded-1 ms-5">
+  <div class="col-md-5 mt-0 pe-0">
+    <div *ngIf="infoPartida == 1" class="info p-2 text-center rounded-1 ms-5">
       <hr class="hr-text-bot m-0 p-1 mb-2" data-content="DETALLES PARTIDA">
-      <h5 class="p-4 rounded-1">{{partida.resultado}}</h5>
+      <h5 class="p-3 rounded-1">{{partida.resultado}}</h5>
       <div class="info-resumen row">
         <div class="col pe-1">
+          <p class="recuadro p-2 m-0 rounded-top">Creador</p>
+          <p class="datos p-2 m-0 rounded-bottom">{{partida.creador}}</p>
+        </div>
+        <div class="col pe-1 ps-1">
           <p class="recuadro p-2 m-0 rounded-top">Llaves</p>
           <p class="datos p-2 m-0 rounded-bottom">{{partida.llaves}}</p>
         </div>
@@ -15,27 +19,25 @@
       </div>
       <div>
         <div class="lateral">
-          <div class="p-2 fondo-tabla rounded-1">
-            <div class="card border-0 tabla">
-              <div class="card-header border-0 p-2 py-3">
-                <div class="row p-0 m-0 me-3 text-center">
+          <div class="fondo-tabla rounded-1">
+            <div class="card border-0 tabla rounded-top mt-2">
+              <div class="card-header border-0 p-2 pt-3">
+                <div class="row p-0 m-0 text-center">
                   <div class="col-5">Jugador</div>
                   <div class="col-2"><i class="fa-solid fa-key"></i></div>
                   <div class="col-2"><i class="fa-solid fa-circle-xmark"></i></div>
                   <div class="col-3">Rol</div>
                 </div>
               </div>
-              <div class="border-0 p-0 m-0 lista-tabla">
-                <ul class="border-0 row mt-2 me-2 m-0 p-1 lista rounded-1 d-flex text-center"  *ngFor="let jugador of users" >
+              <div class="border-0 p-0 m-0 pb-2 lista-tabla-jugadores">
+                <ul class="border-0 row mt-2 me-2 m-0 ms-2 p-1 lista-jugadores rounded-1 d-flex text-center"  *ngFor="let jugador of jugadores" >
                   <li class="col-5 list-group-item border-0 d-flex flex-row align-items-start">
                     <img class="rounded-1 me-1" src="{{jugador.avatar}}">
                     <p class="text-start">{{jugador.nombre}}</p>
                   </li>
                   <li class="col-2 list-group-item border-0">{{jugador.llaves}}</li>
                   <li class="col-2 list-group-item border-0">{{jugador.fallos}}</li>
-                  <li class="col-3 list-group-item border-0">
-                    <input class="form-check-input" name="isHabilitado" type="checkbox" value="1" id="flexCheckDefault">
-                  </li>
+                  <li class="col-3 list-group-item border-0">{{jugador.rol}}</li>
                 </ul>
               </div>
             </div>
@@ -43,12 +45,12 @@
         </div>
       </div>
     </div>
-    <div *ngIf="infoEnigma == -1" class="info p-2 rounded-1 ms-5">
-      <hr class="hr-text-bot m-0 p-1 mb-2" data-content="DETALLES ENIGMA">
+    <div *ngIf="infoPartida == -1" class="info p-2 rounded-1 ms-5">
+      <hr class="hr-text-bot m-0 p-1 mb-2" data-content="DETALLES PARTIDA">
       <p class="p-3 m-0">Datos generales sobre la partida.<br><br>Pulsa en el icono de información de cualquier partida para ver más detalles sobre esta</p>
     </div>
   </div>
-  <div class="col-md-7 p-5 ps-2 pe-4">
+  <div class="col-md-7 pt-4 ps-2 pe-4">
     <div class="row">
       <div class="col-12 pb-3 pt-4 d-flex" id="v-pills-tab" role="tablist" aria-orientation="vertical">
         <button type="button" class="btn btn-light nav-link active p-2" data-bs-toggle="pill"
@@ -60,21 +62,23 @@
       </div>
     </div>
     <div class="p-2 fondo-tabla rounded-1 me-2">
-      <hr class="hr-text-bot m-0 p-1 mb-2" data-content="LISTA ENIGMAS">
+      <hr class="hr-text-bot m-0 p-1 mb-2" data-content="LISTA PARTIDAS">
       <div class="card border-0 tabla">
         <div class="card-header border-0 p-2 py-3">
           <div class="row p-0 m-0 me-3 text-center">
             <div class="col-1">ID</div>
-            <div class="col-3">Jugadores</div>
-            <div class="col-6">Resultado</div>
-            <div class="col-2">Acciones</div>
+            <div class="col-4">Creador</div>
+            <div class="col-2">Jugadores</div>
+            <div class="col-3">Resultado</div>
+            <div class="col-2">Acción</div>
           </div>
         </div>
-        <div class="border-0 p-0 m-0 lista-tabla">
-          <ul class="border-0 row p-1 mt-2 me-2 m-0 lista rounded-1 d-flex align-items-center text-center" *ngFor="let enigma of enigmas">
+        <div class="border-0 p-0 m-0 lista-tabla-partidas">
+          <ul class="border-0 row p-1 mt-2 me-2 m-0 lista rounded-1 d-flex align-items-center text-center" *ngFor="let partida of partidas">
             <li class="col-1 list-group-item border-0">{{partida.id}}</li>
-            <li class="col-3 list-group-item border-0">{{partida.jugadores}}</li>
-            <li class="col-6 list-group-item border-0">{{partida.resultado}}</li>
+            <li class="col-4 list-group-item border-0">{{partida.nombre}}</li>
+            <li class="col-2 list-group-item border-0">{{partida.jugadores}} / 5</li>
+            <li class="col-3 list-group-item border-0">{{partida.resultado}}</li>
             <li class="col-2 list-group-item border-0 d-flex gap-2 justify-content-center">
               <button type="button" (click)="obtenerPartida(partida.id)" class="btn rounded p-2"><i class="fa-solid fa-circle-info"></i></button>
             </li>

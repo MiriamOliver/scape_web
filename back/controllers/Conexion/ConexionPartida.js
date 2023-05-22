@@ -75,6 +75,36 @@ class ConexionPartida extends ConexionSequelize {
         return result.dataValues;
     }
 
+    getInfoPartida = async(id) => {
+
+        console.log('conseguir partida')
+        let resultado = null;
+        let datos = {id_partida:id};
+        let listaJugadores = [];
+
+        resultado = await models.sequelize.query(`SELECT partidas.id, partidas.anfitrion, partidas.tiempo, partidas.llaves, partidas.estado, partidas.resultado, users.nombre, 
+                                                COUNT(partidasjugadores.id_jugador) AS 'jugadores' FROM partidas JOIN users ON partidas.anfitrion=users.id 
+                                                JOIN partidasjugadores ON partidas.id=partidasjugadores.id_partida WHERE partidas.id = ? 
+                                                GROUP BY partidasjugadores.id_partida;`, { replacements: [id], type: QueryTypes.SELECT });
+        
+        let jugadores = await this.usuariosPartida(datos);
+
+        jugadores.forEach(jugador => {
+            jugador.dataValues.avatar = process.env.URL + process.env.PORT + "/upload/" + jugador.dataValues.avatar;
+            listaJugadores.push(jugador.dataValues);
+        });
+
+        return  {
+                    id:resultado[0].id,
+                    resultado:resultado[0].resultado,
+                    creador:resultado[0].nombre,
+                    tiempo:resultado[0].tiempo,
+                    llaves:resultado[0].llaves,
+                    cant_jug:resultado[0].jugadores,
+                    jugadores:listaJugadores
+                }      
+    }
+
     getPartidasDisponibles = async(id) => {
 
         let resultado = null;
@@ -370,6 +400,18 @@ class ConexionPartida extends ConexionSequelize {
         console.log(jugador);
 
        return jugador;
+    }
+
+    listaPartidas = async() => {
+
+        console.log('entramos en lista partidas')
+        let resultado = null;
+
+        resultado = await models.sequelize.query(`SELECT partidas.id, partidas.anfitrion, partidas.tiempo, partidas.resultado, users.nombre, 
+                                                  COUNT(partidasjugadores.id_jugador) AS 'jugadores' FROM partidas JOIN users ON partidas.anfitrion=users.id 
+                                                  JOIN partidasjugadores ON partidas.id=partidasjugadores.id_partida WHERE partidas.estado = 'terminada'
+                                                  GROUP BY partidasjugadores.id_partida;`, { type: QueryTypes.SELECT });
+        return resultado;
     }
 }
 

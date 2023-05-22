@@ -13,6 +13,7 @@ export interface Enigma {
 
 export interface Partida {
   id : number,
+  creador:string,
   resultado: string,
   llaves : number,
   tiempo : number,

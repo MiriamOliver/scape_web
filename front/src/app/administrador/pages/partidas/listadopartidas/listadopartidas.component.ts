@@ -3,6 +3,7 @@ import { AdministradorService } from 'src/app/administrador/services/administrad
 import { AdministradorsocketService } from 'src/app/administrador/services/administradorsocket.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Partida } from 'src/app/administrador/interfaces/administrador.interface';
+import { InfoPartida } from '../../../../jugador/interfaces/jugador.interface';
 
 
 @Component({
@@ -16,7 +17,9 @@ export class ListadopartidasComponent implements OnInit{
   public ganadas:any = [];
   public perdidas:any = [];
   public todas:any = [];
+  public jugadores:any = [];
   public partida!:Partida
+  public infoPartida = -1;
 
   constructor(
     private administradorService: AdministradorService,
@@ -25,6 +28,7 @@ export class ListadopartidasComponent implements OnInit{
     private router: Router)
     {
       this.socketService.listaPartidasEven.subscribe(res => {
+        console.log(res);
         res.forEach((elem: { resultado: any; }) => {
           if(elem.resultado == 'ganada'){
             this.ganadas.push(elem)
@@ -37,6 +41,7 @@ export class ListadopartidasComponent implements OnInit{
     this.partida = {
       id : 0,
       resultado:'',
+      creador : '',
       llaves : 0,
       tiempo : 0,
       jugadores : [],
@@ -44,7 +49,7 @@ export class ListadopartidasComponent implements OnInit{
   }
 
   ngOnInit(){
-    this.socketService.listadoPartidasEvent('listadopartidas')
+    this.socketService.listadoPartidasEvent('listadopartidas',{})
     this.partidasTodas();
   }
 
@@ -67,6 +72,8 @@ export class ListadopartidasComponent implements OnInit{
     this.administradorService.obtenerPartida(id)
     .subscribe((partida:Partida) => {
       this.partida = partida;
+      this.jugadores = this.partida.jugadores;
+      this.infoPartida = 1;
     })
   }
 }
