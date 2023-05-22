@@ -120,6 +120,18 @@ const getResultadoJugadorPartida = ( req, res = response ) => {
         })
 }
 
+const mostrarPartida = ( req, res = response ) => {
+    console.log(req.params.id);
+    const conex = new ConexionSequelize();
+    conex.getInfoPartida(req.params.id)
+        .then( partida => {
+            res.status(200).json(partida);
+        })
+        .catch(err => {
+            res.status(203).json({'msg':'No se han encontrado registros'});
+        })
+}
+
 module.exports = {
     crearPartida,
     partidasDisponibles,
@@ -129,5 +141,6 @@ module.exports = {
     conseguirPartida,
     finalizarPartida,
     getResultadoPartida,
-    getResultadoJugadorPartida
+    getResultadoJugadorPartida,
+    mostrarPartida
 }

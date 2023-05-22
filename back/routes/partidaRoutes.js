@@ -22,4 +22,6 @@ router.get('/resultado/partida/:id', controlador.getResultadoPartida);
 
 router.get('/resultado/jugadores/:id', controlador.getResultadoJugadorPartida);
 
+router.get('/mostrar/:id', controlador.mostrarPartida);
+
 module.exports = router
