@@ -1,0 +1,74 @@
+<div class="row">
+  <div class="col-md-3 mt-0 pe-0">
+    <div *ngIf="infoUsuario == 1" class="info p-2 text-center rounded-1 ms-5">
+      <hr class="hr-text-bot m-0 p-1 mb-2" data-content="DETALLES USUARIO">
+      <div class="card-body perfil text-center pt-5 pb-4 rounded-1">
+        <div class="info-user mb-3">
+          <img class="rounded-1 me-1" src="{{perfil.avatar}}">
+        </div>
+        <div class="ms-2 text-center">
+          <h6 class="mb-0"><b>{{perfil.nombre}}</b></h6>
+        </div>
+      </div>
+      <div class="my-2">
+        <p class="recuadro p-2 m-0 rounded-top">Email</p>
+        <p class="datos p-2 m-0 rounded-bottom">{{perfil.email}}</p>
+      </div>
+      <div>
+        <p class="recuadro p-2 m-0 rounded-top">Rol</p>
+        <p class="datos p-2 m-0 rounded-bottom">{{perfil.rol}}</p>
+      </div>
+    </div>
+    <div *ngIf="infoUsuario == -1" class="info p-2 rounded-1 ms-5">
+      <hr class="hr-text-bot m-0 p-1 mb-2" data-content="DETALLES USUARIO">
+      <p class="p-3 m-0">Datos generales sobre la partida.<br><br>Pulsa en el icono de información de cualquier partida para ver más detalles sobre esta</p>
+    </div>
+  </div>
+  <div class="col-md-9 pt-4 ps-2 pe-4">
+    <div class="row">
+      <div class="col-9 pb-3 pt-4 d-flex" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+        <button type="button" class="btn btn-light nav-link active p-2" data-bs-toggle="pill"
+                role="tab" aria-selected="true" (click)="usuariosTodos()">Todos</button>
+        <button type="button" class="btn btn-light nav-link mx-2 p-2" data-bs-toggle="pill"
+                role="tab" aria-selected="true" (click)="usuariosJugadores()">Jugadores</button>
+        <button type="button" class="btn btn-light nav-link p-2" data-bs-toggle="pill"
+                role="tab" aria-selected="true" (click)="usuariosAdministradores()">Administradores</button>
+      </div>
+      <div class="col-3 pb-3 pt-4 d-flex justify-content-start">
+        <button type="button" class="btn btn-light p-2" (click)=crearUsuarios()>Crear Usuarios</button>
+      </div>
+    </div>
+    <div class="p-2 fondo-tabla rounded-1 me-2">
+      <hr class="hr-text-bot m-0 p-1 mb-2" data-content="LISTA USUARIOS">
+      <div class="card border-0 tabla">
+        <div class="card-header border-0 p-2 py-3">
+          <div class="row p-0 m-0 me-3 text-center">
+            <div class="col-4">Jugador</div>
+            <div class="col-1">ID</div>
+            <div class="col-3">Email</div>
+            <div class="col-2">Rol</div>
+            <div class="col-2">Acción</div>
+          </div>
+        </div>
+        <div class="border-0 p-0 m-0 lista-tabla">
+          <ul class="border-0 row p-0 mt-2 me-2 m-0 lista rounded-1 d-flex align-items-center text-center" *ngFor="let usuario of usuarios">
+            <li class="col-4 ms-0 ps-1 list-group-item border-0 d-flex flex-row align-items-start">
+                <img class="rounded-1 me-2" src="{{usuario.avatar}}">
+                <p class="text-start">{{usuario.nombre}}</p>
+            </li>
+            <li class="col-1 list-group-item border-0">{{usuario.id}}</li>
+            <li class="col-3 list-group-item border-0">{{usuario.email}}</li>
+            <li class="col-2 list-group-item border-0">{{usuario.rol}}</li>
+            <li class="col-2 list-group-item border-0 d-flex gap-1 justify-content-center">
+              <button type="button" (click)="obtenerUsuario(usuario.id)" class="btn rounded p-2"><i class="fa-solid fa-circle-info"></i></button>
+              <button type="button" (click)="modificarUsuario(usuario.id)" class="btn rounded p-2"><i class="fa-solid fa-pen circle"></i></button>
+                <label  (click)="deshabilitarUsuario(usuario.id, usuario.habilitado)" class="form-check-label d-flex habilitar rounded p-2"  for="u_{{usuario.id}}"><i class="fa-sharp fa-solid fa-ban m-0 circle" style="font-weight: 900;"></i>
+                  <input class="form-check-input m-0 ms-1" type="checkbox" value="" id="u_{{usuario.id}}" [checked]="usuario.habilitado">
+                </label>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

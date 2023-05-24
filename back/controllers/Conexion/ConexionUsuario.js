@@ -48,8 +48,10 @@ class ConexionUsuario extends ConexionSequelize {
             attributes: ['id', 'nombre', 'avatar'],
             where : {
                 email: req.body.email,
-                password: req.body.password
-            },
+                password: req.body.password,
+                habilitado: 1,
+                verifiedAt:{[Op.ne]: null}
+            },  
 
             include: 'RolesAsignados'
         });
@@ -201,6 +203,72 @@ class ConexionUsuario extends ConexionSequelize {
             });
         }
         return resultado
+    }
+
+    getUsuario = async(id) => {
+
+        const user = await models.User.findOne({
+            where: { id:id },
+            include: [
+                {
+                    model: models.RolesAsignados,
+                    attributes: [],
+                    as: 'RolesAsignados',
+                    include: [
+                        {
+                            model: models.Rol,
+                            attributes: [],
+                            as: 'Rol'
+                        }
+                    ]
+                }
+            ],
+            attributes: ['id','nombre','avatar','email','habilitado',
+                        [Sequelize.col('RolesAsignados.Rol.rol'), 'rol'],
+                    ]
+        }); 
+
+        return user.dataValues;
+    }
+
+    listaUsuarios = async() => {
+
+        const users = await models.User.findAll({
+            where: { verifiedAt:{[Op.ne]: null}},
+            include: [
+                {
+                    model: models.RolesAsignados,
+                    attributes: [],
+                    as: 'RolesAsignados',
+                    include: [
+                        {
+                            model: models.Rol,
+                            attributes: [],
+                            as: 'Rol'
+                        }
+                    ]
+                }
+            ],
+            attributes: ['id','nombre','avatar','email','habilitado',
+                        [Sequelize.col('RolesAsignados.Rol.rol'), 'rol'],
+                    ]
+        }); 
+
+        return users;
+    }
+
+    bloqueoUsuarios =async(datos) => {
+        console.log(datos);
+
+        await models.User.update({
+            habilitado: datos.habilitado
+        },
+        {where: {id:datos.id_user}})
+
+        let users = this.listaUsuarios();
+
+        return users;
+
     }
 }
 

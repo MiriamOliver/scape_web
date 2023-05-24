@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Administrador, Enigma, Partida } from '../interfaces/administrador.interface';
+import { Administrador, Enigma, Partida, Perfil } from '../interfaces/administrador.interface';
 import { environment } from './../../../environments/environment'
 
 @Injectable({
@@ -23,5 +23,9 @@ export class AdministradorService {
 
   obtenerPartida(id:any):Observable<Partida>{
     return this.http.get<Partida>(`${this.baseUrl}/partidas/mostrar/${id}`,);
+  }
+
+  obtenerUsuario(id:any):Observable<Perfil>{
+    return this.http.get<Perfil>(`${this.baseUrl}/usuarios/mostrar/${id}`,);
   }
 }

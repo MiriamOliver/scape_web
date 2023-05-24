@@ -19,3 +19,12 @@ export interface Partida {
   tiempo : number,
   jugadores : [],
 }
+
+export interface Perfil {
+  id:number,
+  nombre:string,
+  avatar:string,
+  email:string,
+  rol:string,
+  activo:any;
+}

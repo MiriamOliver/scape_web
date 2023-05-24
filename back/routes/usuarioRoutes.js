@@ -6,4 +6,6 @@ const { validarCampos } = require('../middlewares/validar-campos');
 
 router.get('/conectados/:rol/:id', controlador.getUsuariosConectados);
 
+router.get('/mostrar/:id', controlador.mostrarUsuario);
+
 module.exports = router

@@ -18,6 +18,19 @@ const getUsuariosConectados = (req, res = response) => {
         })
 }
 
+mostrarUsuario = (req, res = response) => {
+    const conex = new ConexionSequelize();
+    conex.getUsuario(req.params.id)
+        .then( user => {
+            user.avatar = process.env.URL + process.env.PORT + "/upload/" + user.avatar;
+            res.status(200).json(user);
+        })
+        .catch(err => {
+            res.status(203).json({'msg':'No se han encontrado registros'});
+        })
+}
+
 module.exports = {
-    getUsuariosConectados
+    getUsuariosConectados,
+    mostrarUsuario
 }

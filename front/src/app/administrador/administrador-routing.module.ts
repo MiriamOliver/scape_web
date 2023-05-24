@@ -4,6 +4,7 @@ import { InicioadministradorComponent } from './pages/inicioadministrador/inicio
 import { EnigmasComponent } from './pages/enigmas/enigmas/enigmas.component';
 import { CrearComponent } from './pages/enigmas/crear/crear.component';
 import { PartidasComponent } from './pages/partidas/partidas/partidas.component';
+import { UsuariosComponent } from './pages/users/usuarios/usuarios.component';
 
 const routes: Routes = [
   {
@@ -13,7 +14,8 @@ const routes: Routes = [
       { path: 'enigmas', component: EnigmasComponent},
       { path: 'enigma/crear', component: CrearComponent},
       { path: 'enigma/editar/:id', component: CrearComponent},
-      { path: 'partidas', component: PartidasComponent}
+      { path: 'partidas', component: PartidasComponent},
+      { path: 'usuarios', component: UsuariosComponent}
     ]
   }
 ];
