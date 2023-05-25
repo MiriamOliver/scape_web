@@ -110,11 +110,11 @@ export class ListadousuariosComponent implements OnInit{
   }
 
   modificarUsuario(id:any){
-    this.router.navigate(['administrador/usuario/editar/'+ id]);
+    this.router.navigate(['administrador/usuarios/editar/'+ id]);
   }
 
   crearUsuarios(){
-    this.router.navigate(['administrador/usuario/crear']);
+    this.router.navigate(['administrador/usuarios/crear']);
   }
 
 }

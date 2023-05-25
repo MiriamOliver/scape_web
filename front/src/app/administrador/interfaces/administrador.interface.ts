@@ -21,7 +21,7 @@ export interface Partida {
 }
 
 export interface Perfil {
-  id:number,
+  id:any,
   nombre:string,
   avatar:string,
   email:string,

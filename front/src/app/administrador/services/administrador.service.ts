@@ -28,4 +28,14 @@ export class AdministradorService {
   obtenerUsuario(id:any):Observable<Perfil>{
     return this.http.get<Perfil>(`${this.baseUrl}/usuarios/mostrar/${id}`,);
   }
+
+  actualizarPerfil(perfil:Perfil):Observable<any>{
+    const formReg = new FormData();
+      formReg.append('id', perfil.id)
+      formReg.append('archivo', perfil.avatar);
+      formReg.append('nombre', perfil.nombre);
+      formReg.append('rol', perfil.rol);
+
+    return this.http.put<any>(`${this.baseUrl}/usuarios/actualizar`, formReg);
+  }
 }

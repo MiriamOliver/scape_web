@@ -36,6 +36,11 @@ const socketController = (socket) => {
             actualizarPartida(socket, payload, res);
         })
 
+        socket.on('actualizarusuario', (res) => {
+            console.log(res);
+            actualizarPerfilUsuario(socket, payload, res);
+        })
+
         socket.on('actualizarenigmas', (res) => {
             actualizarEnigma(socket, payload, res);
         })
@@ -258,7 +263,6 @@ const listadoUsuarios = (socket, payload, res) => {
         let conx = new ConexionUsuario();
         conx.listaUsuarios()
         .then((usuarios) => {
-            console.log(usuarios)
             usuarios.forEach(user => {
                 user.avatar = process.env.URL + process.env.PORT + "/upload/" + user.avatar
                 if(user.habilitado == 1){
@@ -278,7 +282,26 @@ const habilitarUsuarios = (socket, payload, res) => {
         let conx = new ConexionUsuario();
         conx.bloqueoUsuarios(res.payload)
         .then((usuarios) => {
-            console.log(usuarios)
+            usuarios.forEach(user => {
+                user.avatar = process.env.URL + process.env.PORT + "/upload/" + user.avatar
+                if(user.habilitado == 1){
+                    user.habilitado = false;
+                }else{
+                    user.habilitado = true;
+                }
+            });
+            socket.to(payload.id).emit('listadousuarios',usuarios);
+            socket.emit('listadousuarios', usuarios);
+        });  
+    }
+}
+
+const actualizarPerfilUsuario = (socket, payload, res) => {
+    if(res.event == 'listadousuarios') {
+        console.log(res.payload.req);
+        let conx = new ConexionUsuario();
+        conx.actualizarUsuarios(res.payload)
+        .then((usuarios) => {
             usuarios.forEach(user => {
                 user.avatar = process.env.URL + process.env.PORT + "/upload/" + user.avatar
                 if(user.habilitado == 1){

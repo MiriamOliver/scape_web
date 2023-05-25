@@ -44,6 +44,14 @@ export class AdministradorsocketService extends Socket{
     });
   }
 
+  actualizarPerfil = (event = 'actualizarusuario', payload:any) => {
+    console.log(payload);
+    this.ioSocket.emit('actualizarusuario', {
+        event,
+        payload
+    });
+  }
+
   listadoEnigmasEvent = (event = 'listadoenigmas',payload = {}) => {
     this.ioSocket.emit('listadoenigmas', {
         event,

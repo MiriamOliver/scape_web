@@ -8,4 +8,6 @@ router.get('/conectados/:rol/:id', controlador.getUsuariosConectados);
 
 router.get('/mostrar/:id', controlador.mostrarUsuario);
 
+router.put('/actualizar', controlador.actualizarUsuario);
+
 module.exports = router

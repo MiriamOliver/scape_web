@@ -258,7 +258,6 @@ class ConexionUsuario extends ConexionSequelize {
     }
 
     bloqueoUsuarios =async(datos) => {
-        console.log(datos);
 
         await models.User.update({
             habilitado: datos.habilitado
@@ -270,9 +269,62 @@ class ConexionUsuario extends ConexionSequelize {
         return users;
 
     }
+
+    actualizarUsuarios =async(datos) => {
+
+        let idRol = await models.Rol.findOne({
+                attributes: ['id'],
+                where: {rol:datos.rol}
+        })
+
+        await models.RolesAsignados.update({
+            id_rol: idRol.dataValues.id},
+            {where:{id_user:datos.id}
+        })
+
+        if(datos.avatar == ''){
+            await models.User.update({
+                nombre: datos.nombre
+            },
+            {where: {id:datos.id}})
+
+        }
+
+        let users = this.listaUsuarios();
+
+        return users; 
+
+    }
+
+    updateUsuario = async (req) => {
+
+        try{
+
+            let idRol = await models.Rol.findOne({
+                attributes: ['id'],
+                where: {rol:req.body.rol}
+            })
+
+            await models.RolesAsignados.update({
+                id_rol: idRol.dataValues.id},
+                {where:{id_user:req.body.id}
+            })
+
+            const nombre = await File.subirArchivo(req.files, undefined, 'imgs' );
+
+            const usuario = await models.User.update({
+                nombre: req.body.nombre,
+                avatar:nombre
+            },
+            {where: {id:req.body.id}});
+        
+            return usuario;
+            
+        }catch (err){
+            throw err;
+        }
+    }
 }
-
-
 
 
 module.exports = ConexionUsuario;

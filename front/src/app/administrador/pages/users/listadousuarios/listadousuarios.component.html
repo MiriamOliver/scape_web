@@ -21,7 +21,7 @@
     </div>
     <div *ngIf="infoUsuario == -1" class="info p-2 rounded-1 ms-5">
       <hr class="hr-text-bot m-0 p-1 mb-2" data-content="DETALLES USUARIO">
-      <p class="p-3 m-0">Datos generales sobre la partida.<br><br>Pulsa en el icono de información de cualquier partida para ver más detalles sobre esta</p>
+      <p class="p-3 m-0">Datos generales sobre el jugador.<br><br>Pulsa en el icono de información de cualquier jugador para ver más detalles sobre este</p>
     </div>
   </div>
   <div class="col-md-9 pt-4 ps-2 pe-4">
@@ -34,11 +34,11 @@
         <button type="button" class="btn btn-light nav-link p-2" data-bs-toggle="pill"
                 role="tab" aria-selected="true" (click)="usuariosAdministradores()">Administradores</button>
       </div>
-      <div class="col-3 pb-3 pt-4 d-flex justify-content-start">
-        <button type="button" class="btn btn-light p-2" (click)=crearUsuarios()>Crear Usuarios</button>
+      <div class="col-3 pb-3 pt-4 d-flex justify-content-end">
+        <button type="button" class="btn btn-light p-2 me-3" (click)=crearUsuarios()>Crear Usuarios</button>
       </div>
     </div>
-    <div class="p-2 fondo-tabla rounded-1 me-2">
+    <div class="p-2 fondo-tabla rounded-1 me-3">
       <hr class="hr-text-bot m-0 p-1 mb-2" data-content="LISTA USUARIOS">
       <div class="card border-0 tabla">
         <div class="card-header border-0 p-2 py-3">
