@@ -89,9 +89,7 @@ export class ModificarusuariosComponent implements OnInit {
       this.socketService.actualizarPerfil('listadousuarios', this.perfil)
     }
 
-
-
-    //this.router.navigate(['administrador/usuarios']);
+    this.router.navigate(['administrador/usuarios']);
 
   }
 
