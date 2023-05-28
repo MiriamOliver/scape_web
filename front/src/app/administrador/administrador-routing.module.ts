@@ -19,7 +19,7 @@ const routes: Routes = [
       { path: 'partidas', component: PartidasComponent},
       { path: 'usuarios', component: UsuariosComponent},
       { path: 'usuarios/editar/:id', component: ModificarusuariosComponent},
-      { path: 'usuarios/crear', component: CrearusuariosComponent},
+      { path: 'usuarios/crear', component:CrearusuariosComponent},
 
     ]
   }

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Administrador, Enigma, Partida, Perfil } from '../interfaces/administrador.interface';
+import { Administrador, Enigma, Partida, Perfil, Usuario } from '../interfaces/administrador.interface';
 import { environment } from './../../../environments/environment'
 
 @Injectable({
@@ -37,5 +37,21 @@ export class AdministradorService {
       formReg.append('rol', perfil.rol);
 
     return this.http.put<any>(`${this.baseUrl}/usuarios/actualizar`, formReg);
+  }
+
+  crearUsuario(usuario:Usuario):Observable<Usuario>{
+    const formReg = new FormData();
+      formReg.append('archivo', usuario.avatar);
+      formReg.append('nombre', usuario.nombre);
+      formReg.append('email',  usuario.email);
+      formReg.append('password', usuario.password);
+      formReg.append('verificado',  usuario.verificado);
+      formReg.append('rol', usuario.rol);
+
+    return this.http.post<Usuario>(`${this.baseUrl}/usuarios/crear`, formReg);
+  }
+
+  generarUsuarios(datos:any):Observable<Usuario>{
+    return this.http.post<Usuario>(`${this.baseUrl}/usuarios/generar`, datos);
   }
 }

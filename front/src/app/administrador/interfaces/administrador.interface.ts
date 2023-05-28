@@ -28,3 +28,12 @@ export interface Perfil {
   rol:string,
   activo:any;
 }
+
+export interface Usuario {
+  nombre: string;
+  email: string;
+  password: string;
+  avatar: string;
+  rol:string,
+  verificado:any
+}

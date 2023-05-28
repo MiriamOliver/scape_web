@@ -324,6 +324,47 @@ class ConexionUsuario extends ConexionSequelize {
             throw err;
         }
     }
+
+    crearUsuario = async (datos, avatar) => {
+
+        let rol = '';
+
+        try{
+            
+            const usuario = await models.User.create({
+                nombre: datos.nombre,
+                email: datos.email,
+                password: datos.password,
+                avatar: avatar
+            });
+
+            if(usuario){
+                if(datos.rol == 'aleatorio'){
+                    let tipoRol = ['jugador', 'administrador'];
+                    let alea = Math.trunc(Math.random() * tipoRol.length);
+                    rol = tipoRol[alea];
+                }else{
+                    rol = datos.rol;
+                }
+
+                const idRol = await this.getIdRol(rol);
+                await this.asignarRol(usuario.dataValues.id, idRol.dataValues.id);
+                if(rol == 'jugador'){
+                    await this.insertarJugador(usuario.dataValues.id);
+                }
+                if(datos.verificado == 'no'){
+                    correo.verificarCorreo(usuario.dataValues.id, usuario.dataValues.email, 'verificarcorreo');
+                }else{
+                    await usuario.update({verifiedAt: moment(Date.now()).format('YYYY-MM-DD HH:mm:ss')});
+                }
+            }
+
+            return usuario.dataValues;
+            
+        }catch (err){
+            throw err;
+        }
+    }
 }
 
 

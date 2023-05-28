@@ -10,4 +10,8 @@ router.get('/mostrar/:id', controlador.mostrarUsuario);
 
 router.put('/actualizar', controlador.actualizarUsuario);
 
+router.post('/crear', controlador.crearUsuario);
+
+router.post('/generar', controlador.generarUsuarios);
+
 module.exports = router
