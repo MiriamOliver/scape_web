@@ -1,5 +1,6 @@
 const Conexion = require('./Conexion/ConexionPartida');
 const ConexionEnigma = require('./Conexion/ConexionEnigma');
+const ConexionUsuario = require('./Conexion/ConexionUsuario');
 
 
 const socketController = (socket) => {
@@ -35,6 +36,11 @@ const socketController = (socket) => {
             actualizarPartida(socket, payload, res);
         })
 
+        socket.on('actualizarusuario', (res) => {
+            console.log(res);
+            actualizarPerfilUsuario(socket, payload, res);
+        })
+
         socket.on('actualizarenigmas', (res) => {
             actualizarEnigma(socket, payload, res);
         })
@@ -49,6 +55,14 @@ const socketController = (socket) => {
 
         socket.on('listadoenigmas', (res) => {
             listadoEnigmas(socket, payload, res);
+        })
+
+        socket.on('listadousuarios', (res) => {
+            listadoUsuarios(socket, payload, res);
+        })
+
+        socket.on('habilitarusuarios', (res) => {
+            habilitarUsuarios(socket, payload, res);
         })
 
         socket.on('borrarenigma', (res) => {
@@ -240,6 +254,64 @@ const listadoPartidas = (socket, payload, res) => {
         .then((partidas) => {
             socket.to(payload.id).emit('listadopartidas',partidas);
             socket.emit('listadopartidas', partidas);
+        });  
+    }
+}
+
+const listadoUsuarios = (socket, payload, res) => {
+    if(res.event == 'listadousuarios') {
+        let conx = new ConexionUsuario();
+        conx.listaUsuarios()
+        .then((usuarios) => {
+            usuarios.forEach(user => {
+                user.avatar = process.env.URL + process.env.PORT + "/upload/" + user.avatar
+                if(user.habilitado == 1){
+                    user.habilitado = false;
+                }else{
+                    user.habilitado = true;
+                }
+            });
+            socket.to(payload.id).emit('listadousuarios',usuarios);
+            socket.emit('listadousuarios', usuarios);
+        });  
+    }
+}
+
+const habilitarUsuarios = (socket, payload, res) => {
+    if(res.event == 'listadousuarios') {
+        let conx = new ConexionUsuario();
+        conx.bloqueoUsuarios(res.payload)
+        .then((usuarios) => {
+            usuarios.forEach(user => {
+                user.avatar = process.env.URL + process.env.PORT + "/upload/" + user.avatar
+                if(user.habilitado == 1){
+                    user.habilitado = false;
+                }else{
+                    user.habilitado = true;
+                }
+            });
+            socket.to(payload.id).emit('listadousuarios',usuarios);
+            socket.emit('listadousuarios', usuarios);
+        });  
+    }
+}
+
+const actualizarPerfilUsuario = (socket, payload, res) => {
+    if(res.event == 'listadousuarios') {
+        console.log(res.payload.req);
+        let conx = new ConexionUsuario();
+        conx.actualizarUsuarios(res.payload)
+        .then((usuarios) => {
+            usuarios.forEach(user => {
+                user.avatar = process.env.URL + process.env.PORT + "/upload/" + user.avatar
+                if(user.habilitado == 1){
+                    user.habilitado = false;
+                }else{
+                    user.habilitado = true;
+                }
+            });
+            socket.to(payload.id).emit('listadousuarios',usuarios);
+            socket.emit('listadousuarios', usuarios);
         });  
     }
 }

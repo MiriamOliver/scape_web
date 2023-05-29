@@ -14,14 +14,14 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'id_user',
         targetKey: 'id',
         as: 'User'
-      });
+      }); */
 
 
       RolesAsignados.belongsTo(models.Rol, {
         foreignKey: 'id_rol',
         targetKey: 'id',
         as: 'Rol'
-      }); */
+      });
     }
   }
   RolesAsignados.init({

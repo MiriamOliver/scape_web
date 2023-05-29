@@ -10,6 +10,10 @@ import { EnigmasComponent } from './pages/enigmas/enigmas/enigmas.component';
 import { CrearComponent } from './pages/enigmas/crear/crear.component';
 import { PartidasComponent } from './pages/partidas/partidas/partidas.component';
 import { ListadopartidasComponent } from './pages/partidas/listadopartidas/listadopartidas.component';
+import { UsuariosComponent } from './pages/users/usuarios/usuarios.component';
+import { ListadousuariosComponent } from './pages/users/listadousuarios/listadousuarios.component';
+import { CrearusuariosComponent } from './pages/users/crearusuarios/crearusuarios.component';
+import { ModificarusuariosComponent } from './pages/users/modificarusuarios/modificarusuarios.component';
 
 
 @NgModule({
@@ -19,7 +23,11 @@ import { ListadopartidasComponent } from './pages/partidas/listadopartidas/lista
     ListadoEnigmasComponent,
     CrearComponent,
     PartidasComponent,
-    ListadopartidasComponent
+    ListadopartidasComponent,
+    UsuariosComponent,
+    ListadousuariosComponent,
+    CrearusuariosComponent,
+    ModificarusuariosComponent
   ],
   imports: [
     CommonModule,
