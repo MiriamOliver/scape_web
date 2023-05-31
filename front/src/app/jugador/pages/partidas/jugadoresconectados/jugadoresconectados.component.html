@@ -18,7 +18,9 @@
           <li class="col-2 list-group-item border-0">{{jugador.llaves}}</li>
           <li class="col-2 list-group-item border-0">{{jugador.fallos}}</li>
           <li class="col-3 list-group-item border-0">
-            <input class="form-check-input" name="isHabilitado" type="checkbox" value="1" id="flexCheckDefault">
+            <input *ngIf="isAlmirante == true" class="form-check-input" type="checkbox" value="" id="u_{{jugador.id}}" [checked]="jugador.activo" (click)="activarUsuario(jugador.id, jugador.activo)">
+            <span *ngIf="isAlmirante == false && jugador.activo == true">activo</span>
+            <span *ngIf="isAlmirante == false && jugador.activo == false">desactivado</span>
           </li>
         </ul>
       </div>

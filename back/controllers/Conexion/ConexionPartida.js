@@ -350,6 +350,52 @@ class ConexionPartida extends ConexionSequelize {
            return jugador;
     } 
 
+    activarJugador = async(datos) => {
+
+        await models.PartidaJugador.update({
+                                            activo: datos.activo}, 
+                                            {where:{id_partida: datos.id_partida, 
+                                            id_jugador: datos.id_user}}
+            );
+
+            let jugador = await models.User.findAll({
+                include:[{
+                    model: models.PartidaJugador,
+                    as: 'PartidasJugadores',
+                    attributes:[],
+                    where: { id_partida: datos.id_partida}
+                }],
+                    attributes: ['id','nombre','avatar', 
+                    [Sequelize.col('PartidasJugadores.id_partida'), 'id_partida'],
+                    [Sequelize.col('PartidasJugadores.llaves'), 'llaves'],
+                    [Sequelize.col('PartidasJugadores.fallos'), 'fallos'],
+                    [Sequelize.col('PartidasJugadores.activo'), 'activo'],
+                    [Sequelize.col('PartidasJugadores.rol'), 'rol'],
+                ]
+            }); 
+
+            return jugador;
+
+    }
+
+    contestarJugador = async(datos) => {
+
+            let jugador = await models.User.findAll({
+                include:[{
+                    model: models.PartidaJugador,
+                    as: 'PartidasJugadores',
+                    attributes:[],
+                    where: { id_partida: datos.id_partida}
+                }],
+                    attributes: ['id', 
+                    [Sequelize.col('PartidasJugadores.id_partida'), 'id_partida'],
+                    [Sequelize.col('PartidasJugadores.activo'), 'activo'],
+                ]
+            }); 
+
+            return jugador;
+    }
+
     resultadoFinalPartida = async(body) => {
         await models.Partida.update({resultado: body.resultado, 
                                      tiempo: body.tiempo,

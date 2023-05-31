@@ -16,6 +16,7 @@ export class JugadorsocketService extends Socket{
   @Output() estadoPartidaEven: EventEmitter<any> = new EventEmitter();
   @Output() enigmaEven: EventEmitter<any> = new EventEmitter();
   @Output() estadoJuegoEven: EventEmitter<any> = new EventEmitter();
+  @Output() usuarioActivo: EventEmitter<any> = new EventEmitter();
 
 
   private baseUrl: string = environment.baseUrl;
@@ -40,6 +41,8 @@ export class JugadorsocketService extends Socket{
     this.ioSocket.on('enigmas', (res:Enigma) => this.enigmaEven.emit(res))
 
     this.ioSocket.on('actualizarpartida', (res:Juego) => this.estadoJuegoEven.emit(res))
+
+    this.ioSocket.on('contestarenigma', (res:any) => this.usuarioActivo.emit(res))
   }
 
   emitEvent = (event = 'default',payload = {}) => {
@@ -88,6 +91,20 @@ export class JugadorsocketService extends Socket{
 
   actualizarJugadorEvent =  (event = 'actualizarjugador', payload = {}) => {
     this.ioSocket.emit('actualizarjugador', {
+      event,
+      payload
+    });
+  }
+
+  activarJugadorEvent =  (event = 'activarjugador', payload = {}) => {
+    this.ioSocket.emit('activarjugador', {
+      event,
+      payload
+    });
+  }
+
+  contestarEnigmaEvent = (event = 'contestarenigma', payload = {}) => {
+    this.ioSocket.emit('activarjugador', {
       event,
       payload
     });
