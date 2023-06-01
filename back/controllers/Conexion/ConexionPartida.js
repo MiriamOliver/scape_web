@@ -311,18 +311,19 @@ class ConexionPartida extends ConexionSequelize {
     }
 
     updatePartidaJugador = async(datos) => {
-        console.log(datos);
+        
+        if(datos.llaves > 0){
+            let almirante = await models.PartidaJugador.findOne({
+                where:{id_partida:datos.id_partida,
+                        rol: 'almirante'}
+            })
 
-        let almirante = await models.PartidaJugador.findOne({
-                        where:{id_partida:datos.id_partida,
-                                rol: 'almirante'}
-        })
-
-        if(almirante == null){
-            await models.PartidaJugador.update({rol: 'almirante'}, 
+            if(almirante == null){
+                await models.PartidaJugador.update({rol: 'almirante'}, 
                             {where:{id_partida: datos.id_partida, 
                             id_jugador: datos.id_user}}
                         );
+            }
         }
 
         await models.PartidaJugador.update({llaves: datos.llaves, 

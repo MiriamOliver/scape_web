@@ -42,6 +42,7 @@ export class EnigmasComponent implements OnInit{
     private router: Router)
     {
       this.socketService.enigmaEven.subscribe(res => {
+        console.log(res);
         this.enigma = {
           id : res.id,
           pregunta : res.pregunta,
@@ -57,6 +58,7 @@ export class EnigmasComponent implements OnInit{
         console.log(res);
         res.forEach((u: {activo:any; id: any}) => {
           if(u.id == JSON.parse(localStorage.getItem('user')!).id){
+            console.log(this.respFinal);
             if(u.activo == 1){
               this.boton = false;
               this.activo = 1;
@@ -96,6 +98,8 @@ export class EnigmasComponent implements OnInit{
   }
 
   empezandoPartida(){
+    console.log(this.respFinal);
+    console.log(this.tiempo_general);
     if(this.tiempo_general > 0){
       console.log('holita');
       console.log(this.llavesPartida);
@@ -182,6 +186,7 @@ export class EnigmasComponent implements OnInit{
           llaves: this.llavesPartida + 1,
         })
     }
+    this.respFinal = '';
   }
 
   enviarEnigmas(){
