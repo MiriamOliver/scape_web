@@ -32,6 +32,14 @@ const socketController = (socket) => {
             actualizarPartidaJugador(socket, payload, res);
         })
 
+        socket.on('activarjugador', (res) => {
+            activarPartidaJugador(socket, payload, res);
+        })
+
+        socket.on('contestarenigma', (res) => {
+            activarContestarEnigma(socket, payload, res);
+        })
+
         socket.on('actualizarpartida', (res) => {
             actualizarPartida(socket, payload, res);
         })
@@ -104,38 +112,6 @@ const chatPartida = (socket, res) => {
     }
 }
 
-const mostrarUsuariosConectados = (socket, payload, res) => {
-    let userConectados = [];
-    if(res.event == 'conectados') {
-        let conx = new Conexion();
-        conx.usuariosPartida(res.payload)
-        .then((users) => {
-            users.forEach(user => {
-                user.avatar = process.env.URL + process.env.PORT + "/upload/" + user.avatar;
-                userConectados.push(user.dataValues);
-            });
-            socket.to(payload.id).emit('conectados',userConectados);
-            socket.emit('conectados', userConectados); 
-        });
-    }       
-}
-
-const usuarioDesconectado = (socket, payload, res) => {
-    let userConectados = [];
-    if(res.event == 'desconectado') {
-        let conx = new Conexion();
-        conx.usuarioDesconectado(res.payload)
-        .then((users) => {
-            users.forEach(user => {
-                user.avatar = process.env.URL + process.env.PORT + "/upload/" + user.avatar;
-                userConectados.push(user.dataValues);
-            });
-            socket.to(payload.id).emit('desconectado',userConectados);
-            socket.emit('desconectado', userConectados);
-        });
-    }     
-}
-
 const estadoPartida = (socket, payload, res) => {
     if(res.event == 'juego') {
         let conx = new Conexion();
@@ -156,22 +132,6 @@ const conseguirEnigma = (socket, payload, res) => {
             socket.to(payload.id).emit('enigmas',resp);
             socket.emit('enigmas', resp);
         }); 
-    }
-}
-
-const actualizarPartidaJugador = (socket, payload, res) => {
-    let userConectados = [];
-    if(res.event == 'conectados') {
-        let conx = new Conexion();
-        conx.updatePartidaJugador(res.payload)
-        .then((users) => {
-            users.forEach(user => {
-                user.avatar = process.env.URL + process.env.PORT + "/upload/" + user.avatar;
-                userConectados.push(user.dataValues);
-            });
-            socket.to(payload.id).emit('conectados',userConectados);
-            socket.emit('conectados', userConectados); 
-        });  
     }
 }
 
@@ -316,7 +276,115 @@ const actualizarPerfilUsuario = (socket, payload, res) => {
     }
 }
 
+const actualizarPartidaJugador = (socket, payload, res) => {
+    let userConectados = [];
+    if(res.event == 'conectados') {
+        let conx = new Conexion();
+        conx.updatePartidaJugador(res.payload)
+        .then((users) => {
+            users.forEach(user => {
+                user.avatar = process.env.URL + process.env.PORT + "/upload/" + user.avatar;
+                if(user.activo == 0){
+                    user.activo = false;
+                }else{
+                    user.activo = true;
+                }
+                userConectados.push(user.dataValues);
+            });
+            socket.to(payload.id).emit('conectados',userConectados);
+            socket.emit('conectados', userConectados); 
+        });  
+    }
+}
 
+const activarPartidaJugador = (socket, payload, res) => {
+    let userConectados = [];
+    if(res.event == 'conectados') {
+        let conx = new Conexion();
+        conx.activarJugador(res.payload)
+        .then((usuarios) => {
+            usuarios.forEach(user => {
+                user.avatar = process.env.URL + process.env.PORT + "/upload/" + user.avatar
+                if(user.activo == 0){
+                    user.activo = false;
+                }else{
+                    user.activo = true;
+                }
+                userConectados.push(user.dataValues);
+            });
+            socket.to(payload.id).emit('conectados', userConectados);
+            socket.emit('conectados', userConectados);
+            socket.to(payload.id).emit('contestarenigma', userConectados);
+            socket.emit('contestarenigma', userConectados);    
+        });  
+    }
+}
+
+const activarContestarEnigma = (socket, payload, res) => {
+    let userConectados = [];
+    if(res.event == 'conectados') {
+        let conx = new Conexion();
+        conx.contestarJugador(res.payload)
+        .then((usuarios) => {
+            usuarios.forEach(user => {
+                console.log(user);
+                if(user.activo == 0){
+                    user.activo = false;
+                }else{
+                    user.activo = true;
+                }
+                userConectados.push(user.dataValues);
+            });
+            socket.to(payload.id).emit('contestarenigma', userConectados);
+            socket.emit('contestarenigma', userConectados);
+        });  
+    }
+}
+
+const mostrarUsuariosConectados = (socket, payload, res) => {
+    let userConectados = [];
+    if(res.event == 'conectados') {
+        let conx = new Conexion();
+        conx.usuariosPartida(res.payload)
+        .then((users) => {
+            users.forEach(user => {
+                console.log(user);
+                user.avatar = process.env.URL + process.env.PORT + "/upload/" + user.avatar;
+                if(user.activo == 0){
+                    user.activo = false;
+                }else{
+                    user.activo = true;
+                }
+                userConectados.push(user.dataValues);
+            });
+            socket.to(payload.id).emit('conectados',userConectados);
+            socket.emit('conectados', userConectados); 
+        });
+    }       
+}
+
+const usuarioDesconectado = (socket, payload, res) => {
+    let userConectados = [];
+    if(res.event == 'desconectado') {
+        let conx = new Conexion();
+        conx.usuarioDesconectado(res.payload)
+        .then((users) => {
+            users.forEach(user => {
+                console.log(user);
+                user.avatar = process.env.URL + process.env.PORT + "/upload/" + user.avatar;
+                if(user.activo == 0){
+                    user.activo = false;
+                }else{
+                    user.activo = true;
+                }
+                userConectados.push(user.dataValues);
+            });
+            console.log(userConectados);
+            socket.to(payload.id).emit('desconectado',userConectados);
+            socket.emit('desconectado', userConectados);
+        });
+    }     
+}
 
 module.exports = {
     socketController,

@@ -11,6 +11,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class JugadoresconectadosComponent implements OnInit{
 
   public users: any[]=[];
+  public isAlmirante: boolean = false;
 
   constructor(
     private jugadorService: JugadorService,
@@ -21,6 +22,12 @@ export class JugadoresconectadosComponent implements OnInit{
       this.users = [];
       this.socketService.connectUserEven.subscribe(res => {
         this.users = res;
+        this.users.forEach(u => {
+          if(u.rol == 'almirante' && u.id == JSON.parse(localStorage.getItem('user')!).id){
+            this.isAlmirante = true;
+          }
+        })
+        console.log(this.users);
       })
     }
 
@@ -32,6 +39,26 @@ export class JugadoresconectadosComponent implements OnInit{
           user:JSON.parse(localStorage.getItem('user')!).nombre,
           avatar:JSON.parse(localStorage.getItem('user')!).avatar,
         })
+    }
+
+    activarUsuario(id:any, activo:any){
+      if(activo == false){
+        activo = 1;
+      }else{
+        activo = 0;
+      }
+      this.socketService.activarJugadorEvent('conectados',
+      {
+        id_partida:JSON.parse(localStorage.getItem('chat')!).id,
+        id_user:id,
+        activo: activo,
+      })
+      /* this.socketService.contestarEnigmaEvent('contestarenigma',
+      {
+        id_partida:JSON.parse(localStorage.getItem('chat')!).id,
+        id_user:JSON.parse(localStorage.getItem('user')!).id,
+        activo:activo
+      }) */
     }
 
     ngOnDestroy(){

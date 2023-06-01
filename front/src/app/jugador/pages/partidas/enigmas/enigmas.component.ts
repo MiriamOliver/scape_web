@@ -33,6 +33,7 @@ export class EnigmasComponent implements OnInit{
   fallos:number = 0;
   private segundos:number = 0;
   private cont:number = 0;
+  private activo:number = 1;
 
   constructor(
     private jugadorService: JugadorService,
@@ -41,6 +42,7 @@ export class EnigmasComponent implements OnInit{
     private router: Router)
     {
       this.socketService.enigmaEven.subscribe(res => {
+        console.log(res);
         this.enigma = {
           id : res.id,
           pregunta : res.pregunta,
@@ -50,6 +52,22 @@ export class EnigmasComponent implements OnInit{
         this.opciones = this.enigma.opciones
         this.pregunta = this.enigma.pregunta
         this.correcta = this.enigma.correcta
+      })
+
+      this.socketService.usuarioActivo.subscribe(res => {
+        console.log(res);
+        res.forEach((u: {activo:any; id: any}) => {
+          if(u.id == JSON.parse(localStorage.getItem('user')!).id){
+            console.log(this.respFinal);
+            if(u.activo == 1){
+              this.boton = false;
+              this.activo = 1;
+            }else{
+              this.boton = true;
+              this.activo = 0;
+            }
+          }
+        })
       })
 
       this.socketService.estadoJuegoEven.subscribe(res => {
@@ -66,6 +84,7 @@ export class EnigmasComponent implements OnInit{
     }
 
   ngOnInit() {
+    console.log(this.boton);
     this.empezandoPartida();
   }
 
@@ -79,6 +98,8 @@ export class EnigmasComponent implements OnInit{
   }
 
   empezandoPartida(){
+    console.log(this.respFinal);
+    console.log(this.tiempo_general);
     if(this.tiempo_general > 0){
       console.log('holita');
       console.log(this.llavesPartida);
@@ -138,7 +159,6 @@ export class EnigmasComponent implements OnInit{
   }
 
   checkRespuesta(){
-    console.log('entro en le check')
     this.respFinal = this.respuesta
     this.boton = true;
     if(this.respFinal == this.correcta){
@@ -166,33 +186,13 @@ export class EnigmasComponent implements OnInit{
           llaves: this.llavesPartida + 1,
         })
     }
+    this.respFinal = '';
   }
 
-  /* comprobarPartida(){
-    console.log(this.llavesPartida);
-    if(this.llavesPartida >= 1 && this.tiempo_general > 0){
-      console.log('probando');
-
-      this.jugadorService.finalizarPartida(JSON.parse(localStorage.getItem('chat')!).id, 'ganada', this.calcularTiempo())
-      .subscribe(resp => {
-          if(resp){
-            console.log(resp);
-            this.router.navigate(['jugador/partida/resultado/'+ resp.id]);
-          }
-        });
-    }else if(this.tiempo_general <= 0){
-      this.jugadorService.finalizarPartida(JSON.parse(localStorage.getItem('chat')!).id, 'perdida', '30')
-      .subscribe(resp => {
-          if(resp){
-            console.log(resp);
-            this.router.navigate(['jugador/partida/resultado/'+ resp.id]);
-          }
-        });
-    }
-  } */
-
   enviarEnigmas(){
-    this.boton = false;
+    if(this.activo == 1){
+      this.boton = false;
+    }
     this.socketService.enigmasEvent('enigmas',
         {
           id_partida:JSON.parse(localStorage.getItem('chat')!).id,
