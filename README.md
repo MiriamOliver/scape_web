@@ -17,7 +17,7 @@ Actualizar dependencias:
 
 Iniciar el cliente:
 
-     ng serve -o
+    ng serve -o
 
 ## Base de Datos
 Crear una base de datos llamada scape_web <br>
@@ -40,5 +40,8 @@ Jugador
 Administrador
 
     email: oda@gmail.com
+    passwd: 1234
+
+    email: xlmirulx@gmail.com
     passwd: 1234
 
