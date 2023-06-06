@@ -4,7 +4,6 @@ const ConexionUsuario = require('./Conexion/ConexionUsuario');
 
 
 const socketController = (socket) => {
-
     //const id_handshake = socket.id;
 
     let {payload} = socket.handshake.query;
@@ -18,6 +17,10 @@ const socketController = (socket) => {
         //ESCUCHAR
         socket.on('default', (res) => {
             chatPartida(socket, res);
+        })
+
+        socket.on('listadodisponibles', (res) => {
+            partidasDisponibles(socket, payload, res);
         })
 
         socket.on('juego', (res) => {
@@ -382,6 +385,17 @@ const usuarioDesconectado = (socket, payload, res) => {
             console.log(userConectados);
             socket.to(payload.id).emit('desconectado',userConectados);
             socket.emit('desconectado', userConectados);
+        });
+    }     
+}
+
+const partidasDisponibles = (socket, payload, res) => {
+    if(res.event == 'listadodisponibles') {
+        let conx = new Conexion();
+        conx.getPartidasDisponibles(res.payload.id)
+        .then((resp) => {
+            socket.to(payload.id).emit('listadodisponibles',resp);
+            socket.emit('listadodisponibles', resp);
         });
     }     
 }

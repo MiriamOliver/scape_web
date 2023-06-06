@@ -4,6 +4,7 @@ import { JugadorService } from 'src/app/jugador/services/jugador.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { JugadorsocketService } from 'src/app/jugador/services/jugadorsocket.service';
+import { SocketpartidaService } from '../../../services/socketpartida.service';
 
 @Component({
   selector: 'app-jugadoressala',
@@ -15,25 +16,22 @@ export class JugadoressalaComponent implements OnInit{
   public jugadores:any = [];
   public comenzar:boolean = true;
   private anfitrion:number;
-  private partida:number;
+  private id_user:number;
   private idPartida:number;
 
   constructor(
-    private jugadorService: JugadorService,
     private activatedRoute: ActivatedRoute,
     protected socketService: JugadorsocketService,
+    protected partidaService: SocketpartidaService,
     private router: Router)
     {
       this.anfitrion = JSON.parse(localStorage.getItem('partida')!).anfitrion;
-      this.partida = JSON.parse(localStorage.getItem('user')!).id;
+      this.id_user = JSON.parse(localStorage.getItem('user')!).id;
       this.idPartida = JSON.parse(localStorage.getItem('chat')!).id;
 
-      this.jugadores = [];
       this.socketService.connectUserEven.subscribe(res => {
         this.jugadores = res;
-        console.log(this.jugadores);
-        console.log(this.jugadores.length);
-        if(this.jugadores.length >= 3 && this.jugadores.length <= 5 && this.anfitrion == this.partida){
+        if(this.jugadores.length >= 3 && this.jugadores.length <= 5 && this.anfitrion == this.id_user){
             this.comenzar = false;
         }
         if(this.jugadores.length < 1){
@@ -43,9 +41,7 @@ export class JugadoressalaComponent implements OnInit{
         }
       });
       this.socketService.estadoPartidaEven.subscribe(res => {
-        console.log(res.estado);
         if(res.estado == 'curso'){
-          console.log('cambiar');
           this.router.navigate(['jugador/partida/juego/'+ this.idPartida]);
         }
       })
@@ -72,7 +68,7 @@ export class JugadoressalaComponent implements OnInit{
           user:JSON.parse(localStorage.getItem('user')!).nombre,
           avatar:JSON.parse(localStorage.getItem('user')!).avatar,
         })
-      this.router.navigate(['jugador/partida/juego/'+ this.partida]);
+      this.router.navigate(['jugador/partida/juego/'+ this.idPartida]);
     }
 
     cancelarPartida(){
@@ -84,8 +80,11 @@ export class JugadoressalaComponent implements OnInit{
           user:JSON.parse(localStorage.getItem('user')!).nombre,
           avatar:JSON.parse(localStorage.getItem('user')!).avatar,
         })
-        this.router.navigate(['jugador/partida']);
+        this.partidaService.listarPartidas('listadodisponibles',{
+          id: JSON.parse(localStorage.getItem('user')!).id
+        });
         localStorage.removeItem('partida');
         localStorage.removeItem('chat');
+        this.router.navigate(['jugador/partida']);
     }
 }

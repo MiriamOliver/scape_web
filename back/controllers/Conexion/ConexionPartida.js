@@ -111,8 +111,13 @@ class ConexionPartida extends ConexionSequelize {
 
         resultado = await models.sequelize.query(`SELECT partidas.id, partidas.anfitrion, partidas.estado, users.nombre, 
                                                   COUNT(partidasjugadores.id_jugador) AS 'jugadores' FROM partidas JOIN users ON partidas.anfitrion=users.id 
+                                                  JOIN partidasjugadores ON partidas.id=partidasjugadores.id_partida WHERE estado='disponible' 
+                                                  GROUP BY partidasjugadores.id_partida;`, { type: QueryTypes.SELECT });
+
+        /* resultado = await models.sequelize.query(`SELECT partidas.id, partidas.anfitrion, partidas.estado, users.nombre, 
+                                                  COUNT(partidasjugadores.id_jugador) AS 'jugadores' FROM partidas JOIN users ON partidas.anfitrion=users.id 
                                                   JOIN partidasjugadores ON partidas.id=partidasjugadores.id_partida WHERE estado='disponible' AND anfitrion != ?  
-                                                  GROUP BY partidasjugadores.id_partida;`, { replacements: [id], type: QueryTypes.SELECT });
+                                                  GROUP BY partidasjugadores.id_partida;`, { replacements: [id], type: QueryTypes.SELECT }); */
         return resultado;  
     }
 
@@ -176,13 +181,14 @@ class ConexionPartida extends ConexionSequelize {
     }
 
     mensajesPartida = async(data, mensaje)=> {
+
         try{
 
-            await models.User.findOne({
+            let user = await models.User.findOne({
                 attributes:['id','nombre','avatar'],
                 where:{nombre: data.nombre}
             })
-    
+
             await models.Chat.create({
                 id_user:user.dataValues.id,
                 id_partida: data.id,
@@ -220,6 +226,9 @@ class ConexionPartida extends ConexionSequelize {
                             [Sequelize.col('PartidasJugadores.rol'), 'rol'],
                         ]
             }); 
+
+            console.log(jugador);
+            console.log('que pasa')
 
            return jugador;
     
