@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Partida } from 'src/app/jugador/interfaces/jugador.interface';
 import { JugadorService } from 'src/app/jugador/services/jugador.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SocketpartidaService } from 'src/app/jugador/services/socketpartida.service';
 //import { switchMap } from 'rxjs';
 
 @Component({
@@ -16,12 +17,21 @@ export class PartidasComponent implements OnInit{
   constructor(
     private jugadorService: JugadorService,
     private activatedRoute: ActivatedRoute,
-    private router: Router) { }
+    protected socketService: SocketpartidaService,
+    private router: Router) {
+      this.socketService.listaPartidas.subscribe(res => {
+        let disponibles:any = [];
+        res.forEach((partida: { anfitrion: any; }) => {
+          if(partida.anfitrion != JSON.parse(localStorage.getItem('user')!).id){
+            disponibles.push(partida)
+          }
+        });
+        this.partidas = disponibles;
+      });
+    }
 
-  ngOnInit(): void {
-    this.partidas = []
+  ngOnInit() {
     this.partidasDisponibles();
-
   }
 
   crear(){
@@ -32,6 +42,12 @@ export class PartidasComponent implements OnInit{
           anfitrion: resp.anfitrion,
           estado:resp.estado,
         }));
+        localStorage.setItem('chat', JSON.stringify({
+          nombre: JSON.parse(localStorage.getItem('user')!).nombre,
+          id: resp.id,
+          avatar : JSON.parse(localStorage.getItem('user')!).avatar,
+        }));
+        this.partidasDisponibles();
         this.router.navigate(['jugador/partida/sala/'+ resp.id]);
     });
   }
@@ -41,9 +57,14 @@ export class PartidasComponent implements OnInit{
       this.jugadorService.unirsePartida(JSON.parse(localStorage.getItem('user')!).id, id)
       .subscribe(resp => {
         localStorage.setItem('partida', JSON.stringify({
-          id: id,
+          id: resp.id,
           anfitrion: resp.anfitrion,
           estado:resp.estado,
+        }));
+        localStorage.setItem('chat', JSON.stringify({
+          nombre: JSON.parse(localStorage.getItem('user')!).nombre,
+          id: resp.id,
+          avatar : JSON.parse(localStorage.getItem('user')!).avatar,
         }));
         this.router.navigate(['jugador/partida/sala/'+ resp.id]);
       });
@@ -51,15 +72,13 @@ export class PartidasComponent implements OnInit{
   }
 
   partidasDisponibles(){
-    this.partidas = [];
-    this.jugadorService.getPartidasDisponibles(JSON.parse(localStorage.getItem('user')!).id)
-      .subscribe((partida: Partida) => {
-        console.log(partida);
-        this.partidas = partida
-    })
+    console.log('pasa por disponibles');
+    this.socketService.listarPartidas('listadodisponibles',{
+      id: JSON.parse(localStorage.getItem('user')!).id
+    });
   }
 
-  partidasCreadas(){
+/*   partidasCreadas(){
     this.partidas = [];
     this.jugadorService.getPartidasCreadas(JSON.parse(localStorage.getItem('user')!).id)
       .subscribe((partida: Partida) => {
@@ -73,5 +92,5 @@ export class PartidasComponent implements OnInit{
       .subscribe((partida: Partida) => {
         this.partidas = partida
     })
-  }
+  } */
 }
