@@ -44,3 +44,12 @@ export interface ResultadoJugador {
   fallos:number,
   rol:string,
 }
+
+export interface DatosPartida {
+  id : number,
+  creador:string,
+  resultado: string,
+  llaves : number,
+  tiempo : number,
+  jugadores : [],
+}

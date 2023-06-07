@@ -144,6 +144,18 @@ class ConexionPartida extends ConexionSequelize {
         return resultado;
     }
 
+    getPartidasHistorial = async(id) => {
+
+        let resultado = null;
+
+        resultado = await models.sequelize.query(`SELECT partidas.id, partidas.anfitrion, partidas.tiempo, partidas.resultado, users.nombre, 
+                                                  COUNT(partidasjugadores.id_jugador) AS 'jugadores' FROM partidas JOIN users ON partidas.anfitrion=users.id 
+                                                  JOIN partidasjugadores ON partidas.id=partidasjugadores.id_partida WHERE partidas.estado = 'terminada' AND partidas.id IN
+                                                  (SELECT id_partida FROM partidasjugadores WHERE id_jugador = ?)   
+                                                  GROUP BY partidasjugadores.id_partida;`, { replacements: [id], type: QueryTypes.SELECT });
+        return resultado;
+    }
+
     unirseSalaPartida = async(body) => {
 
         let partida = '';

@@ -46,6 +46,7 @@ export class JugadorsocketService extends Socket{
     this.ioSocket.on('contestarenigma', (res:any) => this.usuarioActivo.emit(res))
 
     this.ioSocket.on('listadodisponibles', (res:any) => this.listaPartidas.emit(res))
+
   }
 
   emitEvent = (event = 'default',payload = {}) => {

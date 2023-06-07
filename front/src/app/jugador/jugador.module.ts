@@ -14,6 +14,7 @@ import { JugadoresconectadosComponent } from './pages/partidas/jugadoresconectad
 import { JugadoressalaComponent } from './pages/partidas/jugadoressala/jugadoressala.component';
 import { EnigmasComponent } from './pages/partidas/enigmas/enigmas.component';
 import { ResultadoComponent } from './pages/partidas/resultado/resultado.component';
+import { HistorialComponent } from './pages/historial/historial.component';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { ResultadoComponent } from './pages/partidas/resultado/resultado.compone
     JugadoressalaComponent,
     EnigmasComponent,
     ResultadoComponent,
+    HistorialComponent,
   ],
   imports: [
     CommonModule,

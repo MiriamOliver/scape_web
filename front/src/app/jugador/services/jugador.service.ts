@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Partida, Jugador, InfoPartida, Juego, ResultadoJugador } from '../interfaces/jugador.interface';
+import { Partida, Jugador, InfoPartida, Juego, ResultadoJugador, DatosPartida } from '../interfaces/jugador.interface';
 import { environment } from './../../../environments/environment'
 
 
@@ -48,5 +48,13 @@ export class JugadorService  {
 
   getResultadoJugadorPartida(id:number){
     return this.http.get<ResultadoJugador>(`${this.baseUrl}/partidas/resultado/jugadores/${id}`,);
+  }
+
+  obtenerPartida(id:any):Observable<DatosPartida>{
+    return this.http.get<DatosPartida>(`${this.baseUrl}/partidas/mostrar/${id}`,);
+  }
+
+  listaPartidasUsuario(id:any):Observable<any>{
+    return this.http.get<any>(`${this.baseUrl}/partidas/jugador/${id}`);
   }
 }
