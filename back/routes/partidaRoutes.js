@@ -16,6 +16,8 @@ router.get('/creadas/:id', controlador.partidasCreadas);
 
 router.get('/curso/:id', controlador.partidasEnCurso);
 
+router.get('/jugador/:id', controlador.partidasJugador);
+
 router.put('/resultado/:id', controlador.finalizarPartida);
 
 router.get('/resultado/partida/:id', controlador.getResultadoPartida);

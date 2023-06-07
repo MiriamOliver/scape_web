@@ -65,6 +65,17 @@ const partidasEnCurso = ( req, res = response ) => {
         })
 }
 
+const partidasJugador = ( req, res = response ) => {
+    const conex = new ConexionSequelize();
+    conex.getPartidasHistorial(req.params.id)
+        .then( resp => {
+            res.status(200).json(resp);
+        })
+        .catch(err => {
+            res.status(203).json({'msg':'No se han encontrado registros'});
+        })
+}
+
 const unirseSala = ( req, res = response ) => {
     const conex = new ConexionSequelize();
     conex.unirseSalaPartida(req.body)
@@ -142,5 +153,6 @@ module.exports = {
     finalizarPartida,
     getResultadoPartida,
     getResultadoJugadorPartida,
-    mostrarPartida
+    mostrarPartida,
+    partidasJugador
 }

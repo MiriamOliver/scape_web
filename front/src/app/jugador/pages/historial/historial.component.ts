@@ -34,9 +34,9 @@ export class HistorialComponent implements OnInit{
   }
 
   ngOnInit(){
-    /* this.jugadorService.listaPartidasUsuario(JSON.parse(localStorage.getItem('user')!).id)
+    this.jugadorService.listaPartidasUsuario(JSON.parse(localStorage.getItem('user')!).id)
     .subscribe(res => {
-      res.forEach((elem: { resultado: any; }) => {
+      res.forEach( (elem: { resultado: string; })  => {
         if(elem.resultado == 'ganada'){
           this.ganadas.push(elem)
         }else if(elem.resultado == 'perdida'){
@@ -44,7 +44,7 @@ export class HistorialComponent implements OnInit{
         }
         this.todas.push(elem);
       });
-  }); */
+  });
     this.partidasTodas();
   }
 

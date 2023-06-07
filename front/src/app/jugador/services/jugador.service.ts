@@ -54,7 +54,7 @@ export class JugadorService  {
     return this.http.get<DatosPartida>(`${this.baseUrl}/partidas/mostrar/${id}`,);
   }
 
-  listaPartidasUsuario(id:any){
-    return this.http.get<Partida>(`${this.baseUrl}/partidas/jugador/${id}`);
+  listaPartidasUsuario(id:any):Observable<any>{
+    return this.http.get<any>(`${this.baseUrl}/partidas/jugador/${id}`);
   }
 }
