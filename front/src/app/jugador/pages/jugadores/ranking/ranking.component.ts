@@ -48,19 +48,25 @@ export class RankingComponent implements OnInit {
   }
 
   obtenerJugador(id:any){
-    this.jugadorService.obtenerJugador(id)
-    .subscribe((perfil:Estadistica) => {
-      this.perfil = perfil;
+    this.jugadores.forEach((jugador: Estadistica) => {
+      if(jugador.id == id){
+        this.perfil = jugador;
+      }
+    });
       this.infoRanking = 1;
-    })
   }
 
   obtenerMisEstadisticas(){
-    this.jugadorService.obtenerJugador(JSON.parse(localStorage.getItem('user')!).id)
-    .subscribe((perfil:Estadistica) => {
-      this.perfil = perfil;
+    this.jugadores.forEach((jugador: Estadistica) => {
+      if(jugador.id == JSON.parse(localStorage.getItem('user')!).id){
+        this.perfil = jugador;
+      }
+    });
       this.infoRanking = 1;
-    })
+  }
+
+  obtenerHistorialPartida(id:any){
+    this.router.navigate(['jugador/historial/partida' + id]);
   }
 
 }

@@ -283,6 +283,12 @@ class ConexionUsuario extends ConexionSequelize {
             {where:{id_user:datos.id}
         })
 
+        if(datos.rol == 'administrador'){
+            await models.Jugador.update({
+                activo: 1},
+                {where: {id:datos.id}})
+        }
+
         if(datos.avatar == ''){
             await models.User.update({
                 nombre: datos.nombre
@@ -310,6 +316,12 @@ class ConexionUsuario extends ConexionSequelize {
                 id_rol: idRol.dataValues.id},
                 {where:{id_user:req.body.id}
             })
+
+            if(req.body.rol == 'administrador'){
+                await models.Jugador.update({
+                    activo: 1},
+                    {where: {id:req.body.id}})
+            }
 
             const nombre = await File.subirArchivo(req.files, undefined, 'imgs' );
 
@@ -350,8 +362,15 @@ class ConexionUsuario extends ConexionSequelize {
 
                 const idRol = await this.getIdRol(rol);
                 await this.asignarRol(usuario.dataValues.id, idRol.dataValues.id);
+                await this.insertarJugador(usuario.dataValues.id);
                 if(rol == 'jugador'){
-                    await this.insertarJugador(usuario.dataValues.id);
+                    await models.Jugador.update({
+                        activo: 0},
+                        {where: {id:usuario.dataValues.id}})
+                }else if(rol == 'adminitrador'){
+                    await models.Jugador.update({
+                        activo: 1},
+                        {where: {id:usuario.dataValues.id}})
                 }
                 if(datos.verificado == 'no'){
                     correo.verificarCorreo(usuario.dataValues.id, usuario.dataValues.email, 'verificarcorreo');
@@ -371,7 +390,7 @@ class ConexionUsuario extends ConexionSequelize {
         const jugadores = await models.sequelize.query(`SELECT jugadores.id, jugadores.partidas, jugadores.ganadas, jugadores.perdidas, jugadores.llaves, 
                                                         users.nombre, users.avatar FROM jugadores 
                                                         JOIN users ON jugadores.id=users.id 
-                                                        WHERE users.verifiedAt IS NOT NULL 
+                                                        WHERE users.verifiedAt IS NOT NULL AND jugadores.activo = 0
                                                         ORDER BY jugadores.ganadas + jugadores.llaves - jugadores.perdidas DESC;`, 
                                                         { type: QueryTypes.SELECT });
 

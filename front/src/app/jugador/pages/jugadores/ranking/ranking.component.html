@@ -6,13 +6,22 @@
           <button type="button" (click)="obtenerMisEstadisticas()" class="btn rounded p-2 ms-5 mt-5">Mi Perfil</button>
           <div *ngIf="infoRanking == 1" class="info p-2 text-center rounded-1 ms-5 mt-2">
               <hr class="hr-text-bot m-0 p-1 mb-2" data-content="DETALLES JUGADOR">
-              <div class="info-user mb-3">
-                <img class="rounded-1 me-1" src="{{perfil.avatar}}">
+              <div class="row mb-2">
+                <div class="col pe-1 d-flex align-items-center">
+                  <h1 class="p-4">{{perfil.ranking}}</h1>
+                </div>
+                <div class="col ps-1">
+                  <div class="perfil pt-4 pb-3 text-center rounded-1 col">
+                    <div class="info-user mb-3">
+                      <img class="rounded-1" src="{{perfil.avatar}}">
+                    </div>
+                    <div class="text-center">
+                      <h6 class="mb-0"><b>{{perfil.nombre}}</b></h6>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="ms-2 text-center">
-                <h6 class="mb-0"><b>{{perfil.nombre}}</b></h6>
-              </div>
-              <div class="info-resumen row">
+              <div class="info-resumen row mb-2">
                 <div class="col pe-1">
                   <p class="recuadro p-2 m-0 rounded-top">Partidas</p>
                   <p class="datos p-2 m-0 rounded-bottom">{{perfil.partidas}}</p>
@@ -22,8 +31,8 @@
                   <p class="datos p-2 m-0 rounded-bottom">{{perfil.llaves}}</p>
                 </div>
               </div>
-              <div class="info-resumen row">
-                <div class="col pe-1 ps-1">
+              <div class="info-resumen row mb-2">
+                <div class="col pe-1">
                   <p class="recuadro p-2 m-0 rounded-top">Ganadas</p>
                   <p class="datos p-2 m-0 rounded-bottom">{{perfil.ganadas}}</p>
                 </div>
@@ -32,8 +41,9 @@
                   <p class="datos p-2 m-0 rounded-bottom">{{perfil.perdidas}}</p>
                 </div>
               </div>
-              <div>
-                <h2>{{perfil.ranking}}</h2>
+              <div class="mb-3">
+                <hr class="hr-text-bot m-0 p-1 mb-3" data-content="">
+                <button type="button" (click)="obtenerHistorialPartida(perfil.id)" class="btn rounded p-2 historial">Historial Partidas</button>
               </div>
             </div>
             <div *ngIf="infoRanking == -1" class="info p-2 rounded-1 ms-5 mt-2">

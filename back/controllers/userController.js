@@ -78,5 +78,5 @@ module.exports = {
     mostrarUsuario,
     actualizarUsuario,
     crearUsuario,
-    generarUsuarios
+    generarUsuarios,
 }
