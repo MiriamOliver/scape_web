@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Estadistica } from '../../../../administrador/interfaces/administrador.interface';
 import { JugadorService } from 'src/app/jugador/services/jugador.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { JugadorsocketService } from 'src/app/jugador/services/jugadorsocket.service';
+import { SocketpartidaService } from 'src/app/jugador/services/socketpartida.service';
 
 @Component({
   selector: 'app-ranking',
@@ -17,10 +17,14 @@ export class RankingComponent implements OnInit {
 
   constructor(
     private jugadorService: JugadorService,
-    protected socketService: JugadorsocketService,
+    protected socketService: SocketpartidaService,
     private activatedRoute: ActivatedRoute,
     private router: Router)
     {
+      this.socketService.listaJugadoresEven.subscribe(res => {
+        this.jugadores = res;
+      })
+
     this.perfil = {
       id : 0,
       nombre:'',
@@ -34,7 +38,13 @@ export class RankingComponent implements OnInit {
   }
 
   ngOnInit(){
+    this.listarJugadores();
     this.infoRanking = -1;
+  }
+
+  listarJugadores(){
+    this.jugadores = [];
+    this.socketService.listadoJugadoresEvent('listadojugadores',{})
   }
 
   obtenerJugador(id:any){

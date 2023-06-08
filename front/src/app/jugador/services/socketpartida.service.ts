@@ -10,6 +10,7 @@ import { Enigma, Juego } from '../interfaces/jugador.interface';
 export class SocketpartidaService extends Socket{
 
   @Output() listaPartidas: EventEmitter<any> = new EventEmitter();
+  @Output() listaJugadoresEven: EventEmitter<any> = new EventEmitter();
 
 
   private baseUrl: string = environment.baseUrl;
@@ -25,10 +26,19 @@ export class SocketpartidaService extends Socket{
     });
 
     this.ioSocket.on('listadodisponibles', (res:any) => this.listaPartidas.emit(res))
+
+    this.ioSocket.on('listadojugadores', (res:any) => this.listaJugadoresEven.emit(res))
   }
 
   listarPartidas = (event = 'listadodisponibles', payload = {}) => {
     this.ioSocket.emit('listadodisponibles', {
+      event,
+      payload
+    });
+  }
+
+  listadoJugadoresEvent = (event = 'listadojugadores', payload = {}) => {
+    this.ioSocket.emit('listadojugadores', {
       event,
       payload
     });

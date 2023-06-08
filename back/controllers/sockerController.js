@@ -23,6 +23,10 @@ const socketController = (socket) => {
             partidasDisponibles(socket, payload, res);
         })
 
+        socket.on('listadojugadores', (res) => {
+            listaRankingJugadores(socket, payload, res);
+        })
+
         socket.on('juego', (res) => {
             estadoPartida(socket, payload, res);
         })
@@ -399,6 +403,27 @@ const partidasDisponibles = (socket, payload, res) => {
         });
     }     
 }
+
+const listaRankingJugadores = (socket, payload, res) => {
+    let rankingJugadores = [];
+    let cont = 1;
+    if(res.event == 'listadojugadores') {
+        let conx = new ConexionUsuario();
+        conx.getRanking()
+        .then((jugadores) => {
+            jugadores.forEach(jugador => {
+                jugador.avatar = process.env.URL + process.env.PORT + "/upload/" + jugador.avatar;
+                jugador.ranking = cont;
+                rankingJugadores.push(jugador);
+                cont ++;
+            });
+            console.log(rankingJugadores);
+            socket.to(payload.id).emit('listadojugadores',rankingJugadores);
+            socket.emit('listadojugadores', rankingJugadores);
+        });
+    }  
+}
+
 
 module.exports = {
     socketController,

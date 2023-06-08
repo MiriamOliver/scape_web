@@ -2,9 +2,9 @@
   <div class="row fondo-partidas">
     <main class="col-md-10">
       <div class="row">
-        <div class="col-md-4 mt-0 pe-0">
-          <button type="button" (click)="obtenerMisEstadisticas()" class="btn rounded p-2">Mi Perfil</button>
-          <div *ngIf="infoRanking == 1" class="info p-2 text-center rounded-1 ms-5">
+        <div class="col-md-4 mt-0 pe-0 pt-3">
+          <button type="button" (click)="obtenerMisEstadisticas()" class="btn rounded p-2 ms-5 mt-5">Mi Perfil</button>
+          <div *ngIf="infoRanking == 1" class="info p-2 text-center rounded-1 ms-5 mt-2">
               <hr class="hr-text-bot m-0 p-1 mb-2" data-content="DETALLES JUGADOR">
               <div class="info-user mb-3">
                 <img class="rounded-1 me-1" src="{{perfil.avatar}}">
@@ -32,14 +32,17 @@
                   <p class="datos p-2 m-0 rounded-bottom">{{perfil.perdidas}}</p>
                 </div>
               </div>
+              <div>
+                <h2>{{perfil.ranking}}</h2>
+              </div>
             </div>
-            <div *ngIf="infoRanking == -1" class="info p-2 rounded-1 ms-5">
+            <div *ngIf="infoRanking == -1" class="info p-2 rounded-1 ms-5 mt-2">
               <hr class="hr-text-bot m-0 p-1 mb-2" data-content="DETALLES JUGADOR">
               <p class="p-3 m-0">Datos generales sobre las estadísticas de los jugadores.<br><br>Pulsa en el icono de información de cualquier jugador para ver más detalles sobre este</p>
             </div>
           </div>
-          <div class="col-md-8 pt-4 ps-2 pe-4">
-            <div class="p-2 fondo-tabla rounded-1 me-2">
+          <div class="col-md-8 pt-3 ps-2 pe-4">
+            <div class="p-2 fondo-tabla rounded-1 me-2 mt-5">
               <hr class="hr-text-bot m-0 p-1 mb-2" data-content="RANKING JUGADORES">
               <div class="card border-0 tabla">
                 <div class="card-header border-0 p-2 py-3">
@@ -55,7 +58,7 @@
                 </div>
                 <div class="border-0 p-0 m-0 lista-tabla-partidas">
                   <ul class="border-0 row p-1 mt-2 me-2 m-0 lista rounded-1 d-flex align-items-center text-center" *ngFor="let jugador of jugadores">
-                    <li class="col-5 list-group-item border-0 d-flex flex-row align-items-start">
+                    <li class="col-5 list-group-item border-0 d-flex flex-row align-items-start p-0">
                       <img class="rounded-1 me-1" src="{{jugador.avatar}}">
                       <p class="text-start">{{jugador.nombre}}</p>
                     </li>

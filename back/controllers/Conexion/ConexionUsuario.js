@@ -7,6 +7,7 @@ const File = require('../../helpers/file_upload');
 const correo = require('../../helpers/correo');
 const libreria = require('../../helpers/libreria')
 const { Op } = require('sequelize');
+const { QueryTypes } = require('sequelize');
 
 
 class ConexionUsuario extends ConexionSequelize {
@@ -364,6 +365,17 @@ class ConexionUsuario extends ConexionSequelize {
         }catch (err){
             throw err;
         }
+    }
+
+    getRanking = async () => {
+        const jugadores = await models.sequelize.query(`SELECT jugadores.id, jugadores.partidas, jugadores.ganadas, jugadores.perdidas, jugadores.llaves, 
+                                                        users.nombre, users.avatar FROM jugadores 
+                                                        JOIN users ON jugadores.id=users.id 
+                                                        WHERE users.verifiedAt IS NOT NULL 
+                                                        ORDER BY jugadores.ganadas + jugadores.llaves - jugadores.perdidas DESC;`, 
+                                                        { type: QueryTypes.SELECT });
+
+        return jugadores;
     }
 }
 
