@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Partida, Jugador, InfoPartida, Juego, ResultadoJugador, DatosPartida } from '../interfaces/jugador.interface';
 import { environment } from './../../../environments/environment'
+import { Estadistica } from 'src/app/administrador/interfaces/administrador.interface';
 
 
 @Injectable({
@@ -52,6 +53,10 @@ export class JugadorService  {
 
   obtenerPartida(id:any):Observable<DatosPartida>{
     return this.http.get<DatosPartida>(`${this.baseUrl}/partidas/mostrar/${id}`,);
+  }
+
+  obtenerJugador(id:any):Observable<Estadistica>{
+    return this.http.get<Estadistica>(`${this.baseUrl}/usuarios/jugador/estadistica/${id}`,);
   }
 
   listaPartidasUsuario(id:any):Observable<any>{

@@ -15,6 +15,7 @@ import { JugadoressalaComponent } from './pages/partidas/jugadoressala/jugadores
 import { EnigmasComponent } from './pages/partidas/enigmas/enigmas.component';
 import { ResultadoComponent } from './pages/partidas/resultado/resultado.component';
 import { HistorialComponent } from './pages/historial/historial.component';
+import { RankingComponent } from './pages/jugadores/ranking/ranking.component';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { HistorialComponent } from './pages/historial/historial.component';
     EnigmasComponent,
     ResultadoComponent,
     HistorialComponent,
+    RankingComponent,
   ],
   imports: [
     CommonModule,

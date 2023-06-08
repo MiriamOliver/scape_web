@@ -6,6 +6,7 @@ import { SalaComponent } from './pages/partidas/sala/sala.component';
 import { JuegoComponent } from './pages/partidas/juego/juego.component';
 import { ResultadoComponent } from './pages/partidas/resultado/resultado.component';
 import { HistorialComponent } from './pages/historial/historial.component';
+import { RankingComponent } from './pages/jugadores/ranking/ranking.component';
 
 
 const routes: Routes = [
@@ -17,7 +18,8 @@ const routes: Routes = [
       { path: 'partida/sala/:id', component: SalaComponent},
       { path: 'partida/juego/:id', component: JuegoComponent},
       { path: 'partida/resultado/:id', component: ResultadoComponent},
-      { path: 'historial', component: HistorialComponent}
+      { path: 'historial', component: HistorialComponent},
+      { path: 'ranking', component: RankingComponent}
     ]
   }
 ];

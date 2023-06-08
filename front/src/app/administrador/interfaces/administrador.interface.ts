@@ -37,3 +37,14 @@ export interface Usuario {
   rol:string,
   verificado:any
 }
+
+export interface Estadistica {
+  id:any,
+  nombre:string,
+  avatar:string,
+  ranking:number,
+  llaves:number,
+  partidas:number,
+  ganadas:number,
+  perdidas:number;
+}
