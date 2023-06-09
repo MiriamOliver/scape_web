@@ -1,29 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { Estadistica } from '../../../../administrador/interfaces/administrador.interface';
-import { JugadorService } from 'src/app/jugador/services/jugador.service';
+import { Estadistica } from 'src/app/administrador/interfaces/administrador.interface';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SocketpartidaService } from 'src/app/jugador/services/socketpartida.service';
+import { AdministradorsocketService } from 'src/app/administrador/services/administradorsocket.service';
 
 @Component({
-  selector: 'app-ranking',
-  templateUrl: './ranking.component.html',
-  styleUrls: ['./ranking.component.scss']
+  selector: 'app-rankingjugador',
+  templateUrl: './rankingjugador.component.html',
+  styleUrls: ['./rankingjugador.component.scss']
 })
-export class RankingComponent implements OnInit {
+export class RankingjugadorComponent implements OnInit{
 
   public jugadores:any = [];
   public perfil!:Estadistica
   public infoRanking = -1;
 
   constructor(
-    private jugadorService: JugadorService,
-    protected socketService: SocketpartidaService,
+    protected socketService: AdministradorsocketService,
     private activatedRoute: ActivatedRoute,
     private router: Router)
     {
       this.socketService.listaJugadoresEven.subscribe(res => {
         this.jugadores = res;
-        console.log(this.jugadores);
       })
 
     this.perfil = {
@@ -57,17 +54,7 @@ export class RankingComponent implements OnInit {
       this.infoRanking = 1;
   }
 
-  obtenerMisEstadisticas(){
-    this.jugadores.forEach((jugador: Estadistica) => {
-      if(jugador.id == JSON.parse(localStorage.getItem('user')!).id){
-        this.perfil = jugador;
-      }
-    });
-      this.infoRanking = 1;
-  }
-
   obtenerHistorialPartida(id:any){
-    this.router.navigate(['jugador/historial/partida/' + id]);
+    this.router.navigate(['administrador/historial/partida/' + id]);
   }
-
 }

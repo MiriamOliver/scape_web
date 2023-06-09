@@ -54,4 +54,8 @@ export class AdministradorService {
   generarUsuarios(datos:any):Observable<Usuario>{
     return this.http.post<Usuario>(`${this.baseUrl}/usuarios/generar`, datos);
   }
+
+  listaPartidasUsuario(id:any):Observable<any>{
+    return this.http.get<any>(`${this.baseUrl}/partidas/jugador/${id}`);
+  }
 }

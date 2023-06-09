@@ -14,6 +14,8 @@ import { UsuariosComponent } from './pages/users/usuarios/usuarios.component';
 import { ListadousuariosComponent } from './pages/users/listadousuarios/listadousuarios.component';
 import { CrearusuariosComponent } from './pages/users/crearusuarios/crearusuarios.component';
 import { ModificarusuariosComponent } from './pages/users/modificarusuarios/modificarusuarios.component';
+import { RankingjugadorComponent } from './pages/jugador/rankingjugador/rankingjugador.component';
+import { PartidasjugadorComponent } from './pages/jugador/partidasjugador/partidasjugador.component';
 
 
 @NgModule({
@@ -27,7 +29,9 @@ import { ModificarusuariosComponent } from './pages/users/modificarusuarios/modi
     UsuariosComponent,
     ListadousuariosComponent,
     CrearusuariosComponent,
-    ModificarusuariosComponent
+    ModificarusuariosComponent,
+    RankingjugadorComponent,
+    PartidasjugadorComponent
   ],
   imports: [
     CommonModule,

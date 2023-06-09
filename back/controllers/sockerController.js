@@ -8,6 +8,8 @@ const socketController = (socket) => {
 
     let {payload} = socket.handshake.query;
 
+    console.log(payload);
+
     if (payload != 'null') {
                
         payload = JSON.parse(payload) 
@@ -24,6 +26,7 @@ const socketController = (socket) => {
         })
 
         socket.on('listadojugadores', (res) => {
+            console.log('hola');
             listaRankingJugadores(socket, payload, res);
         })
 
