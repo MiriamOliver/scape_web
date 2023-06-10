@@ -11,6 +11,7 @@ export class AdministradorsocketService extends Socket{
   @Output() listadoEnigmaEven: EventEmitter<any> = new EventEmitter();
   @Output() listaPartidasEven: EventEmitter<any> = new EventEmitter();
   @Output() listaUsuariosEven: EventEmitter<any> = new EventEmitter();
+  @Output() listaJugadoresEven: EventEmitter<any> = new EventEmitter();
 
   private baseUrl: string = environment.baseUrl;
 
@@ -28,6 +29,8 @@ export class AdministradorsocketService extends Socket{
     this.ioSocket.on('listadopartidas', (res: any) => this.listaPartidasEven.emit(res))
 
     this.ioSocket.on('listadousuarios', (res: any) => this.listaUsuariosEven.emit(res))
+
+    this.ioSocket.on('listadojugadores', (res:any) => this.listaJugadoresEven.emit(res))
   }
 
   borrarEnigmaEvent = (event = 'borrarenigma',payload = {}) => {
@@ -84,6 +87,13 @@ export class AdministradorsocketService extends Socket{
     this.ioSocket.emit('crearenigmas', {
         event,
         payload
+    });
+  }
+
+  listadoJugadoresEvent = (event = 'listadojugadores', payload = {}) => {
+    this.ioSocket.emit('listadojugadores', {
+      event,
+      payload
     });
   }
 }

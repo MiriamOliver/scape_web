@@ -8,6 +8,8 @@ const socketController = (socket) => {
 
     let {payload} = socket.handshake.query;
 
+    console.log(payload);
+
     if (payload != 'null') {
                
         payload = JSON.parse(payload) 
@@ -21,6 +23,11 @@ const socketController = (socket) => {
 
         socket.on('listadodisponibles', (res) => {
             partidasDisponibles(socket, payload, res);
+        })
+
+        socket.on('listadojugadores', (res) => {
+            console.log('hola');
+            listaRankingJugadores(socket, payload, res);
         })
 
         socket.on('juego', (res) => {
@@ -399,6 +406,27 @@ const partidasDisponibles = (socket, payload, res) => {
         });
     }     
 }
+
+const listaRankingJugadores = (socket, payload, res) => {
+    let rankingJugadores = [];
+    let cont = 1;
+    if(res.event == 'listadojugadores') {
+        let conx = new ConexionUsuario();
+        conx.getRanking()
+        .then((jugadores) => {
+            jugadores.forEach(jugador => {
+                jugador.avatar = process.env.URL + process.env.PORT + "/upload/" + jugador.avatar;
+                jugador.ranking = cont;
+                rankingJugadores.push(jugador);
+                cont ++;
+            });
+            console.log(rankingJugadores);
+            socket.to(payload.id).emit('listadojugadores',rankingJugadores);
+            socket.emit('listadojugadores', rankingJugadores);
+        });
+    }  
+}
+
 
 module.exports = {
     socketController,

@@ -39,18 +39,6 @@ export class ListadousuariosComponent implements OnInit{
           users = res
         }
         this.usuarios = users;
-        /* this.jugadores = [];
-        this.todos = [];
-        this.administradores = [];
-        res.forEach((elem: { rol: any; }) => {
-          if(elem.rol == 'administrador'){
-            this.administradores.push(elem)
-          }else if(elem.rol == 'jugador'){
-            this.jugadores.push(elem);
-          }
-          this.todos.push(elem);
-          this.usuarios = this.todos;*/
-
     });
     this.perfil = {
       id : 0,

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Partida, Jugador, InfoPartida, Juego, ResultadoJugador, DatosPartida } from '../interfaces/jugador.interface';
 import { environment } from './../../../environments/environment'
+import { Estadistica } from 'src/app/administrador/interfaces/administrador.interface';
 
 
 @Injectable({
