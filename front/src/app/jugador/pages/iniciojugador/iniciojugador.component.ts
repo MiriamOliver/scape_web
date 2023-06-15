@@ -14,5 +14,8 @@ export class IniciojugadorComponent implements OnInit {
       nombre: JSON.parse(localStorage.getItem('user')!).nombre,
       avatar : JSON.parse(localStorage.getItem('user')!).avatar,
     }));
+    localStorage.setItem('foro', JSON.stringify({
+      id: 'foro'
+    }))
   }
 }

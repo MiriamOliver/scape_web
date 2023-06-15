@@ -8,7 +8,7 @@ import { Administrador } from '../../administrador/interfaces/administrador.inte
   templateUrl: './usuariosconectados.component.html',
   styleUrls: ['./usuariosconectados.component.scss']
 })
-export class UsuariosconectadosComponent implements OnInit, OnDestroy{
+export class UsuariosconectadosComponent implements OnInit{
 
   public jugadores:any = [];
   public administradores:any = [];
@@ -19,6 +19,8 @@ export class UsuariosconectadosComponent implements OnInit, OnDestroy{
     private router: Router)
     {
       this.socketService.connectUserEven.subscribe(res => {
+        this.jugadores = [];
+        this.administradores = []
         res.forEach((usuario: { rol: string; }) => {
           if(usuario.rol == 'jugador'){
             this.jugadores.push(usuario)
@@ -30,24 +32,21 @@ export class UsuariosconectadosComponent implements OnInit, OnDestroy{
     }
 
     ngOnInit() {
-      this.socketService.userConectadosEvent('conectados',
+      this.socketService.userConectadosEvent('conectados-foro',
       {
-        id_partida:JSON.parse(localStorage.getItem('foro')!).id,
+        id_foro:JSON.parse(localStorage.getItem('foro')!).id,
         id_user:JSON.parse(localStorage.getItem('user')!).id,
-        user:JSON.parse(localStorage.getItem('user')!).nombre,
-        avatar:JSON.parse(localStorage.getItem('user')!).avatar,
       })
     }
 
     ngOnDestroy() {
-      this.socketService.userDesconectadoEvent('desconectado',
+      console.log('destruyo cosas');
+      this.socketService.userDesconectadoEvent('desconectado-foro',
       {
-        id_partida:JSON.parse(localStorage.getItem('chat')!).id,
+        id_foro:JSON.parse(localStorage.getItem('chat')!).id,
         id_user:JSON.parse(localStorage.getItem('user')!).id,
-        user:JSON.parse(localStorage.getItem('user')!).nombre,
-        avatar:JSON.parse(localStorage.getItem('user')!).avatar,
       })
-
-      localStorage.removeItem('foro');
+      console.log('las destrui');
+      //localStorage.removeItem('foro');
     }
 }

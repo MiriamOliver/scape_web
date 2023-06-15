@@ -19,31 +19,45 @@ export class SocketforoService  extends Socket{
        url: environment.serverSocket,
        options: {
            query: {
-               payload: localStorage.getItem('chat')
+               payload: localStorage.getItem('foro')
            }
        }
      });
     this.ioSocket.on('mensaje-foro', (res: any) => this.outEven.emit(res));
 
-    this.ioSocket.on('conectados', (res:any) => this.connectUserEven.emit(res))
+    this.ioSocket.on('conectados-foro', (res:any) => this.connectUserEven.emit(res))
    }
 
-   emitEvent = (event = 'foro',payload = {}) => {
-    this.ioSocket.emit('foro', {
+   emitEvent = (event = 'mensaje-foro',payload = {}) => {
+    this.ioSocket.emit('mensaje-foro', {
         event,
         payload
     });
   }
 
-  userConectadosEvent = (event = 'conectados',payload = {}) => {
-    this.ioSocket.emit('conectados', {
+  emitFileEvent = (event = 'archivo-foro',payload = {}) => {
+    this.ioSocket.emit('archivo-foro', {
         event,
         payload
     });
   }
 
-  userDesconectadoEvent = (event = 'desconectado',payload = {}) => {
-    this.ioSocket.emit('desconectado', {
+  userConectadosEvent = (event = 'conectados-foro',payload = {}) => {
+    this.ioSocket.emit('conectados-foro', {
+        event,
+        payload
+    });
+  }
+
+  userDesconectadoEvent = (event = 'desconectado-foro',payload = {}) => {
+    this.ioSocket.emit('desconectado-foro', {
+        event,
+        payload
+    });
+  }
+
+  recargarMensajes = (event = 'recargar-foro',payload = {}) => {
+    this.ioSocket.emit('recargar-foro', {
         event,
         payload
     });

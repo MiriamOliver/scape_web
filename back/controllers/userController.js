@@ -73,10 +73,23 @@ generarUsuarios = async (req, res = response) => {
     }
 }
 
+const archivoForo = async (req, res = response) => {
+
+    const conex = new ConexionSequelize();
+    conex.postArchivoForo(req)
+    .then( file => {
+        res.status(200).json({'msg':'Registrado con éxito'});
+    })
+    .catch(err => {
+        res.status(203).json({'msg':'No se han encontrado registros'});
+    })
+}
+
 module.exports = {
     getUsuariosConectados,
     mostrarUsuario,
     actualizarUsuario,
     crearUsuario,
     generarUsuarios,
+    archivoForo
 }

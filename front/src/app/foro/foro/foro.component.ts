@@ -8,9 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class ForoComponent implements OnInit{
 
   ngOnInit() {
-    localStorage.setItem('foro', JSON.stringify({
-      id: 'foro'
-    }))
+
   }
 
 }
