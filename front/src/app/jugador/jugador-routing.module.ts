@@ -8,6 +8,7 @@ import { ResultadoComponent } from './pages/partidas/resultado/resultado.compone
 import { HistorialComponent } from './pages/historial/historial.component';
 import { RankingComponent } from './pages/jugadores/ranking/ranking.component';
 import { HistorialjugadorComponent } from './pages/jugadores/historialjugador/historialjugador.component';
+import { ForoComponent } from '../foro/foro/foro.component';
 
 
 const routes: Routes = [
@@ -22,6 +23,7 @@ const routes: Routes = [
       { path: 'historial', component: HistorialComponent},
       { path: 'ranking', component: RankingComponent},
       { path: 'historial/partida/:id', component: HistorialjugadorComponent},
+      { path: 'foro', component: ForoComponent}
     ]
   }
 ];

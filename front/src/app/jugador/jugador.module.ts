@@ -17,6 +17,7 @@ import { ResultadoComponent } from './pages/partidas/resultado/resultado.compone
 import { HistorialComponent } from './pages/historial/historial.component';
 import { RankingComponent } from './pages/jugadores/ranking/ranking.component';
 import { HistorialjugadorComponent } from './pages/jugadores/historialjugador/historialjugador.component';
+import { ForoModule } from '../foro/foro.module';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { HistorialjugadorComponent } from './pages/jugadores/historialjugador/hi
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    SharedModule
+    SharedModule,
+    ForoModule
   ]
 })
 export class JugadorModule { }

@@ -396,6 +396,95 @@ class ConexionUsuario extends ConexionSequelize {
 
         return jugadores;
     }
+
+    postMensajeForo = async(datos) => {
+        
+        await models.Foro.create({
+            id_user: datos.id_user,
+            mensaje: datos.message,
+            tipo: datos.tipo
+        })
+
+        const mensaje = await models.sequelize.query(`SELECT users.id AS id_user, users.nombre, users.avatar, roles.rol, foros.id, foros.mensaje, foros.tipo
+                                                        FROM foros JOIN users ON users.id = foros.id_user 
+                                                        JOIN rolesasignados on rolesasignados.id_user = users.id 
+                                                        JOIN roles ON roles.id=rolesasignados.id_rol
+                                                        ORDER BY foros.id DESC;`,
+                                                        { type: QueryTypes.SELECT });
+                                              
+        return mensaje;
+    }
+
+    postArchivoForo = async(req) => {
+
+        const nombre = await File.subirArchivo(req.files, undefined, 'imgs' );
+
+        const archivo = await models.Foro.create({
+            id_user: req.body.id_user,
+            mensaje: nombre,
+            tipo: req.body.tipo
+        })
+
+        return archivo;
+    }
+
+    getMensajeForo = async() => {
+        
+        const mensaje = await models.sequelize.query(`SELECT users.id AS id_user, users.nombre, users.avatar, roles.rol, foros.id, foros.mensaje, foros.tipo 
+                                                        FROM foros JOIN users ON users.id = foros.id_user 
+                                                        JOIN rolesasignados on rolesasignados.id_user = users.id 
+                                                        JOIN roles ON roles.id=rolesasignados.id_rol
+                                                        ORDER BY foros.id DESC;`,
+                                                        { type: QueryTypes.SELECT });
+
+                                               
+        return mensaje;
+    }
+
+    getConectadosForo = async(datos) => {
+
+        console.log('probando conectados')
+        console.log(datos);
+        const user = await models.UsuarioForo.findOne({
+            attributes: ['id'],
+            where:{id_user: datos.id_user}
+        })
+
+        if(!user){
+            await models.UsuarioForo.create({
+                id_user: datos.id_user,
+            })
+        }
+
+        const usuarios = await models.sequelize.query(`SELECT users.nombre, users.avatar, usuarioforos.id_user, roles.rol FROM usuarioforos 
+                                                        JOIN users ON usuarioforos.id_user=users.id 
+                                                        JOIN rolesasignados ON rolesasignados.id_user=users.id 
+                                                        JOIN roles ON roles.id=rolesasignados.id_rol;`,
+                                                        { type: QueryTypes.SELECT });
+    
+        return usuarios;
+    }
+
+    getDesconectadosForo = async(datos) => {
+
+        const user = await models.UsuarioForo.findAll({
+            where:{id_user: datos.id_user}
+        })
+
+        if(user){
+            await models.UsuarioForo.destroy({
+                where: {id_user: datos.id_user}
+            })
+        }
+
+        const usuarios = await models.sequelize.query(`SELECT users.nombre, users.avatar, usuarioforos.id_user, roles.rol FROM usuarioforos 
+                                                        JOIN users ON usuarioforos.id_user=users.id 
+                                                        JOIN rolesasignados ON rolesasignados.id_user=users.id 
+                                                        JOIN roles ON roles.id=rolesasignados.id_rol;`,
+                                                        { type: QueryTypes.SELECT });
+    
+        return usuarios;
+    }
 }
 
 

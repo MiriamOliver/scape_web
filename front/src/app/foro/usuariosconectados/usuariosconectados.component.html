@@ -1,0 +1,34 @@
+<div class="contenedor-foro ms-3">
+  <div class="group-usuario p-2 mb-2 rounded-1">
+    <hr class="hr-text-bot m-0 p-1" data-content="ADMINISTRADORES">
+    <div class="scroll">
+      <div class="p-2 card user m-2" *ngFor="let administrador of administradores">
+        <div class="justify-content-start d-flex align-items-center card-body p-0 usuarios">
+          <div class="info-usuario">
+            <img class="rounded-1 me-1" src="{{administrador.avatar}}">
+          </div>
+          <div class="ms-2">
+            <p class="mb-0"><i class="fa-solid fa-crown"></i><b> {{administrador.nombre}}</b></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr class="hr-text-top m-0">
+  </div>
+  <div class="group-usuario p-2 rounded-1">
+    <hr class="hr-text-bot m-0 p-1" data-content="JUGADORES">
+    <div class="scroll">
+      <div class="p-2 card user m-2" *ngFor="let jugador of jugadores">
+        <div class="justify-content-start d-flex align-items-center card-body p-0 usuarios">
+          <div class="info-usuario">
+            <img class="rounded-1 me-1" src="{{jugador.avatar}}">
+          </div>
+          <div class="ms-2">
+            <p class="mb-0"><i class="fa-solid fa-shield"></i><b> {{jugador.nombre}}</b></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr class="hr-text-top m-0">
+  </div>
+</div>

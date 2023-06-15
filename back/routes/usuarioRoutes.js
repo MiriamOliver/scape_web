@@ -14,4 +14,6 @@ router.post('/crear', controlador.crearUsuario);
 
 router.post('/generar', controlador.generarUsuarios);
 
+router.post('/foro/archivo', controlador.archivoForo);
+
 module.exports = router

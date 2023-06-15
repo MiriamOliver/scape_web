@@ -27,7 +27,8 @@ export class MenuComponent {
         localStorage.removeItem('chat');
         localStorage.removeItem('partida');
         localStorage.removeItem('datosJugador');
-        localStorage.removeItem('datosAdmin')
+        localStorage.removeItem('datosAdmin');
+        localStorage.removeItem('foro');
         this.router.navigate(['']);
       }
     });

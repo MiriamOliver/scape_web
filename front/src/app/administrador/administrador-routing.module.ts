@@ -9,6 +9,7 @@ import { ModificarusuariosComponent } from './pages/users/modificarusuarios/modi
 import { CrearusuariosComponent } from './pages/users/crearusuarios/crearusuarios.component';
 import { PartidasjugadorComponent } from './pages/jugador/partidasjugador/partidasjugador.component';
 import { RankingjugadorComponent } from './pages/jugador/rankingjugador/rankingjugador.component';
+import { ForoComponent } from '../foro/foro/foro.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,7 @@ const routes: Routes = [
       { path: 'usuarios/crear', component:CrearusuariosComponent},
       { path: 'ranking/jugadores', component: RankingjugadorComponent},
       { path: 'historial/partida/:id', component: PartidasjugadorComponent},
+      { path: 'foro', component: ForoComponent}
 
     ]
   }

@@ -11,6 +11,7 @@ import { JugadorRoutingModule } from './jugador/jugador-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { AdministradorModule } from './administrador/administrador.module';
 import { AdministradorRoutingModule } from './administrador/administrador-routing.module';
+import { ForoModule } from './foro/foro.module';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { AdministradorRoutingModule } from './administrador/administrador-routin
     JugadorModule,
     JugadorRoutingModule,
     SharedModule,
+    ForoModule,
     AdministradorModule,
     AdministradorRoutingModule
   ],

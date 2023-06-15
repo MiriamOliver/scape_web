@@ -21,6 +21,22 @@ const socketController = (socket) => {
             chatPartida(socket, res);
         })
 
+        socket.on('mensaje-foro', (res) => {
+            mensajeForo(socket, payload, res);
+        })
+
+        socket.on('conectados-foro', (res) => {
+            conectadosForo(socket, payload, res);
+        })
+
+        socket.on('desconectados-foro', (res) => {
+            desconectadosForo(socket, payload, res);
+        })
+
+        socket.on('recargar-foro', (res) => {
+            recargarForo(socket, payload, res);
+        })
+
         socket.on('listadodisponibles', (res) => {
             partidasDisponibles(socket, payload, res);
         })
@@ -119,6 +135,42 @@ const chatPartida = (socket, res) => {
         default:
             /** Otros posibles casos */
             break;
+    }
+}
+
+const recargarForo = (socket, payload, res) => {
+    console.log('recargando foro entras')
+    console.log(res.event);
+    if(res.event == 'mensaje-foro') {
+        let conx = new ConexionUsuario();
+        conx.getMensajeForo()
+        .then((resp) => {
+            resp.forEach(user => {
+                user.avatar = process.env.URL + process.env.PORT + "/upload/" + user.avatar
+                if(user.tipo == 'archivo'){
+                    user.mensaje = process.env.URL + process.env.PORT + "/upload/" + user.mensaje;
+                }
+            });
+            socket.to(payload.id).emit('mensaje-foro',resp);
+            socket.emit('mensaje-foro', resp);
+        });
+    }
+}
+
+const mensajeForo = (socket, payload, res) => {
+    if(res.event == 'mensaje-foro') {
+        let conx = new ConexionUsuario();
+        conx.postMensajeForo(res.payload)
+        .then((resp) => {
+            resp.forEach(user => {
+                user.avatar = process.env.URL + process.env.PORT + "/upload/" + user.avatar
+                if(user.tipo == 'archivo'){
+                    user.mensaje = process.env.URL + process.env.PORT + "/upload/" + user.mensaje;
+                }
+            });
+            socket.to(payload.id).emit('mensaje-foro',resp);
+            socket.emit('mensaje-foro', resp);
+        });
     }
 }
 
@@ -425,6 +477,33 @@ const listaRankingJugadores = (socket, payload, res) => {
             socket.emit('listadojugadores', rankingJugadores);
         });
     }  
+}
+
+const conectadosForo = (socket, payload, res) => {
+    let conx = new ConexionUsuario();
+        conx.getConectadosForo(res.payload)
+        .then((resp) => {
+            console.log(resp);
+            resp.forEach(user => {
+                user.avatar = process.env.URL + process.env.PORT + "/upload/" + user.avatar
+            });
+            socket.to(payload.id).emit('conectados-foro',resp);
+            socket.emit('conectados-foro', resp);
+        });
+}
+
+const desconectadosForo = (socket, payload, res) => {
+    let usuarios = [];
+    let conx = new ConexionUsuario();
+        conx.getDesconectadosForo(res.payload)
+        .then((resp) => {
+            resp.forEach(user => {
+                user.avatar = process.env.URL + process.env.PORT + "/upload/" + user.avatar
+                usuarios.push(user)
+            });
+        });
+        socket.to(payload.id).emit('conectados-foro',usuarios);
+        socket.emit('conectados-foro', usuarios);
 }
 
 
