@@ -1,0 +1,98 @@
+<app-menu></app-menu>
+  <div class="row fondo-usuario">
+    <main class="col-md-10 p-5 py-3 pe-4">
+      <div class="row m-3 mt-5">
+        <div class="m-1 p-2 fondo-transparente col">
+          <hr class="hr-text-bot m-0 p-1 mb-2" data-content="PERFIL">
+          <form #regForm="ngForm" [formGroup]="usuarioForm" (ngSubmit)="modificarUsuario()">
+
+            <div class="text-start px-5 mb-4">
+              <label class="form-label">Nombre</label>
+
+              <input type="text"
+              value="{{nombre}}"
+              formControlName="nombre"
+              [(ngModel)]="nombre"
+              [ngClass]="{'is-invalid' : form['nombre'].invalid && form['nombre'].dirty}"
+              class="form-control"/>
+
+              <div *ngIf="form['nombre'].invalid" class="invalid-feedback">
+                <div *ngIf="form['nombre'].errors?.['required']" class="error alert alert-danger mt-2">Escribe un nombre para el usuario</div>
+              </div>
+            </div>
+
+            <div class="text-start px-5">
+
+              <label class="form-label">Avatar</label>
+
+              <input
+              class="form-control"
+              type="file" id="formFile"
+              (change)="onFileSelected($event)"/>
+            </div>
+
+
+            <div class="pt-1 m-2 text-center">
+              <button class="btn btn-dark text-center" [disabled]="usuarioForm.invalid" type="submit">CONFIRMAR</button>
+            </div>
+
+          </form>
+        </div>
+
+        <div class="m-1 p-2 fondo-transparente col" *ngIf="cambiarPasswd == -1">
+          <hr class="hr-text-bot m-0 p-1 mb-2" data-content="CONTRASEÑA">
+          <div class="d-flex justify-content-center align-items-center mt-5">
+            <button class="btn btn-dark text-center" (click)="abrirPasswd()">CAMBIAR CONTRASEÑA</button>
+          </div>
+        </div>
+
+
+        <div class="m-1 p-2 fondo-transparente col" *ngIf="cambiarPasswd == 1">
+          <hr class="hr-text-bot m-0 p-1 mb-2" data-content="CONTRASEÑA">
+          <form #regForm="ngForm" [formGroup]="passwdForm" (ngSubmit)="modificarPassword()">
+
+            <ng-container formGroupName="passwords">
+              <div class="form-outline mb-4 text-start">
+                <label class="form-label">Contraseña</label>
+
+                <input type="password"
+                    formControlName="passwd"
+                    class="form-control"
+                    [ngClass]="{'is-invalid' : passwords.get('passwd')?.invalid && passwords.get('passwd')?.dirty}" />
+
+                <div *ngIf="passwords.get('passwd')?.invalid" class="invalid-feedback">
+                  <div *ngIf="passwords.get('passwd')?.errors?.['required']" class="error alert alert-danger mt-2">La contraseña es obligatoria</div>
+                </div>
+              </div>
+
+              <div class="form-outline text-start">
+                <label class="form-label" for="form2Example2">Confirmar Contraseña</label>
+
+                <input type="password"
+                  formControlName="passwdConf"
+                  class="form-control"
+                  [ngClass]="{'is-invalid' : passwords.get('passwdConf')?.invalid && passwords.get('passwdConf')?.dirty}" />
+
+                <div *ngIf="passwords.get('passwdConf')?.invalid" class="invalid-feedback">
+                  <div *ngIf="passwords.get('passwdConf')?.errors?.['required']" class="error alert alert-danger mt-2 mb-0">Repetir la contraseña es obligatorio</div>
+                </div>
+              </div>
+
+              <div *ngIf="passwords.errors?.['confirmarPasswd']" class="text-start error alert alert-danger mt-2">Las contraseñas deben de coincidir</div>
+            </ng-container>
+
+            <div class="pt-1 m-2 text-center">
+              <button class="btn btn-dark text-center me-1" (click)="cancelarPasswd()">CANCELAR</button>
+              <button class="btn btn-dark text-center ms-1" [disabled]="passwdForm.invalid" type="submit">CONFIRMAR</button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </main>
+    <aside class="col-md-2 pt-0 ps-0">
+      <app-sidebar></app-sidebar>
+    </aside>
+  </div>
+<app-footer></app-footer>
+

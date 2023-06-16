@@ -17,6 +17,7 @@ import { ModificarusuariosComponent } from './pages/users/modificarusuarios/modi
 import { RankingjugadorComponent } from './pages/jugador/rankingjugador/rankingjugador.component';
 import { PartidasjugadorComponent } from './pages/jugador/partidasjugador/partidasjugador.component';
 import { ForoModule } from '../foro/foro.module';
+import { PerfilModule } from '../perfil/perfil.module';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { ForoModule } from '../foro/foro.module';
     ReactiveFormsModule,
     FormsModule,
     SharedModule,
-    ForoModule
+    ForoModule,
+    PerfilModule
   ]
 })
 export class AdministradorModule { }

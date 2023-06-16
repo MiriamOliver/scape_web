@@ -34,6 +34,18 @@ export class MenuComponent {
     });
   }
 
+  modificarUsuario(){
+    if(JSON.parse(localStorage.getItem('user')!).rol == 'jugador'){
+
+      this.router.navigate(['/jugador/modificar/perfil']);
+
+    }else if(JSON.parse(localStorage.getItem('user')!).rol == 'administrador'){
+
+      this.router.navigate(['/administrador/modificar/perfil']);
+
+    }
+  }
+
 }
 
 
