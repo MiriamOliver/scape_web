@@ -1,5 +1,5 @@
 export interface Perfil {
-  id : number;
+  id : any;
   nombre: string;
   password: string;
   avatar: string;

@@ -19,12 +19,18 @@ export class PerfilService {
       const formReg = new FormData();
       formReg.append('archivo', perfil.avatar);
       formReg.append('nombre', perfil.nombre);
+      formReg.append('id', perfil.id);
 
-      return this.http.post<Perfil>(`${ this.baseUrl }/usuarios/modificar/perfil`, formReg);
+      return this.http.put<Perfil>(`${ this.baseUrl }/usuarios/modificar/perfil`, formReg);
     }
 
     actualizarPasswd(datos:any): Observable<any> {
 
-      return this.http.post<Perfil>(`${ this.baseUrl }/usuarios/modificar/passwd`, datos);
+      return this.http.put<any>(`${ this.baseUrl }/usuarios/modificar/passwd`, datos);
+    }
+
+    cambiarHabilitar(id:any): Observable<any> {
+
+      return this.http.put<any>(`${ this.baseUrl }/usuarios/modificar/habilitar`,{id:id});
     }
 }

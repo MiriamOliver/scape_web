@@ -16,4 +16,10 @@ router.post('/generar', controlador.generarUsuarios);
 
 router.post('/foro/archivo', controlador.archivoForo);
 
+router.put('/modificar/perfil', controlador.modificarPerfil);
+
+router.put('/modificar/passwd', controlador.modificarPasswd);
+
+router.put('/modificar/habilitar', controlador.modificarHabilitar);
+
 module.exports = router

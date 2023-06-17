@@ -338,6 +338,52 @@ class ConexionUsuario extends ConexionSequelize {
         }
     }
 
+    updatePerfil = async (req) => {
+        if(req.files){
+            const nombre = await File.subirArchivo(req.files, undefined, 'imgs' );
+            await models.User.update({
+                nombre: req.body.nombre,
+                avatar:nombre
+            },
+            {where: {id:req.body.id}});
+        }else{
+            await models.User.update({
+                nombre: req.body.nombre,
+            },
+            {where: {id:req.body.id}});
+        }
+
+        const usuario = await models.User.findOne({
+            attributes:['id','nombre','avatar'],
+            where: {id:req.body.id}
+        })
+        return usuario.dataValues;
+    }
+
+    updatePasswd = async (req) => {
+
+        await models.User.update({
+            password: req.body.passwd,
+        },
+        {where: {id:req.body.id}});
+
+        const usuario = await models.User.findOne({
+            attributes:['id','nombre','avatar'],
+            where: {id:req.body.id}
+        })
+        return usuario.dataValues;
+    }
+
+    updateHabilitar = async (id) => {
+        const habilitar = await models.User.update({
+            habilitado: 0,
+            conectado: 0,
+        },
+        {where: {id:id}});
+
+        return habilitar;
+    }
+
     crearUsuario = async (datos, avatar) => {
 
         let rol = '';
