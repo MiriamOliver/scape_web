@@ -481,6 +481,14 @@ class ConexionPartida extends ConexionSequelize {
                                                   GROUP BY partidasjugadores.id_partida;`, { type: QueryTypes.SELECT });
         return resultado;
     }
+
+    getPartidaRegistrada = async(id) => {
+        let result = await models.Partida.findOne({
+            where: {id:id}
+        })
+
+        return result.dataValues;
+    } 
 }
 
 module.exports = ConexionPartida;

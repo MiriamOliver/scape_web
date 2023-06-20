@@ -23,12 +23,7 @@ export class MenuComponent {
     .subscribe(resp => {
       console.log(resp);
       if(resp.success){
-        localStorage.removeItem('user');
-        localStorage.removeItem('chat');
-        localStorage.removeItem('partida');
-        localStorage.removeItem('datosJugador');
-        localStorage.removeItem('datosAdmin');
-        localStorage.removeItem('foro');
+        localStorage.clear();
         this.router.navigate(['']);
       }
     });
@@ -42,7 +37,6 @@ export class MenuComponent {
     }else if(JSON.parse(localStorage.getItem('user')!).rol == 'administrador'){
 
       this.router.navigate(['/administrador/modificar/perfil']);
-
     }
   }
 

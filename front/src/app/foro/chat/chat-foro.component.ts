@@ -4,11 +4,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ForoserviceService } from '../services/foroservice.service';
 
 @Component({
-  selector: 'app-chat',
-  templateUrl: './chat.component.html',
-  styleUrls: ['./chat.component.scss']
+  selector: 'app-chat-foro',
+  templateUrl: './chat-foro.component.html',
+  styleUrls: ['./chat-foro.component.scss']
 })
-export class ChatComponent implements OnInit{
+export class ChatForoComponent implements OnInit{
 
   user:any;
   id_partida:any;

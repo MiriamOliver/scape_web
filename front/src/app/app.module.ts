@@ -12,6 +12,7 @@ import { SharedModule } from './shared/shared.module';
 import { AdministradorModule } from './administrador/administrador.module';
 import { AdministradorRoutingModule } from './administrador/administrador-routing.module';
 import { ForoModule } from './foro/foro.module';
+import { PerfilModule } from './perfil/perfil.module';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { ForoModule } from './foro/foro.module';
     SharedModule,
     ForoModule,
     AdministradorModule,
-    AdministradorRoutingModule
+    AdministradorRoutingModule,
+    PerfilModule
   ],
   providers: [],
   bootstrap: [AppComponent]
