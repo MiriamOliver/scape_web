@@ -1,18 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { ChatForoComponent } from './chat/chat-foro.component';
-import { UsuariosconectadosComponent } from './usuariosconectados/usuariosconectados.component';
-import { ForoComponent } from './foro/foro.component';
+import { ModificarperfilComponent } from './modificarperfil/modificarperfil.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from '../shared/shared.module';
 
 
+
 @NgModule({
   declarations: [
-    ChatForoComponent,
-    UsuariosconectadosComponent,
-    ForoComponent
+    ModificarperfilComponent
   ],
   imports: [
     CommonModule,
@@ -23,9 +20,7 @@ import { SharedModule } from '../shared/shared.module';
   ],
   exports: [
     CommonModule,
-    ForoComponent,
-    ChatForoComponent,
-    UsuariosconectadosComponent
+    ModificarperfilComponent
   ]
 })
-export class ForoModule { }
+export class PerfilModule { }

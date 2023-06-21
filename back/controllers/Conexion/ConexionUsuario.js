@@ -338,6 +338,52 @@ class ConexionUsuario extends ConexionSequelize {
         }
     }
 
+    updatePerfil = async (req) => {
+        if(req.files){
+            const nombre = await File.subirArchivo(req.files, undefined, 'imgs' );
+            await models.User.update({
+                nombre: req.body.nombre,
+                avatar:nombre
+            },
+            {where: {id:req.body.id}});
+        }else{
+            await models.User.update({
+                nombre: req.body.nombre,
+            },
+            {where: {id:req.body.id}});
+        }
+
+        const usuario = await models.User.findOne({
+            attributes:['id','nombre','avatar'],
+            where: {id:req.body.id}
+        })
+        return usuario.dataValues;
+    }
+
+    updatePasswd = async (req) => {
+
+        await models.User.update({
+            password: req.body.passwd,
+        },
+        {where: {id:req.body.id}});
+
+        const usuario = await models.User.findOne({
+            attributes:['id','nombre','avatar'],
+            where: {id:req.body.id}
+        })
+        return usuario.dataValues;
+    }
+
+    updateHabilitar = async (id) => {
+        const habilitar = await models.User.update({
+            habilitado: 0,
+            conectado: 0,
+        },
+        {where: {id:id}});
+
+        return habilitar;
+    }
+
     crearUsuario = async (datos, avatar) => {
 
         let rol = '';
@@ -484,6 +530,27 @@ class ConexionUsuario extends ConexionSequelize {
                                                         { type: QueryTypes.SELECT });
     
         return usuarios;
+    }
+
+    usuarioRol = async(id, rol) => {
+        const idRol = await models.Rol.findOne({
+            attribute:['id'],
+            where:{rol: rol}
+        });
+        const admin = await models.RolesAsignados.findOne({
+            where:{id_user:id,
+                   id_rol: idRol.dataValues.id}
+        })
+
+        return admin
+    }
+
+    getUsuarioExiste = async(id) => {
+        const usuario = models.User.findOne({
+            where:{id:id}
+        })
+
+        return usuario;
     }
 }
 

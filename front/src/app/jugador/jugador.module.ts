@@ -18,6 +18,7 @@ import { HistorialComponent } from './pages/historial/historial.component';
 import { RankingComponent } from './pages/jugadores/ranking/ranking.component';
 import { HistorialjugadorComponent } from './pages/jugadores/historialjugador/historialjugador.component';
 import { ForoModule } from '../foro/foro.module';
+import { PerfilModule } from '../perfil/perfil.module';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { ForoModule } from '../foro/foro.module';
     ReactiveFormsModule,
     FormsModule,
     SharedModule,
-    ForoModule
+    ForoModule,
+    PerfilModule
   ]
 })
 export class JugadorModule { }

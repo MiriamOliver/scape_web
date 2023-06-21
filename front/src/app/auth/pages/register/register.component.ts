@@ -81,7 +81,7 @@ export class RegisterComponent implements OnInit {
     this.usuario.email = this.registerForm.get('email')?.value;
     this.usuario.password = this.registerForm.get('passwords')?.get('passwd')?.value;
 
-    if (this.registerForm.get('passwd')?.value == this.registerForm.get('passwdConf')?.value) {
+    if (this.registerForm.get('passwords')?.get('passwd')?.value == this.registerForm.get('passwords')?.get('passwdConf')?.value) {
 
       this.authService.registro(this.usuario).subscribe(resp => {
         if (!resp.success) {

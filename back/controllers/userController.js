@@ -85,11 +85,49 @@ const archivoForo = async (req, res = response) => {
     })
 }
 
+const modificarPasswd = (req, res = response) => {
+    const conex = new ConexionSequelize();
+    conex.updatePasswd(req)
+        .then( user => {
+            user.avatar = process.env.URL + process.env.PORT + "/upload/" + user.avatar;
+            res.status(200).json(user);
+        })
+        .catch(err => {
+            res.status(203).json({'msg':'No se pudo modificar la contraseña'});
+        })
+}
+
+const modificarPerfil = (req, res = response) => {
+    const conex = new ConexionSequelize();
+    conex.updatePerfil(req)
+        .then( user => {
+            user.avatar = process.env.URL + process.env.PORT + "/upload/" + user.avatar;
+            res.status(200).json(user);
+        })
+        .catch(err => {
+            res.status(203).json({'msg':'No se pudo actualizar el perfil'});
+        })
+}
+
+const modificarHabilitar = (req, res = response) => {
+    const conex = new ConexionSequelize();
+    conex.updateHabilitar(req.body.id)
+        .then( resp => {
+            res.status(200).json({'msg':'Deshabilitado con éxito'});
+        })
+        .catch(err => {
+            res.status(203).json({'msg':'No se pudo deshabilitar'});
+        })
+}
+
 module.exports = {
     getUsuariosConectados,
     mostrarUsuario,
     actualizarUsuario,
     crearUsuario,
     generarUsuarios,
-    archivoForo
+    archivoForo,
+    modificarPasswd,
+    modificarPerfil,
+    modificarHabilitar
 }
