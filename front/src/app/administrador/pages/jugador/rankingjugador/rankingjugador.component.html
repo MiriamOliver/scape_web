@@ -1,0 +1,95 @@
+<app-menu></app-menu>
+  <div class="row fondo-partidas">
+    <main class="col-md-10">
+      <div class="row">
+        <div class="col-md-4 mt-0 pe-0 pt-3">
+          <div *ngIf="infoRanking == 1" class="info p-2 text-center rounded-1 ms-5 mt-2">
+              <hr class="hr-text-bot m-0 p-1 mb-2" data-content="DETALLES JUGADOR">
+              <div class="row mb-2">
+                <div class="col pe-1 d-flex align-items-center">
+                  <h1 class="p-4">{{perfil.ranking}}</h1>
+                </div>
+                <div class="col ps-1">
+                  <div class="perfil pt-4 pb-3 text-center rounded-1 col">
+                    <div class="info-user mb-3">
+                      <img class="rounded-1" src="{{perfil.avatar}}">
+                    </div>
+                    <div class="text-center">
+                      <h6 class="mb-0"><b>{{perfil.nombre}}</b></h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="info-resumen row mb-2">
+                <div class="col pe-1">
+                  <p class="recuadro p-2 m-0 rounded-top">Partidas</p>
+                  <p class="datos p-2 m-0 rounded-bottom">{{perfil.partidas}}</p>
+                </div>
+                <div class="rounded-1 col ps-1">
+                  <p class="recuadro p-2 m-0 rounded-top">Llaves</p>
+                  <p class="datos p-2 m-0 rounded-bottom">{{perfil.llaves}}</p>
+                </div>
+              </div>
+              <div class="info-resumen row mb-2">
+                <div class="col pe-1">
+                  <p class="recuadro p-2 m-0 rounded-top">Ganadas</p>
+                  <p class="datos p-2 m-0 rounded-bottom">{{perfil.ganadas}}</p>
+                </div>
+                <div class="rounded-1 col ps-1">
+                  <p class="recuadro p-2 m-0 rounded-top">Perdidas</p>
+                  <p class="datos p-2 m-0 rounded-bottom">{{perfil.perdidas}}</p>
+                </div>
+              </div>
+              <div class="mb-3">
+                <hr class="hr-text-bot m-0 p-1 mb-3" data-content="">
+                <button type="button" (click)="obtenerHistorialPartida(perfil.id)" class="btn rounded p-2 historial">Historial Partidas</button>
+              </div>
+            </div>
+            <div *ngIf="infoRanking == -1" class="info p-2 rounded-1 ms-5 mt-2">
+              <hr class="hr-text-bot m-0 p-1 mb-2" data-content="DETALLES JUGADOR">
+              <p class="p-3 m-0">Datos generales sobre las estadísticas de los jugadores.<br><br>Pulsa en el icono de información de cualquier jugador para ver más detalles sobre este</p>
+            </div>
+          </div>
+          <div class="col-md-8 pt-3 ps-2 pe-4">
+            <div class="p-2 fondo-tabla rounded-1 me-2 mt-2">
+              <hr class="hr-text-bot m-0 p-1 mb-2" data-content="RANKING JUGADORES">
+              <div class="card border-0 tabla">
+                <div class="card-header border-0 p-2 py-3">
+                  <div class="row p-0 m-0 me-3 text-center">
+                    <div class="col-5">Jugador</div>
+                    <div class="col-1"><i class="fa-solid fa-ranking-star"></i></div>
+                    <div class="col-1"><i class="fa-solid fa-key"></i></div>
+                    <div class="col-1"><i class="fa-solid fa-gamepad"></i></div>
+                    <div class="col-1"><i class="fa-solid fa-thumbs-up"></i></div>
+                    <div class="col-1"><i class="fa-solid fa-thumbs-down"></i></div>
+                    <div class="col-2">Acción</div>
+                  </div>
+                </div>
+                <div class="border-0 p-0 m-0 lista-tabla-partidas">
+                  <ul class="border-0 row p-1 mt-2 me-2 m-0 lista rounded-1 d-flex align-items-center text-center" *ngFor="let jugador of jugadores">
+                    <li class="col-5 list-group-item border-0 d-flex flex-row align-items-start p-0">
+                      <img class="rounded-1 me-1" src="{{jugador.avatar}}">
+                      <p class="text-start">{{jugador.nombre}}</p>
+                    </li>
+                    <li class="col-1 list-group-item border-0">{{jugador.ranking}}</li>
+                    <li class="col-1 list-group-item border-0">{{jugador.llaves}}</li>
+                    <li class="col-1 list-group-item border-0">{{jugador.partidas}}</li>
+                    <li class="col-1 list-group-item border-0">{{jugador.ganadas}}</li>
+                    <li class="col-1 list-group-item border-0">{{jugador.perdidas}}</li>
+                    <li class="col-2 list-group-item border-0 d-flex gap-2 justify-content-center">
+                      <button type="button" (click)="obtenerJugador(jugador.id)" class="btn rounded p-2"><i class="fa-solid fa-circle-info"></i></button>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </main>
+    <aside class="col-md-2 pt-0 ps-0">
+      <app-sidebar></app-sidebar>
+    </aside>
+  </div>
+<app-footer></app-footer>
+
+

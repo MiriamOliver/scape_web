@@ -1,0 +1,28 @@
+  <hr class="hr-text-bot m-0 p-1 mb-2" data-content="CHAT">
+    <div class="chat">
+      <div class="p-2 pt-0 card jugador" *ngFor="let m of messages">
+        <div class="justify-content-start d-flex card-body p-0 jugadores">
+          <div>
+            <img class="rounded-1 me-1" src="{{m.avatar}}">
+          </div>
+          <div class="ms-2 mensaje p-3 rounded-1">
+            <p class="pb-1 mb-2"><b>{{m.nombre}}</b></p>
+            <span>{{m.msg}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  <hr class="hr-text-top m-0 p-1">
+  <div class="d-flex p-1 px-2 enviar">
+
+    <input  [(ngModel)]="input_message"
+            placeholder="Escribe un comentario"
+            (keyup.enter)="sendData('message')"
+            type="text"
+            class="rounded-1 border-0 me-2">
+
+    <button (click)="sendData('message')"
+            type="button"
+            class="btn btn-light btn-sm">Enviar</button>
+  </div>
+

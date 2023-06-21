@@ -1,0 +1,127 @@
+<div class="row g-0">
+  <div class="col-md-6 d-none d-md-block rounded-1 portada align-items-center py-3 px-5 text-center">
+    <img src="../../../../assets/imgs/logo.png">
+    <h1 class="h1 mb-4 pb-5 border-1 border-bottom">Sengoku</h1>
+    <p class="mb-5">¿Aún no te has registrado? <br>Registrate y empieza a jugar</p>
+    <div class="pt-1 mb-2">
+      <button (click)="abrirRegistro()" type="button" class="btn btn-light">Registro</button>
+    </div>
+    <img>
+  </div>
+  <div class="col-md-6 intro my-3">
+    <div class="card-body p-4 p-lg-5 text-black text-center">
+      <form #regForm="ngForm" [formGroup]="loginForm" (ngSubmit)="login()">
+        <img>
+        <div class="mb-4 border-bottom border-3">
+          <h2 class="h2 fw-bold mb-0 mb-3 pb-1">Login</h2>
+          <h6 class="mb-3 pb-3 fw-light">Inicia sesión con tu email o <br> mediante tu cuenta de Google</h6>
+        </div>
+
+        <div class="form-outline mb-4 text-start">
+          <label class="form-label">Email</label>
+
+          <input type="email" formControlName="email"
+            [ngClass]="{'is-invalid' : form['email'].invalid && form['email'].dirty}" class="form-control" />
+
+          <div *ngIf="form['email'].errors" class="invalid-feedback">
+            <div *ngIf="form['email'].errors?.['required']" class="error alert alert-danger mt-2">El email es
+              obligatorio</div>
+            <div *ngIf="form['email'].errors?.['pattern']" class="error alert alert-danger mt-2">El email debe ser
+              válido</div>
+          </div>
+        </div>
+
+        <div class="form-outline mb-4 text-start">
+          <label class="form-label">Contraseña</label>
+
+          <input type="password" formControlName="passwd" class="form-control"
+            [ngClass]="{'is-invalid' : form['passwd'].invalid && form['passwd'].dirty}" />
+
+          <div class="mt-3 mb-2">
+            <label><a (click)="abrirRecPasswd()" style="font-size:16px; color: var(--colorRojo); cursor:pointer"><b>¿Has olvidado tu contraseña?</b></a></label>
+          </div>
+
+          <div *ngIf="form['passwd'].invalid" class="invalid-feedback">
+            <div *ngIf="form['passwd'].errors?.['required']" class="error alert alert-danger mt-2">La contraseña es
+              obligatoria</div>
+          </div>
+        </div>
+
+
+
+        <div class="pt-3 mb-4">
+          <button class=" mb-4 btn btn-dark text-center" [disabled]="loginForm.invalid" type="submit">Login</button>
+        </div>
+      </form>
+
+      <hr class="hr-text mb-4 mt-5" data-content="OR">
+
+      <div class="row">
+        <div class="col-md-12">
+          <button type="button" mat-raised-button class="google-login-btn mt-4 text-uppercase btn btn-google">
+            Signin con: <i class="ms-3 fa-brands fa-google fa-xl"></i>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="position-absolute top-50 start-50 translate-middle mensaje card shadow-lg p-3 mb-5 bg-body rounded" *ngIf="loginCorrecto == 1" style="width: 400px;">
+  <div class="card-body">
+    <span><i class="fa-solid fa-triangle-exclamation me-2" style="color:var(--colorRojo)"></i>
+      {{result.msg}}</span>
+  </div>
+</div>
+
+
+
+<!-- <div>
+  <h1>Google Signin</h1>
+  <hr>
+  <div id="g_id_onload" data-client_id="1091657452086-au153pumqd0rv84v0b79vcbcquglrulp.apps.googleusercontent.com"
+    data-callback="handleCredentialResponse" data-auto_prompt="false" data-auto_select="true">
+  </div>
+
+  <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline" data-text="sign_in_with"
+    data-shape="rectangular" data-logo_alignment="left">
+  </div>
+  <button id="g_id_signout">Sign Out</button>
+  <hr>
+</div> -->
+
+<!-- <script>
+
+  function handleCredentialResponse(response) {
+
+    const body = { id_token: response.credential }
+    fetch('http://127.0.0.1:9090/google', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
+    })
+      .then(r => r.json())
+      .then(resp => {
+        console.log(resp)
+        localStorage.setItem('email', resp.nombre)
+      })
+      .catch(console.warn)
+  }
+
+
+  const button = document.getElementById('g_id_signout');
+  button.onclick = async () => {
+
+    console.log(google.accounts.id)
+    google.accounts.id.disableAutoSelect()
+    google.accounts.id.revoke(localStorage.getItem('email'), done => {
+      console.log('consent revoked');
+      localStorage.clear()
+      location.reload()
+    });
+  }
+
+</script> -->

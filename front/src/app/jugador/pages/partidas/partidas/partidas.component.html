@@ -1,0 +1,63 @@
+<app-menu></app-menu>
+  <div class="row fondo-partida">
+    <main class="col-md-10">
+      <div class="row">
+        <div class="col-md-3 mt-5 pe-0">
+          <div class="tab-content pt-4" id="v-pills-tabContent">
+            <div class="border-0 p-3 ms-5 tab-pane fade show active info-partida rounded-1" id="v-pills-disponibles" role="tabpanel" aria-labelledby="v-pills-disponibles-tab" tabindex="0">
+              <h6 class="mb-2 pb-2">Partidas disponibles</h6>
+              <p>En esta lista se encuentran las partidas en las que puedes colaborar.<br><br> Pulsa en el botón "Apuntarse" y entra en una nueva partida</p>
+            </div>
+ <!--            <div class="border-0 p-3 ms-5 tab-pane fade info-partida rounded-1" id="v-pills-creadas" role="tabpanel" aria-labelledby="v-pills-creadas-tab" tabindex="0">
+              <h6 class="mb-2 pb-2">Partidas creadas</h6>
+              <p>En esta lista se encuentran las partidas que has creado.<br><br> Pulsa en el botón "disponible" y entra en la sala de espera.<br><br>Si el número de jugadores esta comprendido entre 3 y 5 pulsa en el botón de " JUGAR " para comenzar la partida</p>
+            </div>
+            <div class="border-0 p-3 ms-5 tab-pane fade info-partida rounded-1" id="v-pills-curso" role="tabpanel" aria-labelledby="v-pills-curso-tab" tabindex="0">
+              <h6 class="mb-2 pb-2">Partidas en curso</h6>
+              <p>En esta lista se encuentran las partidas que tienes en curso.<br><br> Pulsa en el botón "en curso" y entra en la partida.</p>
+            </div> -->
+          </div>
+        </div>
+        <div class="col-md-9 p-5">
+          <div class="row">
+            <div class="col-9 pb-3 pt-4 d-flex" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+              <button type="button" class="btn btn-light nav-link active" id="v-pills-disponibles-tab" data-bs-toggle="pill" data-bs-target="#v-pills-disponibles"
+                      role="tab" aria-controls="v-pills-disponibles" aria-selected="true" (click)="partidasDisponibles()">Disponibles</button>
+<!--               <button type="button" class="btn btn-light nav-link mx-3" id="v-pills-creadas-tab" data-bs-toggle="pill" data-bs-target="#v-pills-creadas"
+                      role="tab" aria-controls="v-pills-creadas" aria-selected="false" (click)="partidasCreadas()">Creadas</button>
+              <button type="button" class="btn btn-light nav-link" id="v-pills-curso-tab" data-bs-toggle="pill" data-bs-target="#v-pills-curso"
+                      role="tab" aria-controls="v-pills-curso" aria-selected="false" (click)="partidasEnCurso()">En Curso</button> -->
+            </div>
+            <div class="col-3 pb-3 pt-4 d-flex justify-content-end">
+              <button type="button" class="btn btn-light" (click)=crear()>Crear Partida</button>
+            </div>
+          </div>
+          <div class="p-2 fondo-tabla rounded-1">
+            <div class="card border-0 tabla">
+              <div class="card-header border-0 p-2 py-3">
+                <div class="row p-0 m-0 me-3 text-center">
+                  <div class="col-2">ID</div>
+                  <div class="col-4">Anfitrión</div>
+                  <div class="col-3">Participantes</div>
+                  <div class="col-3">Estado</div>
+                </div>
+              </div>
+              <div class="border-0 p-0 m-0 lista-tabla">
+                <ul class="border-0 row p-1 mt-2 me-2 m-0 lista rounded-1 d-flex align-items-center text-center" *ngFor="let partida of partidas">
+                  <li class="col-2 list-group-item border-0">{{partida.id}}</li>
+                  <li class="col-4 list-group-item border-0">{{partida.nombre}}</li>
+                  <li class="col-3 list-group-item border-0">{{partida.jugadores}} / 5</li>
+                  <li class="col-3 list-group-item border-0"><button type="button" (click)="unirseSala(partida.id, partida.estado)" class="btn rounded" [disabled] ="partida.jugadores >= 5">Apuntarse</button></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <aside class="col-md-2 pt-0 ps-0">
+      <app-sidebar></app-sidebar>
+    </aside>
+  </div>
+<app-footer></app-footer>
+

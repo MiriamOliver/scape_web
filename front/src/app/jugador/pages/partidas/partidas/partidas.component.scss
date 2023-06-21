@@ -1,0 +1,80 @@
+.fondo-partida{
+  background-image: url(../../../../../assets/imgs/fondo-inicio.jpg);
+  main{
+    button{
+      box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.5);
+      background-color: var(--colorGris);
+      color: var(--colorDorado);
+      border: 0;
+      width: 136px;
+      &:hover{
+        background-color: var(--colorDorado);
+        color: var(--colorGris);
+      }
+    }
+    button.active{
+      background-color: var(--colorDorado);
+      color: var(--colorGris);
+      //font-weight: 700;
+    }
+    .info-partida{
+      background-color: #00102AD4;
+      margin-top: 54px;
+      h6{
+        color: var(--colorDorado);
+        border-bottom: 2px solid var(--colorDorado);
+      }
+      p{
+        color: var(--colorGris);
+        font-size: 13px;
+      }
+    }
+    .fondo-tabla{
+      background-color: var(--colorTransparente);
+      .tabla{
+        background-color: transparent;
+        height: 414px;
+        max-height: 414px;
+        .card-header{
+          background-color: var(--colorAzul);
+          color: var(--colorDorado);
+        }
+        .lista-tabla{
+          overflow-y: scroll;
+          max-height: 414px;
+          height: 414px;
+          &::-webkit-scrollbar {
+            margin-left: 5px;
+            width: 4px;
+            border-radius: 4px;
+            background-color: #ffffff19;
+          }
+          &::-webkit-scrollbar-thumb {
+            background: var(--colorDorado);
+            border-radius: 4px;
+            margin-left: 5px;
+          }
+          .lista{
+            background-color: var(--colorGris);
+            li{
+              padding: 3px 12px;
+              button{
+                background-color: #00102AD4;
+                color: var(--colorDorado);
+                box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.5);
+                &:hover{
+                  background-color: var(--colorAzul);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  aside{
+    background-color: #00102ad4;
+    max-height: 100vh;
+    height: 640px;
+  }
+}

@@ -1,0 +1,24 @@
+nav{
+  background-color: var(--colorAzul);
+  div{
+    div{
+      .logo-menu{
+        img{
+          width: 50px;
+        }
+      }
+      div{
+        h5{
+          color: var(--colorBlanco);
+          margin: auto;
+        }
+      }
+    }
+  }
+  .menu-icon{
+    color: var(--colorGris);
+    i:hover{
+      color: var(--colorRojo);
+    }
+  }
+}

@@ -1,0 +1,43 @@
+@font-face {
+  font-family: font-texto;
+  src: url(./assets/tipografia/Ledger-Regular.ttf) format("woff2");
+}
+
+:root {
+
+    //----------------------COLORES----------------------//
+
+    --colorRojo:#A1011B;
+    --colorGris:#ECEDED;
+    --colorAzul:#00102A;
+    --colorDorado:#AE8C44; //#D2AD76
+    --colorBlanco:#ffffff;
+    --colorTransparente: #00102abd;
+
+    //--------------------TIPOGRAFÍA----------------------//
+
+    --TipoTexto: font-texto;
+
+    //-----------------TAMAÑO-TIPOGRAFÍA------------------//
+
+    --TamTitulos: 65px;
+    --TamMenu: 13px;
+    --TamTexto:14px;
+    --TamError:13px;
+    --TamGame:16px;
+
+    //------------------PESO-TIPOGRAFÍA-------------------//
+
+
+    //------------------HOVER-TIPOGRAFÍA-------------------//
+
+    --BottomOffset: 0;
+    --LineHeight: 20px;
+    --LineColor: linear-gradient(-90deg, #ffffff00, #A1011B, #A1011B,#ffffff00)
+
+}
+body{
+  font-family: var(--TipoTexto);
+  overflow-x: hidden;
+  position:sticky;
+}

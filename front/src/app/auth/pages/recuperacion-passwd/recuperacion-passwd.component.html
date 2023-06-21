@@ -1,0 +1,48 @@
+<div class="row g-0">
+  <div class="col-md-6 d-none d-md-block rounded-1 portada align-items-center py-3 px-5 text-center">
+    <img src="../../../../assets/imgs/logo.png">
+    <h1 class="h1 mb-4 pb-5 border-1 border-bottom">Sengoku</h1>
+    <p class="mb-5">Inicia sesión con tu cuenta</p>
+    <div class="pt-1 mb-2">
+      <button (click)="abrirLogin()" type="button" class="btn btn-light">Login</button>
+    </div>
+    <img>
+  </div>
+  <div class="col-md-6 intro my-3">
+    <div class="card-body p-4 p-lg-5 text-black text-center">
+      <form #regForm="ngForm" [formGroup]="passwdForm" (ngSubmit)="recPasswd()">
+        <img>
+        <div class="mb-4 border-bottom border-3">
+          <h2 class="h2 fw-bold mb-0 mb-3 pb-1">Restaurar Contraseña</h2>
+          <h6 class="mb-3 pb-3 fw-light">Escribe tu email y una nueva contraseña.<br>Revisa tu correo para confirmar la nueva contraseña generada</h6>
+        </div>
+
+        <div class="form-outline mb-4 text-start">
+          <label class="form-label">Email</label>
+
+          <input type="email" formControlName="email"
+            [ngClass]="{'is-invalid' : form['email'].invalid && form['email'].dirty}" class="form-control" />
+
+          <div *ngIf="form['email'].errors" class="invalid-feedback">
+            <div *ngIf="form['email'].errors?.['required']" class="error alert alert-danger mt-2">El email es
+              obligatorio</div>
+            <div *ngIf="form['email'].errors?.['pattern']" class="error alert alert-danger mt-2">El email debe ser
+              válido</div>
+          </div>
+        </div>
+
+        <div class="pt-5 mb-4">
+          <button class=" mb-4 btn btn-dark text-center" [disabled]="passwdForm.invalid" type="submit">Enviar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<div class="position-absolute top-50 start-50 translate-middle mensaje card shadow-lg p-3 mb-5 bg-body rounded" *ngIf="cambioPasswd == 2" style="width: 400px;">
+  <div class="card-body">
+    <span><i class="fa-solid fa-triangle-exclamation me-2" style="color:var(--colorRojo)"></i>
+      {{result.msg}}</span>
+  </div>
+</div>

@@ -1,0 +1,54 @@
+.lateral{
+  .fondo-tabla{
+    margin-top: 104px;
+    background-color: var(--colorTransparente);
+    .tabla{
+      background-color: transparent;
+      //height: 414px;
+      max-height: 414px;
+      .card-header{
+        background-color: var(--colorAzul);
+        color: var(--colorDorado);
+      }
+      .lista-tabla{
+        overflow-y: scroll;
+        max-height: 414px;
+        //height: 414px;
+        &::-webkit-scrollbar {
+          margin-left: 5px;
+          width: 4px;
+          border-radius: 4px;
+          background-color: #ffffff19;
+        }
+        &::-webkit-scrollbar-thumb {
+          background: var(--colorDorado);
+          border-radius: 4px;
+          margin-left: 5px;
+        }
+        .lista{
+          background-color: var(--colorGris);
+          li{
+            margin: auto;
+            p{
+              font-size: 14px;
+              margin: auto;
+            }
+            img{
+              width: 50px;
+              margin: 0;
+              border: 3px solid var(--colorDorado);
+            }
+            button{
+              background-color: #00102AD4;
+              color: var(--colorDorado);
+              box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.5);
+              &:hover{
+                background-color: var(--colorAzul);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

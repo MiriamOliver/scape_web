@@ -1,0 +1,22 @@
+<div class="fondo-inicio">
+  <div class="container py-5 px-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-xl-10">
+        <div class="rounded-1">
+          <ng-container *ngIf="inicio == 'registro'">
+            <app-register></app-register>
+          </ng-container>
+          <ng-container *ngIf="inicio == 'login'">
+            <app-login></app-login>
+          </ng-container>
+          <ng-container *ngIf="inicio == 'recpasswd'">
+            <app-recuperacion-passwd></app-recuperacion-passwd>
+          </ng-container>
+          <ng-container *ngIf="inicio == 'genpasswd'">
+            <app-generar-passwd></app-generar-passwd>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

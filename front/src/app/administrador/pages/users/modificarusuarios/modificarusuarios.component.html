@@ -1,0 +1,68 @@
+<app-menu></app-menu>
+  <div class="row fondo-usuario">
+    <main class="col-md-10 p-5 py-3 pe-4">
+      <div class="m-5 p-2 fondo-transparente">
+        <hr class="hr-text-bot m-0 p-1 mb-2" data-content="ENIGMA">
+        <form #regForm="ngForm" [formGroup]="usuarioForm" (ngSubmit)="modificarUsuario(perfil.id)">
+
+          <div class="row py-3 mb-2 mx-0 d-flex align-items-center contenedor rounded">
+            <div class="col-3 py-3 t ps-5 barra">
+              <h4 class="ms-5">Nombre :</h4>
+            </div>
+            <div class="col-9 text-start px-5">
+              <input type="text"
+              value="{{nombre}}"
+              formControlName="nombre"
+              [(ngModel)]="nombre"
+              [ngClass]="{'is-invalid' : form['nombre'].invalid && form['nombre'].dirty}"
+              class="form-control"/>
+
+              <div *ngIf="form['nombre'].invalid" class="invalid-feedback">
+                <div *ngIf="form['nombre'].errors?.['required']" class="error alert alert-danger mt-2">Escribe un nombre para el usuario</div>
+              </div>
+            </div>
+          </div>
+
+          <div class=" py-3 mb-2 mx-0 d-flex align-items-center contenedor rounded">
+            <div class="col-3 py-3 t ps-5 barra">
+              <h4 class="ms-5">Avatar :</h4>
+            </div>
+            <div class="col-9 text-start px-5">
+              <input
+              class="form-control"
+              type="file" id="formFile"
+              (change)="onFileSelected($event)"/>
+            </div>
+          </div>
+
+          <div class="row py-3 mx-0 d-flex align-items-center contenedor rounded">
+            <div class="col-3 py-3 t ps-5 barra">
+              <h4 class="ms-5">Rol :</h4>
+            </div>
+            <div class="col-9 px-5">
+              <select class="form-select form-control"
+                formControlName="respuesta"
+                [(ngModel)]="respuesta"
+                [ngClass]="{'is-invalid' : form['respuesta'].invalid && form['respuesta'].touched}">
+                <option value="" disabled selected hidden>{{respuesta}}</option>
+                <option value="jugador">jugador</option>
+                <option value="administrador">administrador</option>
+              </select>
+              <div *ngIf="form['respuesta'].invalid" class="invalid-feedback">
+                <div *ngIf="form['respuesta'].errors?.['required']" class="error alert alert-danger mt-2">Elige un rol para el usuario</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-1 m-2 text-center">
+            <button class="btn btn-dark text-center" [disabled]="usuarioForm.invalid" type="submit">CONFIRMAR</button>
+          </div>
+
+        </form>
+      </div>
+    </main>
+    <aside class="col-md-2 pt-0 ps-0">
+      <app-sidebar></app-sidebar>
+    </aside>
+  </div>
+<app-footer></app-footer>

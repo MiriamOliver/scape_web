@@ -1,0 +1,25 @@
+div{
+  background-color: var(--colorRojo);
+  h1{
+    color: var(--colorDorado);
+  }
+  img{
+    width: 400px;
+  }
+  a{
+    margin: auto;
+    text-decoration: none;
+    button{
+      display: block;
+      margin: auto;
+      border: none;
+      color: var(--colorAzul);
+      &:hover{
+        background-color: var(--colorDorado);
+      }
+    }
+    &:hover{
+      background-color: var(--colorDorado);
+    }
+  }
+}

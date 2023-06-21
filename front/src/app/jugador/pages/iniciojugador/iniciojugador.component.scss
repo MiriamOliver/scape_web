@@ -1,0 +1,100 @@
+.fondo-inicio{
+  background-image: url(../../../../assets/imgs/fondo-inicio.jpg);
+  background-size: 100%;
+  main{
+    .inicio{
+      margin: auto;
+      margin-top: 30px;
+      background-color: #00102abd;
+      border-radius: 6px;
+      .nav-pills{
+        button{
+          display: block;
+          width: 200px;
+        }
+        .nav-link {
+          color: var(--colorDorado);
+          background-color: var(--colorGris);
+          position: relative;
+          padding: 0;
+          height: 45px;
+          &::before {
+            content: '';
+            display: block;
+            border-top: 12px solid transparent;
+            border-left: 14px solid var(--colorDorado);
+            border-bottom: 12px solid transparent;
+            position: absolute;
+            top: 50%;
+            right: -48px;
+            transform: translateY(-50%);
+            opacity: 0;
+          }
+        }
+        .nav-link.active{
+          color: var(--colorGris);
+          background-color: var(--colorDorado);
+          &::before {
+            opacity: 1;
+          }
+        }
+      }
+      .pestanias{
+        display: block;
+        width: 242px;
+        border-right: 2px solid #AE8C44;
+      }
+      .info-inicio{
+        margin-left: 33px;
+        border-radius: 6px;
+        background-color: var(--colorAzul);
+        div{
+          h6,h1{
+            color: var(--colorDorado);
+          }
+          p{
+            color: var(--colorGris);
+            font-size: var(--TamTexto);
+          }
+          .hr-text {
+            line-height: 1em;
+            position: relative;
+            outline: 0;
+            border: 0;
+            color: black;
+            text-align: center;
+            //height: -3.5em;
+            opacity: 1;
+            &:before {
+              content: '';
+              background: linear-gradient(to right, transparent, #AE8C44, transparent);
+              position: absolute;
+              left: 0;
+              top: 50%;
+              width: 100%;
+              height: 2px;
+            }
+            &:after {
+              content: attr(data-content);
+              position: relative;
+              display: inline-block;
+              padding: 0 .5em;
+              line-height: 1.5em;
+              color: var(--colorDorado);
+              background-color: var(--colorAzul);
+              font-weight: 700;
+              font-size: 14px;
+            }
+          }
+        }
+      }
+    }
+  }
+  aside{
+    background-color: #00102ad4;
+    max-height: 100vh;
+    height: 640px;
+   // border-left: 3px solid #AE8C44;
+  }
+}
+

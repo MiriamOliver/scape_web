@@ -1,0 +1,18 @@
+.cabecera{
+  background-color: var(--colorAzul);
+  height: 56px;
+}
+.pie{
+  background-color: var(--colorAzul);
+  height: 78px;
+}
+.fondo-partida{
+  background-image: url(../../../../../assets/imgs/fondo-inicio.jpg);
+  main{
+    .contenedor-chat{
+      background-color: var(--colorTransparente);
+    }
+  }
+}
+
+
