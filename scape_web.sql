@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-06-2023 a las 18:04:11
+-- Tiempo de generación: 21-06-2023 a las 21:20:04
 -- Versión del servidor: 10.4.25-MariaDB
 -- Versión de PHP: 8.1.10
 
@@ -94,7 +94,46 @@ INSERT INTO `chats` (`id_user`, `id_partida`, `mensaje`, `createdAt`, `updatedAt
 (84, 60, 'yo solo tiro al azar ', '2023-05-15 16:21:38', '2023-05-15 16:21:38'),
 (83, 67, 'probando chat', '2023-05-17 08:08:01', '2023-05-17 08:08:01'),
 (83, 67, 'probando chat', '2023-05-17 08:08:31', '2023-05-17 08:08:31'),
-(83, 69, 'aaaaa', '2023-05-17 08:23:06', '2023-05-17 08:23:06');
+(83, 69, 'aaaaa', '2023-05-17 08:23:06', '2023-05-17 08:23:06'),
+(84, 88, 'hola', '2023-06-03 19:03:27', '2023-06-03 19:03:27'),
+(84, 88, 'hemos resuelto el problema del chat', '2023-06-03 19:04:42', '2023-06-03 19:04:42'),
+(84, 90, 'hola', '2023-06-04 16:16:25', '2023-06-04 16:16:25'),
+(84, 90, 'dfasdfas', '2023-06-04 18:23:58', '2023-06-04 18:23:58'),
+(84, 91, 'hola', '2023-06-04 18:24:24', '2023-06-04 18:24:24'),
+(70, 91, 'hola', '2023-06-04 18:25:36', '2023-06-04 18:25:36'),
+(83, 91, 'holita', '2023-06-04 18:26:19', '2023-06-04 18:26:19'),
+(70, 94, 'porqueeeeeeeeee', '2023-06-04 19:21:32', '2023-06-04 19:21:32'),
+(70, 131, 'hola', '2023-06-06 01:56:51', '2023-06-06 01:56:51'),
+(84, 131, 'porque no va el chat ahora T^t', '2023-06-06 01:57:01', '2023-06-06 01:57:01'),
+(70, 132, 'hola', '2023-06-06 02:01:51', '2023-06-06 02:01:51'),
+(84, 132, 'ahora funciona el chat', '2023-06-06 02:02:39', '2023-06-06 02:02:39'),
+(70, 133, 'por favor dime que sigues funcionando', '2023-06-06 02:03:03', '2023-06-06 02:03:03'),
+(84, 133, 'por queeeeeT^T', '2023-06-06 02:03:23', '2023-06-06 02:03:23'),
+(70, 134, 'asfisahf', '2023-06-06 02:05:06', '2023-06-06 02:05:06'),
+(84, 134, 'sadfasfas', '2023-06-06 02:05:12', '2023-06-06 02:05:12'),
+(84, 135, 'por favor', '2023-06-06 02:09:24', '2023-06-06 02:09:24'),
+(70, 135, 'eretrwert', '2023-06-06 02:10:09', '2023-06-06 02:10:09'),
+(84, 135, 'etwet', '2023-06-06 02:10:13', '2023-06-06 02:10:13'),
+(70, 137, 'ojoijoojo', '2023-06-06 11:15:15', '2023-06-06 11:15:15'),
+(84, 137, 'ljljljjoiuihihi', '2023-06-06 11:15:48', '2023-06-06 11:15:48'),
+(84, 138, 'aaaaaaaaaa', '2023-06-06 11:16:12', '2023-06-06 11:16:12'),
+(83, 138, 'erer', '2023-06-06 11:17:34', '2023-06-06 11:17:34'),
+(83, 141, 'aaaaa', '2023-06-06 11:25:59', '2023-06-06 11:25:59'),
+(84, 142, 'wwww', '2023-06-06 11:26:46', '2023-06-06 11:26:46'),
+(84, 147, 'hola', '2023-06-06 19:11:09', '2023-06-06 19:11:09'),
+(70, 147, 'hola', '2023-06-06 19:11:41', '2023-06-06 19:11:41'),
+(84, 148, 'sdfjosjfosdf', '2023-06-07 17:06:40', '2023-06-07 17:06:40'),
+(84, 148, 'sdfsadf', '2023-06-07 17:06:50', '2023-06-07 17:06:50'),
+(83, 148, 'dfgsdgf', '2023-06-07 17:07:10', '2023-06-07 17:07:10'),
+(84, 149, 'gddfgdfg', '2023-06-07 17:07:37', '2023-06-07 17:07:37'),
+(70, 160, 'hola', '2023-06-19 18:58:19', '2023-06-19 18:58:19'),
+(84, 160, 'sadfasdf', '2023-06-19 18:59:24', '2023-06-19 18:59:24'),
+(83, 160, 'sadfsadfasdf', '2023-06-19 18:59:31', '2023-06-19 18:59:31'),
+(70, 160, 'asdfasdf', '2023-06-19 18:59:48', '2023-06-19 18:59:48'),
+(83, 163, 'hih', '2023-06-20 17:55:19', '2023-06-20 17:55:19'),
+(83, 163, 'hvh', '2023-06-20 17:56:38', '2023-06-20 17:56:38'),
+(84, 168, 'hola que tal', '2023-06-21 11:16:17', '2023-06-21 11:16:17'),
+(70, 168, 'muy bien', '2023-06-21 11:16:23', '2023-06-21 11:16:23');
 
 -- --------------------------------------------------------
 
@@ -122,7 +161,58 @@ CREATE TABLE `enigmas` (
 INSERT INTO `enigmas` (`id`, `creador`, `pregunta`, `resp_uno`, `resp_dos`, `resp_tres`, `resp_cuatro`, `correcta`, `createdAt`, `updatedAt`) VALUES
 (1, 'nobunaga oda', '¿Qué significa Sengoku?', 'luchar por el país', 'período Samurai', 'mundo flotante', 'luchar en todo el país', 'luchar en todo el país', '2023-05-13 12:16:48', '1900-01-13 12:17:08'),
 (2, 'motochika choskabe', '¿Cuál es el nombre del hermano mayor de Sanada Yukimura?', 'Sanada Makoto', 'Sanada Masayuki ', 'Sanada Masamune', 'Sanada Nobuyuki', 'Sanada Nobuyuki', '1900-01-13 12:17:00', '1900-01-13 12:17:15'),
-(3, 'nobunaga oda', '¿Cuál era el apodo de Oda Nobunaga?', 'El demonio invencible', 'Rey demonio del sexto cielo', 'Gran demonio rojo', 'Dios demonio del quinto cielo', 'Rey demonio del sexto cielo', '2023-05-20 21:43:53', '2023-05-21 16:25:49');
+(3, 'nobunaga oda', '¿Cuál era el apodo de Oda Nobunaga?', 'El demonio invencible', 'Rey demonio del sexto cielo', 'Gran demonio rojo', 'Dios demonio del quinto cielo', 'Rey demonio del sexto cielo', '2023-05-20 21:43:53', '2023-05-21 16:25:49'),
+(18, 'nobunaga oda', '¿Qué le faltaba a Date Masamune?', 'Un oido', 'Un ojo', 'Una mano', 'Un dedo', 'Un ojo', '2023-06-19 17:17:19', '2023-06-19 17:18:01'),
+(19, 'motochika choskabe', 'a que dia estamos?', 'lunes', 'martes', 'los dias no existen', 'dia 0', 'los dias no existen', '2023-06-21 11:10:23', '2023-06-21 11:10:23');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `foros`
+--
+
+CREATE TABLE `foros` (
+  `id` bigint(20) NOT NULL,
+  `id_user` int(11) DEFAULT NULL,
+  `mensaje` varchar(255) DEFAULT NULL,
+  `tipo` varchar(255) NOT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `foros`
+--
+
+INSERT INTO `foros` (`id`, `id_user`, `mensaje`, `tipo`, `createdAt`, `updatedAt`) VALUES
+(1, 79, 'dfgdfgd', 'mensaje', '2023-06-11 19:04:56', '2023-06-11 19:04:56'),
+(2, 79, 'afsdfa', 'mensaje', '2023-06-11 19:29:22', '2023-06-11 19:29:22'),
+(3, 79, 'eeeeeee', 'mensaje', '2023-06-11 19:31:09', '2023-06-11 19:31:09'),
+(4, 79, 'aaaaa', 'mensaje', '2023-06-11 19:32:05', '2023-06-11 19:32:05'),
+(5, 79, 'asdasda', 'mensaje', '2023-06-11 19:34:51', '2023-06-11 19:34:51'),
+(6, 79, 'arwerwer', 'mensaje', '2023-06-11 19:40:13', '2023-06-11 19:40:13'),
+(7, 79, 'aaaaaa', 'mensaje', '2023-06-11 19:41:16', '2023-06-11 19:41:16'),
+(8, 79, 'hola', 'mensaje', '2023-06-11 19:41:25', '2023-06-11 19:41:25'),
+(9, 84, 'holita', 'mensaje', '2023-06-11 19:44:00', '2023-06-11 19:44:00'),
+(10, 79, 'erertert', 'mensaje', '2023-06-12 01:18:34', '2023-06-12 01:18:34'),
+(11, 79, 'holita', 'mensaje', '2023-06-12 01:24:40', '2023-06-12 01:24:40'),
+(12, 84, 'que tal andamos', 'mensaje', '2023-06-12 01:25:00', '2023-06-12 01:25:00'),
+(13, 79, '7816a7d5-1a04-4ce3-8fe8-976783b42473.jpg', 'archivo', '2023-06-13 17:48:09', '2023-06-13 17:48:09'),
+(14, 79, 'vamos a seguir probando cosas', 'mensaje', '2023-06-13 19:02:42', '2023-06-13 19:02:42'),
+(15, 84, 'hola', 'mensaje', '2023-06-13 19:04:01', '2023-06-13 19:04:01'),
+(16, 79, 'como estas?', 'mensaje', '2023-06-13 19:04:11', '2023-06-13 19:04:11'),
+(17, 84, 'tengo sueño ', 'mensaje', '2023-06-13 19:09:39', '2023-06-13 19:09:39'),
+(18, 79, 'hay que descansar mas ', 'mensaje', '2023-06-13 19:09:59', '2023-06-13 19:09:59'),
+(19, 84, '3576cbb4-a23d-4678-987c-e94e83fe5ed7.jpg', 'archivo', '2023-06-13 19:10:26', '2023-06-13 19:10:26'),
+(20, 79, 'muy bonita imagen', 'mensaje', '2023-06-13 19:10:38', '2023-06-13 19:10:38'),
+(21, 79, 'oowreoqjr', 'mensaje', '2023-06-13 19:10:58', '2023-06-13 19:10:58'),
+(22, 84, '9a8d6317-4746-4938-8024-9c3ace07faaf.jpg', 'archivo', '2023-06-13 19:11:45', '2023-06-13 19:11:45'),
+(23, 79, 'para de pasar tantas imagenes o seras baneado', 'mensaje', '2023-06-13 19:12:06', '2023-06-13 19:12:06'),
+(24, 83, 'hola', 'mensaje', '2023-06-19 19:02:52', '2023-06-19 19:02:52'),
+(25, 84, 'buenos días, quiero reportar un error ', 'mensaje', '2023-06-20 17:18:36', '2023-06-20 17:18:36'),
+(26, 79, 'cuentanos ', 'mensaje', '2023-06-20 17:28:18', '2023-06-20 17:28:18'),
+(27, 79, 'hay una nueva actulizacion', 'mensaje', '2023-06-21 11:11:14', '2023-06-21 11:11:14'),
+(29, 83, 'que fondo mas bonito', 'mensaje', '2023-06-21 11:11:43', '2023-06-21 11:11:43');
 
 -- --------------------------------------------------------
 
@@ -155,26 +245,26 @@ INSERT INTO `jugadores` (`id`, `ganadas`, `perdidas`, `partidas`, `llaves`, `act
 (50, 0, 0, 0, 0, 0),
 (51, 0, 0, 0, 0, 0),
 (52, 0, 0, 0, 0, 0),
-(54, 0, 0, 0, 0, 0),
+(54, 0, 0, 0, 0, 1),
 (55, 0, 0, 0, 0, 0),
 (56, 0, 0, 0, 0, 0),
 (57, 0, 0, 0, 0, 0),
 (69, 0, 0, 0, 0, 0),
-(70, 8, 1, 9, 21, 0),
+(70, 13, 1, 14, 33, 0),
 (71, 0, 0, 0, 0, 0),
 (72, 0, 0, 0, 0, 0),
-(73, 0, 0, 0, 0, 0),
+(73, 1, 0, 1, 4, 0),
 (74, 0, 0, 0, 0, 0),
 (75, 0, 0, 0, 0, 0),
 (76, 0, 0, 0, 0, 0),
 (77, 0, 0, 0, 0, 0),
 (78, 0, 0, 0, 0, 0),
-(79, 0, 0, 0, 0, 0),
+(79, 0, 0, 0, 0, 1),
 (80, 0, 0, 0, 0, 0),
-(81, 0, 0, 0, 0, 0),
-(82, 0, 0, 0, 0, 0),
-(83, 8, 0, 8, 9, 0),
-(84, 7, 1, 8, 13, 0),
+(81, 1, 0, 1, 1, 0),
+(82, 0, 0, 0, 0, 1),
+(83, 11, 0, 11, 22, 0),
+(84, 11, 1, 12, 23, 0),
 (85, 0, 0, 0, 0, 0),
 (86, 0, 0, 0, 0, 0),
 (87, 0, 0, 0, 0, 0),
@@ -203,10 +293,16 @@ INSERT INTO `jugadores` (`id`, `ganadas`, `perdidas`, `partidas`, `llaves`, `act
 (161, 0, 0, 0, 0, 0),
 (165, 0, 0, 0, 0, 0),
 (166, 0, 0, 0, 0, 0),
-(169, 0, 0, 0, 0, 0),
+(169, 0, 0, 0, 0, 1),
 (170, 0, 0, 0, 0, 0),
 (173, 0, 0, 0, 0, 0),
-(174, 0, 0, 0, 0, 0);
+(174, 0, 0, 0, 0, 0),
+(175, 0, 0, 0, 0, 0),
+(176, 0, 0, 0, 0, 0),
+(177, 0, 0, 0, 0, 0),
+(178, 0, 0, 0, 0, 0),
+(179, 0, 0, 0, 0, 0),
+(180, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -269,7 +365,36 @@ INSERT INTO `partidas` (`id`, `llaves`, `anfitrion`, `tiempo`, `estado`, `result
 (84, 6, 83, '2:28', 'terminada', 'ganada', '2023-05-31 01:22:20', '2023-05-31 02:00:26'),
 (85, 1, 84, '30', 'terminada', 'perdida', '2023-05-31 12:39:47', '2023-05-31 15:25:38'),
 (86, 6, 84, '9:15', 'terminada', 'ganada', '2023-05-31 17:17:35', '2023-05-31 17:27:38'),
-(87, 4, 83, NULL, 'curso', NULL, '2023-06-01 09:21:51', '2023-06-01 09:23:57');
+(87, 4, 83, NULL, 'curso', NULL, '2023-06-01 09:21:51', '2023-06-01 09:23:57'),
+(99, NULL, 84, NULL, 'disponible', NULL, '2023-06-04 20:27:15', '2023-06-04 20:27:15'),
+(100, NULL, 70, NULL, 'disponible', NULL, '2023-06-05 08:31:19', '2023-06-05 08:31:19'),
+(105, NULL, 70, NULL, 'disponible', NULL, '2023-06-05 08:53:50', '2023-06-05 08:53:50'),
+(109, NULL, 70, NULL, 'disponible', NULL, '2023-06-05 09:02:57', '2023-06-05 09:02:57'),
+(110, NULL, 70, NULL, 'disponible', NULL, '2023-06-05 09:07:11', '2023-06-05 09:07:11'),
+(111, NULL, 70, NULL, 'disponible', NULL, '2023-06-05 09:09:33', '2023-06-05 09:09:33'),
+(116, NULL, 70, NULL, 'disponible', NULL, '2023-06-05 09:24:59', '2023-06-05 09:24:59'),
+(117, NULL, 84, NULL, 'disponible', NULL, '2023-06-05 09:29:24', '2023-06-05 09:29:24'),
+(120, NULL, 84, NULL, 'disponible', NULL, '2023-06-05 10:46:49', '2023-06-05 10:46:49'),
+(123, NULL, 84, NULL, 'disponible', NULL, '2023-06-05 19:29:17', '2023-06-05 19:29:17'),
+(128, NULL, 70, NULL, 'disponible', NULL, '2023-06-06 01:33:13', '2023-06-06 01:33:13'),
+(129, NULL, 70, NULL, 'disponible', NULL, '2023-06-06 01:54:49', '2023-06-06 01:54:49'),
+(138, NULL, 70, NULL, 'disponible', NULL, '2023-06-06 11:16:02', '2023-06-06 11:16:02'),
+(147, 6, 70, '1:51', 'terminada', 'ganada', '2023-06-06 19:10:28', '2023-06-06 19:13:27'),
+(150, NULL, 84, NULL, 'disponible', NULL, '2023-06-19 18:32:01', '2023-06-19 18:32:01'),
+(151, NULL, 84, NULL, 'disponible', NULL, '2023-06-19 18:32:15', '2023-06-19 18:32:15'),
+(152, NULL, 84, NULL, 'disponible', NULL, '2023-06-19 18:35:49', '2023-06-19 18:35:49'),
+(153, NULL, 84, NULL, 'disponible', NULL, '2023-06-19 18:38:13', '2023-06-19 18:38:13'),
+(154, NULL, 84, NULL, 'disponible', NULL, '2023-06-19 18:40:04', '2023-06-19 18:40:04'),
+(155, NULL, 84, NULL, 'disponible', NULL, '2023-06-19 18:41:01', '2023-06-19 18:41:01'),
+(156, NULL, 84, NULL, 'disponible', NULL, '2023-06-19 18:42:22', '2023-06-19 18:42:22'),
+(157, NULL, 84, NULL, 'disponible', NULL, '2023-06-19 18:44:38', '2023-06-19 18:44:38'),
+(158, NULL, 84, NULL, 'disponible', NULL, '2023-06-19 18:45:12', '2023-06-19 18:45:12'),
+(159, NULL, 84, NULL, 'disponible', NULL, '2023-06-19 18:47:23', '2023-06-19 18:47:23'),
+(160, 10, 70, '1:51', 'terminada', 'ganada', '2023-06-19 18:58:15', '2023-06-19 19:02:25'),
+(163, 8, 84, '1:51', 'terminada', 'ganada', '2023-06-20 17:54:29', '2023-06-20 17:57:30'),
+(164, 9, 81, '1:14', 'terminada', 'ganada', '2023-06-20 18:43:40', '2023-06-20 18:46:01'),
+(166, NULL, 83, NULL, 'disponible', NULL, '2023-06-21 08:23:59', '2023-06-21 08:23:59'),
+(168, 7, 70, '1:14', 'terminada', 'ganada', '2023-06-21 11:15:50', '2023-06-21 11:19:12');
 
 -- --------------------------------------------------------
 
@@ -387,7 +512,50 @@ INSERT INTO `partidasjugadores` (`id_jugador`, `id_partida`, `llaves`, `fallos`,
 (83, 86, 0, 15, 1, 'marinero'),
 (83, 87, 0, 4, 0, 'marinero'),
 (84, 87, 0, 5, 1, 'marinero'),
-(70, 87, 4, 1, 1, 'almirante');
+(70, 87, 4, 1, 1, 'almirante'),
+(84, 99, 0, 0, 1, 'marinero'),
+(70, 99, 0, 0, 1, 'marinero'),
+(70, 100, 0, 0, 1, 'marinero'),
+(70, 105, 0, 0, 1, 'marinero'),
+(70, 109, 0, 0, 1, 'marinero'),
+(70, 110, 0, 0, 1, 'marinero'),
+(70, 111, 0, 0, 1, 'marinero'),
+(70, 116, 0, 0, 1, 'marinero'),
+(84, 117, 0, 0, 1, 'marinero'),
+(84, 120, 0, 0, 1, 'marinero'),
+(84, 123, 0, 0, 1, 'marinero'),
+(70, 128, 0, 0, 1, 'marinero'),
+(70, 129, 0, 0, 1, 'marinero'),
+(70, 138, 0, 0, 1, 'marinero'),
+(84, 138, 0, 0, 1, 'marinero'),
+(83, 138, 0, 0, 1, 'marinero'),
+(70, 147, 0, 2, 0, 'marinero'),
+(84, 147, 4, 1, 1, 'almirante'),
+(83, 147, 2, 1, 1, 'marinero'),
+(84, 150, 0, 0, 1, 'marinero'),
+(84, 151, 0, 0, 1, 'marinero'),
+(84, 20, 0, 0, 1, 'marinero'),
+(84, 152, 0, 0, 1, 'marinero'),
+(84, 153, 0, 0, 1, 'marinero'),
+(84, 154, 0, 0, 1, 'marinero'),
+(84, 155, 0, 0, 1, 'marinero'),
+(84, 156, 0, 0, 1, 'marinero'),
+(84, 157, 0, 0, 1, 'marinero'),
+(84, 158, 0, 0, 1, 'marinero'),
+(84, 159, 0, 0, 1, 'marinero'),
+(70, 159, 0, 0, 1, 'marinero'),
+(70, 160, 2, 4, 1, 'marinero'),
+(83, 160, 5, 1, 1, 'almirante'),
+(84, 160, 3, 4, 1, 'marinero'),
+(84, 163, 0, 2, 1, 'marinero'),
+(70, 163, 2, 2, 1, 'marinero'),
+(83, 163, 6, 0, 1, 'almirante'),
+(81, 164, 1, 1, 1, 'almirante'),
+(70, 164, 4, 0, 1, 'marinero'),
+(73, 164, 4, 0, 1, 'marinero'),
+(83, 166, 0, 0, 1, 'marinero'),
+(70, 168, 4, 0, 1, 'almirante'),
+(84, 168, 3, 1, 1, 'marinero');
 
 -- --------------------------------------------------------
 
@@ -435,7 +603,7 @@ INSERT INTO `rolesasignados` (`id_user`, `id_rol`) VALUES
 (50, 1),
 (51, 1),
 (52, 1),
-(54, 1),
+(54, 2),
 (55, 1),
 (56, 1),
 (57, 1),
@@ -494,7 +662,13 @@ INSERT INTO `rolesasignados` (`id_user`, `id_rol`) VALUES
 (171, 2),
 (174, 1),
 (173, 1),
-(172, 2);
+(172, 2),
+(175, 2),
+(176, 2),
+(177, 1),
+(178, 1),
+(179, 1),
+(180, 2);
 
 -- --------------------------------------------------------
 
@@ -518,7 +692,9 @@ INSERT INTO `sequelizemeta` (`name`) VALUES
 ('20230423002530-create-partida.js'),
 ('20230423013328-create-partida-jugador.js'),
 ('20230506180532-create-chat.js'),
-('20230508190136-create-enigma.js');
+('20230508190136-create-enigma.js'),
+('20230611162406-create-foro.js'),
+('20230612023402-create-usuario-foro.js');
 
 -- --------------------------------------------------------
 
@@ -556,26 +732,25 @@ INSERT INTO `users` (`id`, `nombre`, `email`, `password`, `avatar`, `cod_passwd`
 (50, 'email2', 'email2@gmail.com', '1', NULL, '0', 0, 1, NULL, '2023-04-11 18:41:55', '2023-04-11 18:42:03'),
 (51, 'probandoRegistro', 'probando@example.com', '1234', NULL, '0', 0, 1, NULL, '2023-04-11 21:01:10', '2023-04-11 21:01:10'),
 (52, 'prueba52', 'prueba@example.com', '123', NULL, '0', 0, 1, NULL, '2023-04-12 06:34:21', '2023-04-12 06:34:21'),
-(54, 'pruebas', 'maspruebas@example.com', '123', '190a92b6-e2d3-42a9-8e4f-4f2e45ef36b0.jpg', '0', 0, 0, '2023-05-02 21:31:55', '2023-04-12 08:55:46', '2023-06-01 09:16:28'),
 (55, 'miriam', 'xlmiru5lx@gmail.com', '1234', NULL, '0', 0, 1, NULL, '2023-04-12 10:09:13', '2023-04-12 10:09:35'),
 (56, 'probandoImagen', 'probandoimg@example.com', '1234', NULL, '0', 0, 1, NULL, '2023-04-12 10:48:07', '2023-04-12 10:48:07'),
 (57, 'pruebaimg', 'pimg@example.com', '1234', NULL, '0', 0, 1, NULL, '2023-04-12 11:50:51', '2023-04-12 11:50:51'),
 (69, 'ghfh', 'fhfh@sdofas.com', '1', NULL, '0', 0, 1, NULL, '2023-04-12 16:35:08', '2023-04-12 16:35:08'),
-(70, 'nene', 'nene@example.com', '1234', '6cc2bb07-1b07-42f7-9094-fd345bf697e7.jpg', '0', 1, 1, '2023-04-12 19:13:57', '2023-04-12 17:02:22', '2023-06-01 09:21:23'),
+(70, 'nene', 'nene@example.com', '1234', '6cc2bb07-1b07-42f7-9094-fd345bf697e7.jpg', '0', 0, 1, '2023-04-12 19:13:57', '2023-04-12 17:02:22', '2023-06-21 11:20:05'),
 (71, 'Mitsunari Ishida', 'xlmiru9lx@gmail.com', '1234', '08d1a2c7-3299-4547-b17d-1961fc7ebe77.jpg', '0', 0, 1, '2023-04-12 19:09:15', '2023-04-12 17:15:17', '2023-05-11 18:52:36'),
 (72, 'Aya', 'aya@gmail.com', '1234', '28499015-922d-47e0-8dbc-2ceac1b294be.jpg', '0', 0, 0, '2023-05-23 19:14:27', '2023-04-12 17:17:49', '2023-05-23 22:09:23'),
-(73, 'kotaro', 'kotaro@gmail.com', '1234', '342ad617-3329-46cc-8ab4-3e62b393c824.jpg', '0', 1, 1, '2023-04-30 21:47:44', '2023-04-12 17:35:28', '2023-05-25 15:40:30'),
+(73, 'kotaro', 'kotaro@gmail.com', '1234', '342ad617-3329-46cc-8ab4-3e62b393c824.jpg', '0', 0, 1, '2023-04-30 21:47:44', '2023-04-12 17:35:28', '2023-06-21 07:55:21'),
 (74, 'lady_kay', 'kay@example.com', '1234', 'c8a86f0f-b0d3-49f6-83f3-dec496c0a1bc.jpg', '0', 0, 1, NULL, '2023-04-12 17:37:04', '2023-04-12 17:37:04'),
 (75, 'keiji maeda', 'keiji@example.com', '1234', 'f27bdfb9-1396-499a-9918-868e63932e63.jpg', '0', 0, 1, NULL, '2023-04-12 18:04:59', '2023-04-12 18:04:59'),
 (76, 'takatora todo', 'todo@example.com', '1234', '8738d829-b9d5-46e6-97bc-7842c1f3a275.jpg', '0', 0, 1, NULL, '2023-04-12 18:09:23', '2023-04-12 18:09:23'),
 (77, 'hanzo hattori', 'hattori@example.com', '1234', '309c108e-f496-4309-ac21-fe2c4fb21e16.jpg', '0', 0, 1, NULL, '2023-04-12 18:46:46', '2023-04-12 18:46:46'),
 (78, 'ranmaru mori', 'ranmaru@example.com', '1234', 'f465cbae-f6f4-4a86-91c1-532042ecc990.jpg', '0', 0, 1, NULL, '2023-04-12 18:49:46', '2023-04-12 18:49:46'),
-(79, 'nobunaga oda', 'oda@gmail.com', '1234', '9529de6a-b3e6-4a3c-ae3e-2f4374c05d72.jpg', '0', 0, 1, '2023-04-22 00:00:00', '2023-04-12 18:50:48', '2023-06-01 09:20:55'),
+(79, 'nobunaga oda', 'oda@gmail.com', '1234', '283e2e32-1069-47d5-b373-809481c08827.jpg', '0', 1, 1, '2023-04-22 00:00:00', '2023-04-12 18:50:48', '2023-06-21 19:18:20'),
 (80, 'lady hayakawa', 'hayakawa@example.com', '1234', '4e2bcfe2-667e-418b-a9b5-271a3c863941.jpg', '0', 0, 1, NULL, '2023-04-12 18:54:25', '2023-04-12 18:54:25'),
-(81, 'toshiie maeda', 'toshiie@example.com', '1234', 'f2cdb4b1-d51f-44da-bcfe-f332892abbf7.jpg', '0', 1, 1, '2023-04-22 03:08:14', '2023-04-12 19:06:40', '2023-05-23 22:20:40'),
-(82, 'motochika choskabe', 'xlmirulx@gmail.com', '1234', '0ad8e6c3-0b0a-420a-ac74-f917e1c11b7f.jpg', '0', 0, 1, '2023-04-12 21:31:51', '2023-04-12 19:09:02', '2023-06-01 09:19:20'),
-(83, 'naotora li', 'naotora@gmail.com', '1234', '4bbff59d-47df-4b05-8b42-059ef4f554c8.jpg', '0', 1, 1, '2023-04-12 21:31:52', '2023-04-12 19:10:07', '2023-06-01 09:21:33'),
-(84, 'hanbei takenaka', 'xlmiru95lx@gmail.com', '1234', '86a42037-633d-4af9-befb-f861702e7ce2.jpg', 'fiR5EYH', 1, 1, '2023-04-12 20:47:19', '2023-04-12 20:47:00', '2023-06-01 09:21:10'),
+(81, 'toshiie maeda', 'toshiie@example.com', '1234', 'f2cdb4b1-d51f-44da-bcfe-f332892abbf7.jpg', '0', 1, 1, '2023-04-22 03:08:14', '2023-04-12 19:06:40', '2023-06-20 18:43:08'),
+(82, 'motochika choskabe', 'xlmirulx@gmail.com', '4567', '0ad8e6c3-0b0a-420a-ac74-f917e1c11b7f.jpg', '0', 0, 1, '2023-04-12 21:31:51', '2023-04-12 19:09:02', '2023-06-21 11:13:36'),
+(83, 'naotora li', 'naotora@gmail.com', '1234', '4bbff59d-47df-4b05-8b42-059ef4f554c8.jpg', '0', 0, 1, '2023-04-12 21:31:52', '2023-04-12 19:10:07', '2023-06-21 11:20:10'),
+(84, 'hanbei takenaka', 'xlmiru95lx@gmail.com', '1234', '86a42037-633d-4af9-befb-f861702e7ce2.jpg', 'fiR5EYH', 0, 1, '2023-04-12 20:47:19', '2023-04-12 20:47:00', '2023-06-21 11:20:13'),
 (85, 'aaaa', 'gergeg@jojdo.vom', '1234', '5c791181-d91f-481c-b60e-1a30bee6236d.jpg', NULL, 0, 1, NULL, '2023-04-30 21:34:05', '2023-04-30 21:34:05'),
 (86, 'probando5', 'probando9@exmaple.com', '1234', '9c79ba3c-f284-4a5b-a981-fff75af51d69.jpg', NULL, 0, 1, NULL, '2023-04-30 21:52:31', '2023-04-30 21:52:31'),
 (87, 'inicio', 'popo@example.com', '1234', '946ca9c3-3276-4f7a-a53f-c4a6feaecdce.jpg', NULL, 0, 1, NULL, '2023-04-30 21:56:02', '2023-04-30 21:56:02'),
@@ -650,22 +825,46 @@ INSERT INTO `users` (`id`, `nombre`, `email`, `password`, `avatar`, `cod_passwd`
 (156, 'Eryn_Sporer75', 'Halle6@gmail.com', '1234', '190a92b6-e2d3-42a9-8e4f-4f2e45ef36b0.jpg', NULL, 0, 1, NULL, '2023-05-27 21:13:36', '2023-05-27 21:13:36'),
 (157, 'Vivien.Lynch', 'Brody_Hahn@yahoo.com', '1234', '190a92b6-e2d3-42a9-8e4f-4f2e45ef36b0.jpg', NULL, 0, 1, '2023-05-27 21:15:09', '2023-05-27 21:15:09', '2023-05-27 21:15:09'),
 (158, 'Dandre76', 'Forest86@gmail.com', '1234', '190a92b6-e2d3-42a9-8e4f-4f2e45ef36b0.jpg', NULL, 0, 1, '2023-05-27 21:15:09', '2023-05-27 21:15:09', '2023-05-27 21:15:09'),
-(159, 'Rosetta88', 'Wilhelm_Schroeder38@gmail.com', '1234', '190a92b6-e2d3-42a9-8e4f-4f2e45ef36b0.jpg', NULL, 0, 1, '2023-05-27 21:15:09', '2023-05-27 21:15:09', '2023-05-27 21:15:09'),
+(159, 'Rosetta88', 'Wilhelm_Schroeder38@gmail.com', '1234', '190a92b6-e2d3-42a9-8e4f-4f2e45ef36b0.jpg', NULL, 0, 1, '2023-05-27 21:15:09', '2023-05-27 21:15:09', '2023-06-08 19:14:37'),
 (160, 'Ernesto.Mueller5', 'Warren_Wunsch22@yahoo.com', '1234', '190a92b6-e2d3-42a9-8e4f-4f2e45ef36b0.jpg', NULL, 0, 1, '2023-05-27 22:00:17', '2023-05-27 22:00:17', '2023-05-27 22:00:17'),
 (161, 'Norwood22', 'Nestor.Borer87@yahoo.com', '1234', '190a92b6-e2d3-42a9-8e4f-4f2e45ef36b0.jpg', NULL, 0, 1, '2023-05-27 22:00:17', '2023-05-27 22:00:17', '2023-05-27 22:00:17'),
-(162, 'Daphne.Becker16', 'Janick.Bins29@gmail.com', '1234', '190a92b6-e2d3-42a9-8e4f-4f2e45ef36b0.jpg', NULL, 0, 1, '2023-05-27 22:00:17', '2023-05-27 22:00:17', '2023-05-27 22:00:17'),
-(163, 'Malinda.Bernhard', 'Devonte_Quitzon21@yahoo.com', '1234', '190a92b6-e2d3-42a9-8e4f-4f2e45ef36b0.jpg', NULL, 0, 1, '2023-05-27 22:02:04', '2023-05-27 22:02:04', '2023-05-27 22:02:04'),
-(164, 'Antone_Herzog', 'Rafaela25@yahoo.com', '1234', '190a92b6-e2d3-42a9-8e4f-4f2e45ef36b0.jpg', NULL, 0, 1, '2023-05-27 22:02:04', '2023-05-27 22:02:04', '2023-05-27 22:02:04'),
+(162, 'Daphne.Becker16', 'Janick.Bins29@gmail.com', '1234', '190a92b6-e2d3-42a9-8e4f-4f2e45ef36b0.jpg', NULL, 0, 1, '2023-05-27 22:00:17', '2023-05-27 22:00:17', '2023-06-08 19:14:55'),
+(163, 'Malinda.Bernhard', 'Devonte_Quitzon21@yahoo.com', '1234', '190a92b6-e2d3-42a9-8e4f-4f2e45ef36b0.jpg', NULL, 0, 1, '2023-05-27 22:02:04', '2023-05-27 22:02:04', '2023-06-08 19:15:06'),
+(164, 'Antone_Herzog', 'Rafaela25@yahoo.com', '1234', '190a92b6-e2d3-42a9-8e4f-4f2e45ef36b0.jpg', NULL, 0, 1, '2023-05-27 22:02:04', '2023-05-27 22:02:04', '2023-06-08 19:15:10'),
 (165, 'Cordie_Howe84', 'Jacinthe_Zulauf85@yahoo.com', '1234', '190a92b6-e2d3-42a9-8e4f-4f2e45ef36b0.jpg', NULL, 0, 1, '2023-05-27 22:02:04', '2023-05-27 22:02:04', '2023-05-27 22:02:04'),
 (166, 'muchos peces', 'pececitoooos@example.com', '1234', 'b32b2a59-43e6-422d-b803-89405423d6a0.jpg', NULL, 0, 1, '2023-05-28 00:51:03', '2023-05-28 00:51:03', '2023-05-28 00:51:03'),
-(167, 'Sarina.Ernser63', 'Alessandro.Langosh30@hotmail.com', '1234', '190a92b6-e2d3-42a9-8e4f-4f2e45ef36b0.jpg', NULL, 0, 1, '2023-05-28 00:52:36', '2023-05-28 00:52:36', '2023-05-28 00:52:36'),
-(168, 'Shanel.Ankunding67', 'Brennan21@hotmail.com', '1234', '190a92b6-e2d3-42a9-8e4f-4f2e45ef36b0.jpg', NULL, 0, 1, '2023-05-28 00:52:36', '2023-05-28 00:52:36', '2023-05-28 00:52:36'),
-(169, 'barquito', 'barquito@exmaple.com', '1234', 'b5be333d-f89a-4153-812c-266e62717122.jpg', NULL, 0, 1, '2023-06-01 09:17:22', '2023-06-01 09:17:22', '2023-06-01 09:17:54'),
-(170, 'Mariah.Deckow', 'Scotty.Emmerich55@gmail.com', '1234', '190a92b6-e2d3-42a9-8e4f-4f2e45ef36b0.jpg', NULL, 0, 1, '2023-06-01 09:18:58', '2023-06-01 09:18:58', '2023-06-01 09:18:58'),
-(171, 'Lilyan_Corkery-Hoeger', 'Celia.Pagac@yahoo.com', '1234', '190a92b6-e2d3-42a9-8e4f-4f2e45ef36b0.jpg', NULL, 0, 1, '2023-06-01 09:18:58', '2023-06-01 09:18:58', '2023-06-01 09:18:58'),
-(172, 'Jan_Lind22', 'Harry.Feeney54@hotmail.com', '1234', '190a92b6-e2d3-42a9-8e4f-4f2e45ef36b0.jpg', NULL, 0, 1, '2023-06-01 09:18:58', '2023-06-01 09:18:58', '2023-06-01 09:18:58'),
+(167, 'Sarina.Ernser63', 'Alessandro.Langosh30@hotmail.com', '1234', '190a92b6-e2d3-42a9-8e4f-4f2e45ef36b0.jpg', NULL, 0, 1, '2023-05-28 00:52:36', '2023-05-28 00:52:36', '2023-06-08 19:15:15'),
+(168, 'Shanel.Ankunding67', 'Brennan21@hotmail.com', '1234', '190a92b6-e2d3-42a9-8e4f-4f2e45ef36b0.jpg', NULL, 0, 1, '2023-05-28 00:52:36', '2023-05-28 00:52:36', '2023-06-08 19:16:00'),
+(169, 'barquito', 'barquito@exmaple.com', '1234', 'b5be333d-f89a-4153-812c-266e62717122.jpg', NULL, 0, 1, '2023-06-01 09:17:22', '2023-06-01 09:17:22', '2023-06-08 19:15:52'),
+(170, 'Mariah.Deckow', 'Scotty.Emmerich55@gmail.com', '1234', '190a92b6-e2d3-42a9-8e4f-4f2e45ef36b0.jpg', NULL, 0, 1, '2023-06-01 09:18:58', '2023-06-01 09:18:58', '2023-06-08 19:15:41'),
+(171, 'Lilyan_Corkery-Hoeger', 'Celia.Pagac@yahoo.com', '1234', '190a92b6-e2d3-42a9-8e4f-4f2e45ef36b0.jpg', NULL, 0, 1, '2023-06-01 09:18:58', '2023-06-01 09:18:58', '2023-06-08 19:15:47'),
+(172, 'Jan_Lind22', 'Harry.Feeney54@hotmail.com', '1234', '190a92b6-e2d3-42a9-8e4f-4f2e45ef36b0.jpg', NULL, 0, 1, '2023-06-01 09:18:58', '2023-06-01 09:18:58', '2023-06-08 19:15:56'),
 (173, 'Gene.Schroeder84', 'Rodrick.Streich@yahoo.com', '1234', '190a92b6-e2d3-42a9-8e4f-4f2e45ef36b0.jpg', NULL, 0, 1, '2023-06-01 09:18:58', '2023-06-01 09:18:58', '2023-06-01 09:18:58'),
-(174, 'Caleb_Mertz', 'Toby_Mohr@yahoo.com', '1234', '190a92b6-e2d3-42a9-8e4f-4f2e45ef36b0.jpg', NULL, 0, 1, '2023-06-01 09:18:58', '2023-06-01 09:18:58', '2023-06-01 09:18:58');
+(174, 'Caleb_Mertz', 'Toby_Mohr@yahoo.com', '1234', '190a92b6-e2d3-42a9-8e4f-4f2e45ef36b0.jpg', NULL, 0, 1, '2023-06-01 09:18:58', '2023-06-01 09:18:58', '2023-06-01 09:18:58'),
+(175, 'Hilma.Kling30', 'Jada29@yahoo.com', '1234', '190a92b6-e2d3-42a9-8e4f-4f2e45ef36b0.jpg', NULL, 0, 1, '2023-06-19 17:20:26', '2023-06-19 17:20:26', '2023-06-19 17:20:43'),
+(176, 'Cortney.Zulauf', 'Emilio_Rempel6@gmail.com', '1234', '190a92b6-e2d3-42a9-8e4f-4f2e45ef36b0.jpg', NULL, 0, 1, '2023-06-19 17:20:26', '2023-06-19 17:20:26', '2023-06-19 17:20:26');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuarioforos`
+--
+
+CREATE TABLE `usuarioforos` (
+  `id` bigint(20) NOT NULL,
+  `id_user` int(11) DEFAULT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `usuarioforos`
+--
+
+INSERT INTO `usuarioforos` (`id`, `id_user`, `createdAt`, `updatedAt`) VALUES
+(1, 79, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(2, 84, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(13, 83, '2023-06-14 01:02:49', '2023-06-14 01:02:49');
 
 --
 -- Índices para tablas volcadas
@@ -675,6 +874,12 @@ INSERT INTO `users` (`id`, `nombre`, `email`, `password`, `avatar`, `cod_passwd`
 -- Indices de la tabla `enigmas`
 --
 ALTER TABLE `enigmas`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `foros`
+--
+ALTER TABLE `foros`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -709,6 +914,12 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `usuarioforos`
+--
+ALTER TABLE `usuarioforos`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -716,13 +927,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `enigmas`
 --
 ALTER TABLE `enigmas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT de la tabla `foros`
+--
+ALTER TABLE `foros`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT de la tabla `partidas`
 --
 ALTER TABLE `partidas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=170;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -734,7 +951,13 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=175;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=181;
+
+--
+-- AUTO_INCREMENT de la tabla `usuarioforos`
+--
+ALTER TABLE `usuarioforos`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
